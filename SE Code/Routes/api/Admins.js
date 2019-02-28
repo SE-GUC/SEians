@@ -83,5 +83,52 @@ router.delete('/:id', (req, res) => {
 
 
 
+
+function createAdmin(req,res){
+    var name= req.body.name
+    var age =req.body.age
+    var email = req.body.email
+    var ssn = req.body.ssn
+    
+    if(!req.body.name || !req.body.age || !req.body.email || !req.body.ssn) {
+        return res.status(400).send({
+            message: "Can't continue with an empty field."
+        });
+    }
+    else{
+
+        if((isNaN(age) || isNaN(ssn) || name.length>30 || email.length>30) ){
+            return res.status(400).send({
+                message: "Please Enter Valid Info About The Admin."
+            });
+        }
+        else{
+        var id = admins.length
+        var adminToBeAdded = new Admin(id,name,age,email,ssn)
+        admins.push(adminToBeAdded)
+        return res.status(200).send({
+            success: 'true',
+            message: 'inserted at last.',
+            Name: req.body.name,
+            Age: req.body.age ,
+            Mail: req.body.email,
+            SSN: req.body.ssn
+          });
+        }
+    }
+
+}
+
+
+
+router.post('/create', (req, res) => {
+    createAdmin(req,res);
+})
+
+
+
+
+
+
 module.exports = router
 

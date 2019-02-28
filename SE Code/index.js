@@ -19,6 +19,7 @@ app.use(express.json())
 
 // Direct routes to appropriate files 
 app.use('/api/Admins', Admins)
+app.use('/api/Admins/create', Admins)
 
 
 // Handling 404

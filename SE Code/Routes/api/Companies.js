@@ -51,7 +51,6 @@ const found2 = companies.some(Company => Company.name === (newCompany.name));
     // res.redirect('/');
     );
 
-
   // Delete Member
 router.delete('/:id', (req, res) => {
     const found = companies.some(company => company.id === parseInt(req.params.id));
@@ -67,6 +66,32 @@ router.delete('/:id', (req, res) => {
     }
   });
 
+// Update Member
+router.put('/:id', (req, res) => {
+    const found = companies.some(Company => company.id === parseInt(req.params.id));
+		companies.filter((company) => {
+	if (req.params.userName == company.name){
+		for(prop in req.body ){
+			investor[prop] = req.body[prop];
+		}
+		res.send(investor);
+	 }
+ }
+)
+  });
+
+// Get Single company
+router.get('/:id', (req, res) => {
+    const found = companies.some(company => company.id === parseInt(req.params.id));
+    if (found) {
+      res.json(companies.filter(company => company.id === parseInt(req.params.id)));
+    } else {
+      res.status(400).json({ msg: `No company with the id of ${req.params.id}` });
+    }
+  });
+
+	//get all companies
+	router.get('/all',(req, res) => res.json({ data: companies }));
 
 
 

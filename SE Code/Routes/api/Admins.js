@@ -82,6 +82,38 @@ router.delete('/:id', (req, res) => {
 });
 
 
+router.put('/updated/:id',function (req,res) {
+           const admId=req.params.id
+            if(admId.isNaN || admId == null){
+              res.status(404).json({err :'id not found'});
+            }else{
+                  const found= admins.some(adm=>adm.id==admId);
+                  if(found){
+                    let admi = admins.find(admi => admi.id==admId)
+                    if(req.body.fullname){
+                      let admfullname=req.body.fullname
+                      admi.fullname = admfullname
+                    }
+                    if(req.body.age ){
+                      let admage=req.body.age
+                      admi.age = admage
+                    }
+                    if(req.body.email){
+                      let admemail=req.body.email
+                      admi.email = admemail
+                    }
+                    if(req.body.ssn){
+                      let admssn=req.body.ssn
+                      admi.ssn = admssn
+                    }
+                    res.send(admins)
+                    }else{
+                        res.status(404).json({err :'id not found'});
+                      }
+                  }
+})
+
+
 
 module.exports = router
 

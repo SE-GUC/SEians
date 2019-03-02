@@ -6,16 +6,18 @@ const router = express.Router();
 
 
 // Models
-const User = require('../../models/Company');
+const Company = require('../../models/Company');
 
 // temporary data created as if it was pulled out of the database ...
 const companies = [
-	new Company('103','Monsters Inc.','active','SSC','Henry J. Waternoose III'),
-	new Company('105', 'Radio Los Santos', 'active', 'SSC', 'Big Boy')
+	new Company(11,'www','fff','gffgfg','fhhhfh'),
+
 
 ];
 
-// Create Member
+router.get('/',(req, res) => res.json({ data: companies }));
+
+// Create Membec
 router.post('/', (req, res) => {
     const newReviewer = {
     id:req.body.id,

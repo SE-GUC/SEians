@@ -43,7 +43,7 @@ router.post('/', (req, res) => {
         address: Joi.string().required(),
         mobilePhone: Joi.string().required(),
         fax: Joi.number().required(),
-        email: Joi.string().required(),
+        email: Joi.string().email().required(),
         capital: Joi.number().required(),
         currency: Joi.string().required(),
         Companies: Joi.array().required(),

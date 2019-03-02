@@ -9,4 +9,4 @@ class Company{
         this.owner = owner;
     };
 }
-module.exports = Admin;
+module.exports = Company;

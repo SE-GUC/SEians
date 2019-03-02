@@ -35,7 +35,7 @@ var admins = [
 
 //res.json({ data: admins })
  router.get('/', (req, res) => res.send(' <h>Welcome to the admin page<br> you can view all current admins by adding /all to the url,<br>you can also view or delete aspecific admin by typing his/her id or username<br>Have anice day!</h>'));
- 
+
  //Get all admins
  router.get('/all',(req, res) => res.json({ data: admins }));
 
@@ -59,17 +59,17 @@ var admins = [
             res.status(404).json({err :'id not found'});
         }
     }
-   
+
 }
 )
- 
- 
+
+
 
 //Delete
 
 
 router.delete('/:id', (req, res) => {
-    const admID = req.params.id 
+    const admID = req.params.id
     if(!isNaN(admID)){
         const found= admins.some(adm=>adm.id==admID);
 
@@ -81,13 +81,13 @@ router.delete('/:id', (req, res) => {
         }else{
             res.status(404).json({err :'id not found'});
         }
-    
-      
+
+
     }else{
-        const admName = req.params.id 
+        const admName = req.params.id
         console.log('hi')
         const found= admins.some(adm=>adm.userName===admName);
-    
+
         if(found){
             const ad = admins.find(ad => ad.userName === admName)
             const index = admins.indexOf(ad)
@@ -97,7 +97,7 @@ router.delete('/:id', (req, res) => {
             res.status(404).json({err :'username not found '});
         }
     }
-  
+
 });
 ///////////////////////////////////////////////////////////////////////////
 
@@ -118,8 +118,8 @@ function createAdmin(req,res){
     var fax = req.body.fax
     var workLocation = req.body.workLocation
     var address = req.body.address
-    
-    
+
+
     if(!req.body.userName || !req.body.firstName  || !req.body.lastName || !req.body.age || !req.body.email || !req.body.ssn
         || !req.body.password || !req.body.gender || !req.body.salary || !req.body.phoneNumber || !req.body.workLocation || !req.body.address || !req.body.fullAccess ) {
         return res.status(400).send({
@@ -135,8 +135,8 @@ function createAdmin(req,res){
                 break;
             }
         }
-    
-        if((isNaN(age) || isNaN(ssn) || isNaN(salary) || isNaN(phoneNumber) || userName.length>10 || firstName.length>15 || lastName.length>15 || 
+
+        if((isNaN(age) || isNaN(ssn) || isNaN(salary) || isNaN(phoneNumber) || userName.length>10 || firstName.length>15 || lastName.length>15 ||
         email.length>30) || password.length>30  || userNameExists==true){
             return res.status(400).send({
                 message: "Please Enter Valid Info About The Admin."
@@ -246,4 +246,3 @@ router.put('/updated/:id',function (req,res) {
 
 
 module.exports = router
-

@@ -48,13 +48,13 @@ router.post('/', (req, res) => {
         currency: Joi.string().required(),
         Companies: Joi.array().required(),
         SSC: Joi.boolean().required(),
-        password: Joi.required(),   
+        password: Joi.required(),
     }
     const result = Joi.validate(req.body, schema);
 
 	if (result.error) return res.status(400).send({ error: result.error.details[0].message });
 
-    const found = investors.some(investor => investor.userName === userName)
+    const found  = investors.some(investor => investor.userName === userName)
     const found1 = investors.some(investor => investor.egID === egID)
     const found2 = investors.some(investor => investor.mobilePhone === mobilePhone)
     const found3 = investors.some(investor => investor.fax === fax)
@@ -65,24 +65,24 @@ router.post('/', (req, res) => {
         res.send("review data")
     }
     else{
-	
+
 	 const newInvestor = {
         id: uuid.v4(),
         name,
         userName,
         sex,
         nationality,
-        egID, 
+        egID,
         birthDate,
         age,
-        address, 
-        mobilePhone, 
-        fax, 
-        email, 
-        capital, 
-        currency, 
-        Companies, 
-        SSC, 
+        address,
+        mobilePhone,
+        fax,
+        email,
+        capital,
+        currency,
+        Companies,
+        SSC,
         password,
     };
     investors.push(newInvestor)
@@ -99,7 +99,7 @@ router.get('/', (request, response) => {
         data += `<a href="/api/investors/${investor_userName}">${investor_name}</a><br>`;
     });
     response.send(data);
-}); 
+});
 
 //showing every investor
 router.get('/:userName', (request, response) => {
@@ -118,7 +118,7 @@ router.get('/:userName', (request, response) => {
 
 //deletion
 router.delete('/:userName', (req, res) => {
-    const userName = req.params.userName 
+    const userName = req.params.userName
     const found = investors.some(investor => investor.userName === userName)
     if(found){
     const investor = investors.find(investor => investor.userName === userName)
@@ -130,7 +130,7 @@ router.delete('/:userName', (req, res) => {
         res.send('Not found');
 
     }
-}); 
+});
 
 //editing yara
 router.put('/:userName',(req,res)=>{

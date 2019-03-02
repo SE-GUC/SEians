@@ -4,7 +4,11 @@ const express = require('express')
 
 // Require Router Handlers
 const Admins = require('./Routes/api/Admins')
-const reviewers = require('./routes/api/reviewers')
+
+const reviewers = require('./Routes/api/reviewers')
+
+
+const investors = require('./Routes/api/investors')
 
 
 
@@ -15,13 +19,14 @@ app.use(express.json())
 
 
     app.get('/', (req, res) => {
-      res.send(' <a href="/api/Admins">Admins</a>'
-      `<h1>Welcome to Reviewers Sheet</h1>
-    <a href="/api/reviewers">Reviewers</a>
+
    
     `
       
-      );
+    
+
+      res.send(' <a href="/api/Admins">Admins</a> <br> <a href="/api/reviewers">Reviewers</a> <br> <a href="/api/investors">investors</a>');
+
   })
   
 
@@ -29,7 +34,11 @@ app.use(express.json())
 
 // Direct routes to appropriate files 
 app.use('/api/Admins', Admins)
+
 app.use('/api/reviewers', reviewers)
+
+app.use('/api/investors', investors)
+
 
 // Handling 404
 app.use((req, res) => {

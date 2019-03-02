@@ -8,6 +8,9 @@ const reviewers = require('./Routes/api/reviewers')
 const lawyers = require('./Routes/api/lawyers')
 const investors = require('./Routes/api/investors')
 const Companies= require('./Routes/api/Companies')
+const ManagerController = require ('./Routes/api/ManagerController')
+const SpcController = require('./Routes/api/SpcController')
+const SscController = require('./Routes/api/SscController')
 
 
 
@@ -33,6 +36,10 @@ app.use(express.json())
 
 // Direct routes to appropriate files 
 app.use('/api/Admins', Admins)
+
+app.use('/api/ManagerController', ManagerController)
+app.use('/api/SscController', SscController)
+app.use('/api/SpcController', SpcController)
 
 app.use('/api/reviewers', reviewers)
 

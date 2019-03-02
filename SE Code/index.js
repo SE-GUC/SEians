@@ -4,7 +4,7 @@ const express = require('express')
 
 // Require Router Handlers
 const Admins = require('./Routes/api/Admins')
-
+const lawyers = require('./routes/api/lawyers')
 
 
 const app = express()
@@ -19,7 +19,7 @@ app.use(express.json())
 
 // Direct routes to appropriate files 
 app.use('/api/Admins', Admins)
-
+app.use('/api/lawyers', lawyers)
 
 // Handling 404
 app.use((req, res) => {

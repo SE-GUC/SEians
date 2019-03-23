@@ -101,6 +101,10 @@ const SpcSchema = new Schema({
     time: {
         type: Date,
         required: false
+    },
+    capital: {
+        type: Number,
+        required: true
     }
 })
 

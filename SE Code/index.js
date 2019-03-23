@@ -1,23 +1,57 @@
 const express = require('express')
 const mongoose = require('mongoose')
 
+// DB Config
+
+
+require('dotenv').config()
+const express = require('express')
+const mongoose = require('mongoose')
+
 // Require Router Handlers
-const Companies = require('./routes/api/Companies')
+const Admins = require('./Routes/api/Admins')
+const reviewers = require('./Routes/api/reviewers')
+const lawyers = require('./Routes/api/lawyers')
+const investors = require('./Routes/api/investors')
+const Companies= require('./Routes/api/Companies')
+const Spcs = require('./Routes/api/Spcs')
+
 
 const app = express()
 
-// DB Config
-const db = require('./config/keys').mongoURI
+const {
+  PORT = 7000,
+  MONGO_DNS_SRV,
+  MONGO_AUTH,
+  MONGO_CLUSTER,
+  MONGO_DB_NAME,
+  MONGO_OPTIONS
+} = process.env
 
-// Connect to mongo
-mongoose
-    .connect(db)
-    .then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.log(err))
 
-// Init middleware
-app.use(express.json())
-app.use(express.urlencoded({extended: false}))
+  
+    mongoose.connect(`${MONGO_DNS_SRV}${MONGO_AUTH}${MONGO_CLUSTER}${MONGO_DB_NAME}${MONGO_OPTIONS}`, {
+      useNewUrlParser: true
+    })
+  
+    app.use(express.json())
+
+    app.use(express.urlencoded({extended: false}))
+
+
+
+
+app.get('/', (req, res) => {
+
+
+
+      res.send(' <a href="/api/Admins">Admins</a> <br> <a href="/api/reviewers">Reviewers</a> <br> <a href="/api/investors">investors</a> <br><a href="/api/lawyers">lawyers</a><br><a href="/api/Companies">Companies</a> ');
+
+  })
+  
+
+
+
 
 
 // Entry point
@@ -25,12 +59,20 @@ app.use(express.urlencoded({extended: false}))
 
 // Direct to Route Handlers
 app.use('/api/Companies', Companies)
-app.get('/', (req,res) => {
-  res.send(`<a href="/api/Companies">Companies</a>`)
-})
 
+
+
+
+app.use('/api/Spcs',Spcs)
+
+// Handling 404
+app.use((req, res) => {
+    res.status(404).send({err: 'We can not find what you are looking for'});
+ })
 
 app.use((req,res) => res.status(404).send(`<h1>Can not find what you're looking for</h1>`))
 
-const port = process.env.PORT || 3000
-app.listen(port, () => console.log(`Server on ${port}`))
+
+const port = 3000
+app.listen(port, () => console.log(`Server up and running on port ${port}`))
+

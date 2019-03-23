@@ -1,6 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
 
+require('dotenv').config()
+const express = require('express')
+const mongoose = require('mongoose')
 
 // Require Router Handlers
 const Admins = require('./Routes/api/Admins')
@@ -27,14 +30,38 @@ mongoose
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
+const app = express()
+
+
 // Entry point
 app.get('/', (req,res) => res.send(`<h1>Spcs</h1>`))
 app.get('/test', (req,res) => res.send(`<h1>Deployed on Heroku</h1>`))
+
+const {
+  PORT = 7000,
+  MONGO_DNS_SRV,
+  MONGO_AUTH,
+  MONGO_CLUSTER,
+  MONGO_DB_NAME,
+  MONGO_OPTIONS
+} = process.env
+
+
+  
+    mongoose.connect(`${MONGO_DNS_SRV}${MONGO_AUTH}${MONGO_CLUSTER}${MONGO_DB_NAME}${MONGO_OPTIONS}`, {
+      useNewUrlParser: true
+    })
+  
+    app.use(express.json())
+
+ //   app.use(express.urlencoded({extended: false}))
 
 
 
 
 /*app.get('/', (req, res) => {
+
+
 
       res.send(' <a href="/api/Admins">Admins</a> <br> <a href="/api/reviewers">Reviewers</a> <br> <a href="/api/investors">investors</a> <br><a href="/api/lawyers">lawyers</a><br><a href="/api/Companies">Companies</a> ');
 

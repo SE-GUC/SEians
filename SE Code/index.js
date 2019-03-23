@@ -1,5 +1,5 @@
-
 const express = require('express')
+const mongoose = require('mongoose')
 
 
 // Require Router Handlers
@@ -15,18 +15,31 @@ const Companies= require('./Routes/api/Companies')
 const app = express()
 app.use(express.json())
 
+// DB Config
+const db = require('./config/keys').mongoURI;
+mongoose.set('useNewUrlParser',true)
+// Connect to mongo
+mongoose
+    .connect(db)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.log(err))
+
+// Init middleware
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
+
+// Entry point
+app.get('/', (req,res) => res.send(`<h1>investors</h1>`))
+app.get('/test', (req,res) => res.send(`<h1>Deployed on Heroku</h1>`))
 
 
-    app.get('/', (req, res) => {
 
-   
-    
-      
-    
+
+/*app.get('/', (req, res) => {
 
       res.send(' <a href="/api/Admins">Admins</a> <br> <a href="/api/reviewers">Reviewers</a> <br> <a href="/api/investors">investors</a> <br><a href="/api/lawyers">lawyers</a><br><a href="/api/Companies">Companies</a> ');
 
-  })
+  })*/
   
 
 

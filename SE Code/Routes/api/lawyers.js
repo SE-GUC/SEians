@@ -61,6 +61,29 @@ router.post('/joi', (req, res) => {
        return res.json({ data: lawyers });
   }
 
+function calculate(law,company,capital){
+  var cal;
+  if(company === "GAVI"){
+    if(law === 159)cal = capital/1000;
+    if(law === 72) cal = 0;
+  }
+  if(company === "Notary bublic"){
+    if(law === 159) cal = capital/4;
+    if(law === 72) cal = 0;
+  }
+  if(company === "Commercial Register"){
+    if(law === 159)cal = 56;
+    if(law === 72) cal = 106;
+  }
+  return cal;
+
+}
+function recalculate(law,company,capital){
+  calculate(law,company,capital)
+}
+
+
+
 
 
 

@@ -1,46 +1,61 @@
 const express = require('express')
 const mongoose = require('mongoose')
 
-
+require('dotenv').config()
+const express = require('express')
 const mongoose = require('mongoose')
 
-
 // Require Router Handlers
-const Admins = require('./routes/api/Admins')
-const Companies = require('./routes/api/Companies')
-const investors = require('./routes/api/investors')
+const Admins = require('./Routes/api/Admins')
+const reviewers = require('./Routes/api/reviewers')
+const lawyers = require('./Routes/api/lawyers')
+const investors = require('./Routes/api/investors')
+const Companies= require('./Routes/api/Companies')
+const Spcs = require('./Routes/api/Spcs')
 
-const lawyers = require('./routes/api/lawyers')
-
-const reviewers = require('./routes/api/reviewers')
 
 const app = express()
-app.use(express.json())
 
-// DB Config
+const {
+  PORT = 7000,
+  MONGO_DNS_SRV,
+  MONGO_AUTH,
+  MONGO_CLUSTER,
+  MONGO_DB_NAME,
+  MONGO_OPTIONS
+} = process.env
+
+  
+    mongoose.connect(`${MONGO_DNS_SRV}${MONGO_AUTH}${MONGO_CLUSTER}${MONGO_DB_NAME}${MONGO_OPTIONS}`, {
+      useNewUrlParser: true
+    })
+  
+    app.use(express.json())
+
+    app.use(express.urlencoded({extended: false}))
 
 
-
-const db = require('./config/keys').mongoURI
-mongoose.set('useNewUrlParser',true)
-// Connect to mongo
-mongoose
-    .connect(db)
-    .then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.log(err))
 
 
 
 app.get('/', (req, res) => {
 
-      res.send(' <a href="/api/Admins">Admins</a> <br> <a href="/api/reviewers">Reviewers</a> <br> <a href="/api/investors">investors</a> <br><a href="/api/lawyers">lawyers</a><br><a href="/api/Companies">Companies</a> ');
+
+      res.send(' <a href="/api/Spcs">Spcs</a> <br><a href="/api/Admins">Admins</a> <br> <a href="/api/reviewers">Reviewers</a> <br> <a href="/api/investors">investors</a> <br><a href="/api/lawyers">lawyers</a><br><a href="/api/Companies">Companies</a> ');
 
   })
   
 
 
 
-// Entry point
+
+
+app.use('/api/Spcs',Spcs)
+
+
+
+
+
 app.use('/api/Admins', Admins)
 app.use('/api/Companies', Companies)
 app.use('/api/investors',investors)

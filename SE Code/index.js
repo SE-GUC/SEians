@@ -1,51 +1,36 @@
-
 const express = require('express')
-
+const mongoose = require('mongoose')
 
 // Require Router Handlers
-const Admins = require('./Routes/api/Admins')
-const reviewers = require('./Routes/api/reviewers')
-const lawyers = require('./Routes/api/lawyers')
-const investors = require('./Routes/api/investors')
-const Companies= require('./Routes/api/Companies')
-
-
-
+const Companies = require('./routes/api/Companies')
 
 const app = express()
+
+// DB Config
+const db = require('./config/keys').mongoURI
+
+// Connect to mongo
+mongoose
+    .connect(db)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.log(err))
+
+// Init middleware
 app.use(express.json())
+app.use(express.urlencoded({extended: false}))
 
 
-
-    app.get('/', (req, res) => {
-
-   
-    
-      
-    
-
-      res.send(' <a href="/api/Admins">Admins</a> <br> <a href="/api/reviewers">Reviewers</a> <br> <a href="/api/investors">investors</a> <br><a href="/api/lawyers">lawyers</a><br><a href="/api/Companies">Companies</a> ');
-
-  })
-  
+// Entry point
 
 
-
-// Direct routes to appropriate files 
-app.use('/api/Admins', Admins)
-
-app.use('/api/reviewers', reviewers)
-
-app.use('/api/investors', investors)
-
-app.use('/api/lawyers',lawyers)
-
-app.use('/api/Companies',Companies)
-// Handling 404
-app.use((req, res) => {
-    res.status(404).send({err: 'We can not find what you are looking for'});
- })
+// Direct to Route Handlers
+app.use('/api/Companies', Companies)
+app.get('/', (req,res) => {
+  res.send(`<a href="/api/Companies">Companies</a>`)
+})
 
 
-const port = 3000
-app.listen(port, () => console.log(`Server up and running on port ${port}`))
+app.use((req,res) => res.status(404).send(`<h1>Can not find what you're looking for</h1>`))
+
+const port = process.env.PORT || 3000
+app.listen(port, () => console.log(`Server on ${port}`))

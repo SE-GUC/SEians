@@ -1,28 +1,76 @@
-const uuid = require('uuid')
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-// The User Model
-class Reviewer {
-    constructor(firstname,middlename,lastname,email,username,password,birthDate,gender,address,yearsOfExperience,hiringDate,salary,unfinished,finished,ssn,phone,id) {
-        
-        this.firstname = firstname;
-        this.middlename = middlename;
-        this.lastname = lastname;
-        this.email=email;
-        this.username = username;
-        this.password = password;
-        this.birthDate = birthDate;
-        this.gender= gender;
-        this.address= address;
-        this.phone = phone;
-        this.ssn= ssn;
-        this.finished = finished;
-        this.unfinished = unfinished;
-        this.salary= salary;
-        this.hiringDate= hiringDate;
-        this.yearsOfExperience = yearsOfExperience;
-        this.id=id;
-        //this.id = uuid.v4();
-    };
-};
+// Create the schema
+const ReviewerSchema = new Schema({
+    firstname: {
+        type: String,
+        required: true
+    },
+    middlename: {
+        type: String,
+        required: true
+    },
+    lastname: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String, 
+        required: true
+    },
+    username: {
+        type: String, 
+        required: true
+    },
+    password: {
+        type: String, 
+        required: true
+    },
+    birthDate: {
+        type: Date, 
+        required: true
+    },
+    gender: {
+        type: String, 
+        required: true
+    },
+    address: {
+        type: String, 
+        required: true
+    },
+    email: {
+        type: String, 
+        required: true
+    },
+    yearsOfExperience: {
+        type: Number, 
+        required: true
+    },
+    hiringDate: {
+        type: Date, 
+        required: true
+    },
+    salary: {
+        type: Number, 
+        required: true
+    },
+    unfinished: {
+        type: Boolean, 
+        required: true
+    },
+    finsihed: {
+        type: Boolean, 
+        required: true
+    },
+    ssn: {
+        type: Number, 
+        required: true
+    },
+    phone: {
+        type: Number, 
+        required: true
+    }, 
+})
 
-module.exports = Reviewer
+module.exports = Reviewer = mongoose.model('reviewers', ReviewerSchema)

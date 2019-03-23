@@ -1,3 +1,6 @@
+const express = require('express')
+const mongoose = require('mongoose')
+
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
@@ -8,12 +11,31 @@ const reviewers = require('./Routes/api/reviewers')
 const lawyers = require('./Routes/api/lawyers')
 const investors = require('./Routes/api/investors')
 const Companies= require('./Routes/api/Companies')
-
-
+const Spcs = require('./Routes/api/Spcs')
 
 
 const app = express()
+app.use(express.json())
 
+// DB Config
+const db = require('./config/keys').mongoURI;
+mongoose.set('useNewUrlParser',true)
+// Connect to mongo
+mongoose
+    .connect(db)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.log(err))
+
+// Init middleware
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
+
+const app = express()
+
+
+// Entry point
+app.get('/', (req,res) => res.send(`<h1>Spcs</h1>`))
+app.get('/test', (req,res) => res.send(`<h1>Deployed on Heroku</h1>`))
 
 const {
   PORT = 7000,
@@ -34,13 +56,16 @@ const {
 
  //   app.use(express.urlencoded({extended: false}))
 
-    app.get('/', (req, res) => {
 
-   
+
+
+/*app.get('/', (req, res) => {
+
+
 
       res.send(' <a href="/api/Admins">Admins</a> <br> <a href="/api/reviewers">Reviewers</a> <br> <a href="/api/investors">investors</a> <br><a href="/api/lawyers">lawyers</a><br><a href="/api/Companies">Companies</a> ');
 
-  })
+  })*/
   
 
 
@@ -55,6 +80,9 @@ app.use('/api/investors', investors)
 app.use('/api/lawyers',lawyers)
 
 app.use('/api/Companies',Companies)
+
+app.use('/api/Spcs',Spcs)
+
 // Handling 404
 app.use((req, res) => {
     res.status(404).send({err: 'We can not find what you are looking for'});

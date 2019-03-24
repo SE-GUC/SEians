@@ -8,7 +8,7 @@ const mongoose = require('mongoose')
 const Company = require('../../models/Company');
 
 //Validation
-const validator = require('../../validations/companyValidations')
+const validator = require('../../validations/companiesValidations')
 
 router.get('/', async (req,res) => {
   const companies = await Company.find()

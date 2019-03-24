@@ -1,0 +1,34 @@
+{
+  "name": "seians",
+  "version": "1.0.0",
+  "description": "summerge app",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^7.0.0",
+    "joi": "^14.3.1",
+    "mongoose": "^5.4.19",
+    "nodemon": "^1.18.10",
+    "package.json": "^2.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start":"cd se code && node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SE-GUC/SEians.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "heroku",
+    "mongodb"
+  ],
+  "author": "\"Mohammad Ashraf\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SE-GUC/SEians/issues"
+  },
+  "homepage": "https://github.com/SE-GUC/SEians#readme"
+}

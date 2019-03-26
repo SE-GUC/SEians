@@ -2,28 +2,19 @@ const express = require('express');
 const Joi = require('joi');
 const uuid = require('uuid');
 const router = express.Router();
+const mongoose = require('mongoose');
 
-const lawyer = require('../../models/lawyer')
+const lawyer = require('../../models/lawyer');
 
-// temporary data created as if it was pulled out of the database ...
-const lawyers = [
-    new lawyer( uuid.v4(),'Mahmoud1', 'Mahmoud Hossam Eldin', 'MahmoudHoss@gmail.com','123456'),
-    new lawyer( uuid.v4(),'Mahmoud2', 'Mahmoud Hossam Eldin2', 'MahmoudHoss2@gmail.com','123456'),
-    new lawyer(uuid.v4(), 'Mahmoud3', 'Mahmoud Hossam Eldin3', 'MahmoudHoss3@gmail.com','123456'),
-    new lawyer(uuid.v4(), 'Mahmoud4', 'Mahmoud Hossam Eldin4', 'MahmoudHoss4@gmail.com','123456')
-];
+router.get('/', (req, res) => {
+  res.json({message: 'hey'})
+});
 
-////////////
-
-router.get('/', (req, res) => res.json({ data: lawyers }));
 router.get('/:username', (req, res) => {
     const lawyerid = req.params.username
     const lawyer = lawyers.find(lawyer => lawyer.username === lawyerid)
     res.send(lawyer)
 });
-
-/////////////////////////////////////////
-////////////////////////////////////////
 
 router.post('/joi', (req, res) => {
     const username = req.body.username
@@ -60,15 +51,6 @@ router.post('/joi', (req, res) => {
        lawyers.push(newlawyer)
        return res.json({ data: lawyers });
   }
-
-
-
-
-
-
-
-
-
 });
 
 
@@ -84,51 +66,6 @@ router.put('/:username',(req,res)=>{
      }
      )
   });
-/////////////////////////////////////
-//////////////////////////////////////////
-
-// router.put('/:id', (req, res) => {
-//     const lawyerid = req.params.id
-//     const email = req.body.email
-//     const password = req.body.password
-//     const lawyer = lawyers.find(lawyer => lawyer.id === lawyerid)
-//     if(email)
-//         lawyer.email=email
-//     if(password)
-//         lawyer.password=password
-//
-//     res.send(lawyers)
-// });
-
-////////////////////////////////////////
-//////////////////////////////////////
-
-
-// router.delete('/:username', (req, res) => {
-    // const lawyerid = req.params.id
-    // const lawyer = lawyers.find(lawyer => lawyer.id === lawyerid)
-    // const index = lawyers.indexOf(lawyer)
-    // lawyers.splice(index,1)
-    // res.send(lawyers)
-
-//     const lawyerUsername = req.params.username
-//     if(isNaN(lawyerUsername)){
-//         const found= lawyers.some(law=>law.username==lawyerUsername);
-//
-//         if(found){
-//             const law = lawyers.find(law => law.username == lawyerUsername)
-//             const index = lawyers.indexOf(law)
-//             lawyers.splice(index,1)
-//             res.send(lawyers)
-//         }else{
-//             res.status(404).json({err :'id not found'});
-//         }
-//
-//
-//     }
-// });
-
-//////////////////////////////
 
 router.delete('/:username', (req, res) => {
     const username = req.params.username
@@ -141,12 +78,7 @@ router.delete('/:username', (req, res) => {
 }
     else{
         res.send('Not found');
-
     }
 });
-
-
-
-
 
 module.exports = router

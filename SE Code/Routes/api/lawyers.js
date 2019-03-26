@@ -4,23 +4,29 @@ const uuid = require('uuid');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const lawyer = require('../../models/lawyer');
+const Lawyer = require('../../models/lawyer');
 
 router.get('/', (req, res) => {
-  res.json({message: 'hey'})
+  Lawyer.find({}, (err, lawyers) => {
+    if(err)
+      res.err({err});
+    else
+      res.json({lawyers});
+  });
 });
 
-router.get('/:username', (req, res) => {
-    const lawyerid = req.params.username
-    const lawyer = lawyers.find(lawyer => lawyer.username === lawyerid)
-    res.send(lawyer)
+router.get('/:id', (req, res) => {
+    const lawyerid = req.params.id
+    Lawyer.findOne({id: lawyerid}, (err, lawyer) => {
+      if(err)
+        res.status(400).json({err});
+      else
+        res.json({lawyer});
+    })
 });
 
-router.post('/joi', (req, res) => {
-    const username = req.body.username
-    const fullname = req.body.fullname
-    const email    = req.body.email
-    const password = req.body.password
+router.post('/', (req, res) => {
+  const newLawyer = req.body;
 
 	const schema = {
         username: Joi.string().min(3) .required(),
@@ -29,56 +35,53 @@ router.post('/joi', (req, res) => {
 		    password: Joi.string().min(6) .required()
       }
 
-	const result = Joi.validate(req.body, schema);
+	const result = Joi.validate(newLawyer, schema);
+	if (result.error)
+    return res.status(400).json({ error: result.error.details[0].message });
 
-	if (result.error) return res.status(400).send({ error: result.error.details[0].message });
-
-  const found = lawyers.some(lawyer => lawyer.username == username)
-
-  if(found){
-    res.send("review data")
-
-  }else{
-
-    const newlawyer = {
-      id:uuid.v4(),
-
-          username,
-          fullname,
-          email,
-          password
-       }
-       lawyers.push(newlawyer)
-       return res.json({ data: lawyers });
-  }
+  Lawyer.findOne({username: req.body.username}, (err, lawyer) => {
+    if(lawyer === null){
+      Lawyer.create({
+        id: uuid.v4(),
+        username: newLawyer.username,
+        fullname: newLawyer.fullName,
+        email: newLawyer.email,
+        fullname: newLawyer.fullname,
+        password: newLawyer.password
+      }, (err, lawyer) => {
+        if(err)
+          res.status(400).json({err});
+        else {
+          res.json({lawyer});
+        }
+      });
+    } else
+      res.send("review data")
+  });
 });
 
 
 
-router.put('/:username',(req,res)=>{
-    lawyers.filter((lawyer) => {
-      if (req.params.username == lawyer.username){
-        for(prop in req.body ){
-          lawyer[prop] = req.body[prop];
-        }
-        res.send(lawyer);
-       }
-     }
-     )
+router.put('/:username', (req,res)=>{
+    Lawyer.findOneAndUpdate({username: req.params.username}, {
+      $set: req.body
+    }, (err, lawyer) => {
+      if(err)
+        res.status(400).json({err});
+      else {
+        res.json({lawyer});
+      }
+    })
   });
 
 router.delete('/:username', (req, res) => {
-    const username = req.params.username
-    const found = lawyers.some(lawyer => lawyer.username === username)
-    if(found){
-    const lawyer = lawyers.find(lawyer => lawyer.username === username)
-    const index = lawyers.indexOf(lawyer)
-    lawyers.splice(index,1)
-    return res.json({lawyers});
-}
-    else{
-        res.send('Not found');
-    }
+    Lawyer.findOneAndDelete({username: req.params.username}, (err, residue) => {
+      if(err)
+        res.status(400).json({err});
+      else {
+        res.json({residue});
+      }
+    })
 });
 
 module.exports = router

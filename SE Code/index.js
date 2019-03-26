@@ -1,6 +1,9 @@
 
-const express = require('express')
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
+mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true});
 
 // Require Router Handlers
 const Admins = require('./Routes/api/Admins')
@@ -9,29 +12,15 @@ const lawyers = require('./Routes/api/lawyers')
 const investors = require('./Routes/api/investors')
 const Companies= require('./Routes/api/Companies')
 
-
-
-
 const app = express()
-app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+  res.send(' <a href="/api/Admins">Admins</a> <br> <a href="/api/reviewers">Reviewers</a> <br> <a href="/api/investors">investors</a> <br><a href="/api/lawyers">lawyers</a><br><a href="/api/Companies">Companies</a> ');
+})
 
-
-    app.get('/', (req, res) => {
-
-   
-    
-      
-    
-
-      res.send(' <a href="/api/Admins">Admins</a> <br> <a href="/api/reviewers">Reviewers</a> <br> <a href="/api/investors">investors</a> <br><a href="/api/lawyers">lawyers</a><br><a href="/api/Companies">Companies</a> ');
-
-  })
-  
-
-
-
-// Direct routes to appropriate files 
+// Direct routes to appropriate files
 app.use('/api/Admins', Admins)
 
 app.use('/api/reviewers', reviewers)

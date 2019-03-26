@@ -5,15 +5,16 @@
   "main": "index.js",
   "dependencies": {
     "dotenv": "^7.0.0",
+    "express": "^4.16.4",
     "joi": "^14.3.1",
-    "mongoose": "^5.4.19",
+    "mongoose": "^5.4.20",
     "nodemon": "^1.18.10",
-    "package.json": "^2.0.1"
+    "package.json": "^2.0.1",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {},
   "scripts": {
-
-    "start":"node index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

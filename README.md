@@ -1,3 +1,2 @@
 # SEians
-Mohammad Ashraf
-Ziad Darwish
+https://app-final.herokuapp.com/

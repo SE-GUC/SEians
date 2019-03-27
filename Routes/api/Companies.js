@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 
 
 // Models
-const Company = require('../../models/Company');
+const Company = require('../../Models/Company');
 
 //Validation
 const validator = require('../../validations/companiesValidations')

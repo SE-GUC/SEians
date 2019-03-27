@@ -3,7 +3,7 @@ const Joi = require('joi');
 const uuid = require('uuid');
 const router = express.Router();
 
-const lawyer = require('../../models/lawyer')
+const lawyer = require('../../Models/lawyer')
 
 // temporary data created as if it was pulled out of the database ...
 const lawyers = [

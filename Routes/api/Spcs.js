@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 
 const router = express.Router();
 
-const Spcs = require('../../models/Spc');
+const Spcs = require('../../Models/Spc');
 const validator = require('../../validations/SpcValidations')
 
 //creation

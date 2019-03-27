@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 const router = express.Router();
 
-const Reviewer = require('../../models/Reviewer');
+const Reviewer = require('../../Models/Reviewer');
 const validator = require('../../validations/ReviewerValidations')
 
 

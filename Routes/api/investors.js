@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 
 const router = express.Router();
 
-const investor = require('../../models/investor');
+const investor = require('../../Models/investor');
 const validator = require('../../validations/investorValidations')
 
 //creation

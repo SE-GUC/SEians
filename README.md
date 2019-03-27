@@ -1,2 +1,2 @@
 # SEians
-https://app-final.herokuapp.com/
+https://seians-final.herokuapp.com/

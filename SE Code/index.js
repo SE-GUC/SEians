@@ -13,8 +13,8 @@ const investors = require('./Routes/api/investors')
 const Companies= require('./Routes/api/Companies')
 
 const app = express()
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send(' <a href="/api/Admins">Admins</a> <br> <a href="/api/reviewers">Reviewers</a> <br> <a href="/api/investors">investors</a> <br><a href="/api/lawyers">lawyers</a><br><a href="/api/Companies">Companies</a> ');
@@ -37,4 +37,6 @@ app.use((req, res) => {
 
 
 const port = 3000
-app.listen(port, () => console.log(`Server up and running on port ${port}`))
+app.listen(port);
+
+module.exports = app;

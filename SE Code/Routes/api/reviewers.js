@@ -10,7 +10,7 @@ const User = require('../../models/Reviewer');
 
 // temporary data created as if it was pulled out of the database ...
 const reviewers = [
-	new User('Mohamed','Saleh','khalil','thwellah@gmail.com','thwellah','1234',new Date(1996,7,27),'male','cairo',10,'2014',5000,[1,5,8],[2,3],07775000,01055,0)
+	new User('Mohamed','Saleh','khalil','thwellah@gmail.com','thwellah','1234',new Date(1996,7,27),'male','cairo',10,'2014',5000,[1,5,8],[2,3],7775000,1055,0)
 
 ];
 
@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
     ssn:req.body.ssn,
     phone:req.body.phone
 
-     
+
     };
 
     //joi schema
@@ -75,14 +75,14 @@ if(result.error) return res.status(400).send({error:result.error.details[0].mess
 
         return res.status(400).json({ msg: 'Email Taken' });
 
-    } 
-     
+    }
+
     const found2 = reviewers.some(reviewer => reviewer.username === (newReviewer.username));
     if(found2){
 
         return res.status(400).json({ msg: 'Username Taken' });
 
-    } 
+    }
 
 
     const found3 = reviewers.some(reviewer => reviewer.ssn === (newReviewer.ssn));
@@ -90,12 +90,12 @@ if(result.error) return res.status(400).send({error:result.error.details[0].mess
 
         return res.status(400).json({ msg: 'SSN Taken' });
 
-    } 
+    }
 
 
 
 
-  
+
     if (!newReviewer.username || !newReviewer.email ||!newReviewer.ssn  ) {
       return res.status(400).json({ msg: 'Please include your data' });  }
 
@@ -103,38 +103,38 @@ if(result.error) return res.status(400).send({error:result.error.details[0].mess
     reviewers.push(newReviewer);
     res.json(reviewers);}
     // res.redirect('/');
-    
+
 
 
 
     );
-  
+
 //
 
-  
+
 
 // Update Member
 router.put('/:id', (req, res) => {
     const found = reviewers.some(reviewer => reviewer.id === parseInt(req.params.id));
-  
+
     if (found) {
       const updReviewer = req.body;
       reviewers.forEach(reviewer => {
         if (reviewer.id === parseInt(req.params.id)) {
-          
+
           reviewer.firstname = updReviewer.firstname ? updReviewer.firstname : reviewer.firstname;
           reviewer.middlename = updReviewer.middlename ? updReviewer.middlename : reviewer.middlename;
           reviewer.lastname = updReviewer.lastname ? updReviewer.lastname : reviewer.lastname;
           reviewer.email = updReviewer.email ? updReviewer.email : reviewer.email;
           reviewer.username = updReviewer.username ? updReviewer.username : reviewer.username;
-          reviewer.password = updReviewer.password ? updReviewer.password : reviewer.password;  
-          reviewer.birthDate = updReviewer.birthDate ? updReviewer.birthDate : reviewer.birthDate; 
-          reviewer.gender = updReviewer.gender ? updReviewer.gender : reviewer.gender; 
-          reviewer.address = updReviewer.address ? updReviewer.address : reviewer.address; 
-          reviewer.yearsOfExperience = updReviewer.yearsOfExperience ? updReviewer.yearsOfExperience : reviewer.yearsOfExperience; 
-          reviewer.hiringDate = updReviewer.hiringDate ? updReviewer.hiringDate : reviewer.hiringDate; 
-          reviewer.salary = updReviewer.salary ? updReviewer.salary : reviewer.salary; 
-          reviewer.unfinished = updReviewer.unfinished ? updReviewer.unfinished : reviewer.unfinished; 
+          reviewer.password = updReviewer.password ? updReviewer.password : reviewer.password;
+          reviewer.birthDate = updReviewer.birthDate ? updReviewer.birthDate : reviewer.birthDate;
+          reviewer.gender = updReviewer.gender ? updReviewer.gender : reviewer.gender;
+          reviewer.address = updReviewer.address ? updReviewer.address : reviewer.address;
+          reviewer.yearsOfExperience = updReviewer.yearsOfExperience ? updReviewer.yearsOfExperience : reviewer.yearsOfExperience;
+          reviewer.hiringDate = updReviewer.hiringDate ? updReviewer.hiringDate : reviewer.hiringDate;
+          reviewer.salary = updReviewer.salary ? updReviewer.salary : reviewer.salary;
+          reviewer.unfinished = updReviewer.unfinished ? updReviewer.unfinished : reviewer.unfinished;
           reviewer.finsihed = updReviewer.finsihed ? updReviewer.finsihed : reviewer.finsihed;
           reviewer.ssn = updReviewer.ssn ? updReviewer.ssn : reviewer.ssn;
           res.json({ msg: 'Reviewer updated', reviewer });
@@ -144,8 +144,8 @@ router.put('/:id', (req, res) => {
       res.status(400).json({ msg: `No reviewer with the id of ${req.params.id}` });
     }
   });
-  
-  
+
+
 
 
 
@@ -158,7 +158,7 @@ router.put('/:id', (req, res) => {
 // Get Single reviewer
 router.get('/:id', (req, res) => {
     const found = reviewers.some(reviewer => reviewer.id === parseInt(req.params.id));
-  
+
     if (found) {
       res.json(reviewers.filter(reviewer => reviewer.id === parseInt(req.params.id)));
     } else {
@@ -180,7 +180,7 @@ router.delete('/:id', (req, res) => {
       res.json({
         msg: 'reviewers deleted',
         reviewers: reviewers.splice(index,1)
-      
+
 
 
       });

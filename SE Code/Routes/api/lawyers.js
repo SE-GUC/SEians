@@ -8,6 +8,7 @@ const Lawyer = require('../../models/lawyer');
 
 router.get('/', (req, res) => {
   Lawyer.find({}, (err, lawyers) => {
+    if(!lawyers) lawyers = {};
     if(err)
       res.err({err});
     else
@@ -15,9 +16,9 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/:id', (req, res) => {
-    const lawyerid = req.params.id
-    Lawyer.findOne({id: lawyerid}, (err, lawyer) => {
+router.get('/:username', (req, res) => {
+    const lawyerid = req.params.username
+    Lawyer.findOne({username: lawyerid}, (err, lawyer) => {
       if(err)
         res.status(400).json({err});
       else

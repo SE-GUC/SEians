@@ -5,7 +5,7 @@ module.exports = {
         const createSchema = {
             name : Joi.string().min(3).max(500).required(),
             companyStatus: Joi.string().min(3).max(100).required(),
-            type: Joi.number().min(50).max(3000).required(),
+            type: Joi.string().required(),
             owner: Joi.string().min(3).max(500).required(),
         }
 

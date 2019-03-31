@@ -15,7 +15,6 @@
     "mongoose": "^5.4.20",
     "nodemon": "^1.18.10",
     "package.json": "^2.0.1",
-
     "mongoose": "^5.4.20",
     "nodemon": "^1.18.10",
     "package.json": "^2.0.1",
@@ -25,6 +24,7 @@
   "devDependencies": {},
   "scripts": {
     "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "jest"
   },
   "repository": {

@@ -71,6 +71,8 @@ router.delete('/:investorId', async (req,res) => {
      if(!Spcsneeded) return res.status(404).send({error: 'Spcs does not exist'})
      const deleted = await Spcs.deleteOne(Spcsneeded)
      res.json({msg:'Spc was deleted successfully', data: deleted})
+     const Spcget = await Spcs.find()
+     res.json({msg:'Spc was deleted successfully', data: Spcget})
     }
 
     catch(error) {
@@ -88,6 +90,9 @@ router.put('/:investorId', async (req,res) => {
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
      const updated = await Spcs.updateOne(Spcsneeded,req.body)
      res.json({msg: 'Spc updated successfully', data: updated})
+     const Spcsneeded1 = await Spcs.findOne({investorId})
+
+     res.json({msg: 'Spc updated successfully', data: Spcsneeded1})
     }
     catch(error) {
         console.log(error)

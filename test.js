@@ -1,3 +1,4 @@
+
 const funcs = require('./enfunctions');
 
 test('requests should come as an array', async () => {
@@ -20,3 +21,4 @@ test('request status to be boolean', async () => {
   const accepted = await funcs.trackrequeststate();
   expect(accepted).toBe('true');
 });
+

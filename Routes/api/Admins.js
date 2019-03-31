@@ -1,5 +1,4 @@
 
-
 const express = require('express');
 const uuid = require('uuid');
 //const bcrypt = require('bcryptjs')
@@ -97,7 +96,6 @@ router.get('/:cases', async (req,res) =>{
   const cases =  Spc.find()
   res.json({data: cases})
 })
-
 
 
 

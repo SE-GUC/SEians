@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -30,3 +31,4 @@ const LawyerSchema = new Schema({
 const Lawyer = mongoose.model('lawyer', LawyerSchema);
 
 module.exports = Lawyer;
+

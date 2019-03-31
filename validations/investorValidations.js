@@ -59,4 +59,13 @@ module.exports = {
 
         return Joi.validate(request, updateSchema)
     }, 
+    
+    loginValidation: request => {
+        const loginSchema = {
+            userName: Joi.string().required(),
+            email: Joi.string().email().required(),
+            password: Joi.string().required()
+        }
+        return Joi.validate(request, loginSchema)
+    }
 }

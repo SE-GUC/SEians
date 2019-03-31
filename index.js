@@ -38,11 +38,7 @@ const {
 } = process.env
 
 
-  const db = require('./config/keys').mongoURI;
-  mongoose
-    .connect(db,{useNewUrlParser: true})
-    .then(()=>console.log('MongoConnected'))
-    .catch(err=> console.log(err));
+
 
   //passport midleware
 app.use(passport.initialize());
@@ -52,9 +48,9 @@ app.use(passport.initialize());
 require('./config/passport')(passport)
 
 
-    // mongoose.connect(`${MONGO_DNS_SRV}${MONGO_AUTH}${MONGO_CLUSTER}${MONGO_DB_NAME}${MONGO_OPTIONS}`, {
-    //   useNewUrlParser: true
-    // })
+     mongoose.connect(`${MONGO_DNS_SRV}${MONGO_AUTH}${MONGO_CLUSTER}${MONGO_DB_NAME}${MONGO_OPTIONS}`, {
+       useNewUrlParser: true
+     })
   
     app.use(express.json())
 

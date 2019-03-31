@@ -7,31 +7,13 @@ const Reviewer = require('../../Models/Reviewer');
 const validator = require('../../validations/ReviewerValidations')
 
 
+// INSERTING A RECORD INTO THE Reviewer Collection
+
 router.post('/', async (req,res) => {
     try {
      const isValidated = validator.createValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
      
-     const userName = req.body.userName
-     var check = await Reviewer.findOne({userName})
-     if(check) return res.status(400).send({msg: 'userName is used' })
-
-     const egID = req.body.egID
-     check = await Reviewer.findOne({egID})
-     if(check) return res.status(400).send({msg: 'egID is used' })
-
-     const mobilePhone = req.body.mobilePhone
-     check = await Reviewer.findOne({mobilePhone})
-     if(check) return res.status(400).send({msg: 'mobilePhone is used' })
-
-     const fax = req.body.fax
-     check = await Reviewer.findOne({fax})
-     if(check) return res.status(400).send({msg: 'fax is used' })
-
-     const email = req.body.email
-     check = await Reviewer.findOne({email})
-     if(check) return res.status(400).send({msg: 'email is used' })
-
      const newReviewer = await Reviewer.create(req.body) 
      res.json({msg:'Reviewer was created successfully', data: newReviewer})
     }
@@ -41,16 +23,22 @@ router.post('/', async (req,res) => {
  })
  
 
+
+ //Showing Reviewer Collection Entries
 router.get('/', async (req,res) => {
-    const Reviewer = await Reviewer.find()
-    res.json({data: Reviewer})
+     const rev = await Reviewer.find()
+     res.json({data:rev})
+   // console.log("test")
 })
 
 
-router.get('/:userName', async (req,res) => {    
+
+
+// Searching by UserName
+router.get('/:username', async (req,res) => {    
     try {
-    const userName = req.params.userName
-    const Reviewerneeded = await Reviewer.findOne({userName})
+    const username = req.params.username
+    const Reviewerneeded = await Reviewer.findOne({username})
     if(!Reviewerneeded) return res.status(404).send({error: 'Reviewer does not exist'})
     res.json({data: Reviewerneeded})
     }
@@ -60,10 +48,11 @@ router.get('/:userName', async (req,res) => {
 })
 
 
-router.delete('/:userName', async (req,res) => {
+// Deleteing by UserName
+router.delete('/:username', async (req,res) => {
     try {
-     const userName = req.params.userName
-     const Reviewerneeded = await Reviewer.findOne({userName})
+     const username = req.params.username
+     const Reviewerneeded = await Reviewer.findOne({username})
      if(!Reviewerneeded) return res.status(404).send({error: 'Reviewer does not exist'})
      const deleted = await Reviewer.deleteOne(Reviewerneeded)
      res.json({msg:'Reviewer was deleted successfully', data: deleted})
@@ -75,10 +64,13 @@ router.delete('/:userName', async (req,res) => {
  })
 
 
-router.put('/:userName', async (req,res) => {
+ //Updating by UserName According to the validations.
+
+router.put('/:username', async (req,res) => {
     try {
-     const userName = req.params.userName
-     const Reviewerneeded = await Reviewer.findOne({userName})
+     const username = req.params.username
+     console.log(username)
+     const Reviewerneeded = await Reviewer.findOne({username})
      if(!Reviewerneeded) return res.status(404).send({error: 'Reviewer does not exist'})
      const isValidated = validator.updateValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })

@@ -2,6 +2,7 @@
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 // Require Router Handlers
 const Admins = require('./Routes/api/Admins')
@@ -32,6 +33,7 @@ const {
 
 
     app.use(express.urlencoded({extended: false}))
+    app.use(cors())
 
 
 

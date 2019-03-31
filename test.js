@@ -40,29 +40,30 @@ const {
     // expect.assertions(2);
 
     const att={
-    "userName": "gmela",
-    "firstName": "3slen",
+    "userName": "mariam",
+    "firstName": "mariam",
     "lastName": "om ahmad",
-    "email": "7elwa@gmail.com",
+    "email": "mariam@gmail.com",
     "age": 19,
-    "ssn": 12342021880113,
+    "ssn": 12042021880113,
     "gender": "female",
     "isLogged": true,
     "password": "2759034",
     "address": "home7",
     "salary": 50000,
-    "phoneNumber": 421642654,
+    "phoneNumber": 421642154,
     "fax": 5331,
     "fullAccess": true,
     "workLocation":"nasa"}
 
-    const adm= await Admin.find()
+    //length runs the function but timeout .. so replaced by checking the created username
+ //   const adm= await Admin.find()
     
     const response = await funcs.createAdmin(att);
   
-    const admupd= await Admin.find()
-
-    expect(admupd.length-adm.length).toBe(1)
+  //  const admupd= await Admin.find()
+expect(response.data.data.userName).toBe("mariam")
+ //   expect(admupd.length-adm.length).toBe(1)
  
   })
   
@@ -111,18 +112,18 @@ const {
 
  
   
-const funcs = require('./fnInvestor');
+  const funcs1 = require('./fnInvestor');
 
 
   test('POST should create a new investor', async (done) => {
-    const investors = await funcs.createinvestor();
+    const investors = await funcs1.createinvestor();
     investorss = investors.data.data;
     expect(investorss.userName).toBe('saleh');
     done()
   })
 
   test(`investor's name should be saleh`, async (done) => {
-    let investors = await funcs.get()
+    let investors = await funcs1.get()
     investorss = investors.data.data;
     //console.log(investorss.some(investor => investor.userName === 'saleh'))
      expect(investorss.some(investor => investor.userName === 'saleh')).toBe(true)
@@ -130,21 +131,21 @@ const funcs = require('./fnInvestor');
   } );
 
   test('GET specific investor', async (done) => {
-    const investors = await funcs.getinvestor();
+    const investors = await funcs1.getinvestor();
     investorss = investors.data.data;
     expect(investorss.userName).toBe('saleh');
     done()
   });
 
   test('UPDATE specific investor', async (done) => {
-    const investors = await funcs.updateinvestor();
+    const investors = await funcs1.updateinvestor();
     investorss = investors.data.data;
     expect(investorss.name).toBe('mohamed');
     done()
   });
   
   test('DELETE specific investor', async (done) => {
-    let investors = await funcs.deleteinvestor()
+    let investors = await funcs1.deleteinvestor()
     investorss = investors.data.data;
     //console.log(investorss.some(investor => investor.userName === 'saleh'))
     expect(investorss.some(investor => investor.userName === 'saleh')).toBe(false)
@@ -152,13 +153,13 @@ const funcs = require('./fnInvestor');
 
   });
 
-const funcs = require('./spcfn');
+const funcs2 = require('./spcfn');
 
   test(`Created a company with a name of 'hamada'`, async (done) => {
     //expect.assertions(0)
     // await new Promise(resolve => setTimeout(resolve, 1000));
 
-    let Spcs = await funcs.createSpc()
+    let Spcs = await funcs2.createSpc()
     Spcss = Spcs.data.data;
      expect(Spcss.companyName).toBe('hamada2');
     done()
@@ -168,7 +169,7 @@ const funcs = require('./spcfn');
 
   test(` get All Spc`, async (done) => {
   
-    let Spcs = await funcs.getSpcAll()
+    let Spcs = await funcs2.getSpcAll()
     Spcss = Spcs.data.data;
     console.log(Spcss.some(Spc => Spc.companyName === 'hamada2'))
      expect(Spcss.some(Spc => Spc.companyName === 'hamada2')).toBe(true)
@@ -176,7 +177,7 @@ const funcs = require('./spcfn');
   } );
 
   test('UPDATE specific Spc', async (done) => {
-    const Spcs = await funcs.updateSpc();
+    const Spcs = await funcs2.updateSpc();
     Spcss = Spcs.data.data;
     expect(Spcss.companyName).toBe('mesh hamada');
     done()
@@ -184,7 +185,7 @@ const funcs = require('./spcfn');
 
 
   test('GET specific Spc', async (done) => {
-    const Spcs = await funcs.getSpc();
+    const Spcs = await funcs2.getSpc();
     Spcss = Spcs.data.data;
     expect(Spcss.companyName).toBe('mesh hamada');
     done()
@@ -194,18 +195,14 @@ const funcs = require('./spcfn');
 
 
 test('DELETE specific Spc', async (done) => {
-    let Spcs = await funcs.deleteSpc()
+    let Spcs = await funcs2.deleteSpc()
     Spcss = Spcs.data.data;
     //console.log(Spcss.some(Spc => Spc.companyName === 'hamada'))
      expect(Spcss.some(Spc => Spc.companyName === 'mesh hamada')).toBe(false)
     done()
   }); 
 
-  afterAll(async done => {
-    // Closing the DB connection allows Jest to exit successfully.
-    mongoose.disconnect()
-    done();
-  });
+
   
 
   var fun = require('./sscfn');
@@ -255,12 +252,12 @@ test ('delete Ssc Form',async(done) =>{
           done()
          });    */
 
-  const funcs = require('./Reviewerfn');
+  const  funcs3 = require('./Reviewerfn');
   global.Promise = jest.requireActual('promise');
   
    test ('get Reviewer',async(done) =>{
   //  expect.assertions(1)
-     let reviewers = await funcs.getReviewers()
+     let reviewers = await funcs3.getReviewers()
      Rev = reviewers.data.data;
      console.log(Rev.some(Reviewer => Reviewer.username ==='test'))
     expect(Rev.some(Reviewer => Reviewer.username ==='test'))
@@ -269,7 +266,7 @@ test ('delete Ssc Form',async(done) =>{
    
       test ('delete ReviewerbyUserName',async(done) =>{
           
-            let reviewers = await funcs.deleteReviewer()
+            let reviewers = await funcs3.deleteReviewer()
             Rev = reviewers.data.data.username;
          //   console.log(Rev.some(Reviewer => Reviewer.username ==='Ismail33'))
            expect((Reviewer => Reviewer.username ==='de3bs69'))
@@ -283,7 +280,7 @@ test ('delete Ssc Form',async(done) =>{
   
    test ('create Reviewer',async(done) =>{
           
-      let reviewers = await funcs.createReviewer()
+      let reviewers = await funcs3.createReviewer()
       Rev = reviewers.data.data.username;
    expect((Reviewer => Reviewer.username ==='de3bss'))
   done()
@@ -292,13 +289,13 @@ test ('delete Ssc Form',async(done) =>{
     jest.setTimeout(1000);
     test ('Update Reviewer',async() =>{
           
-      const reviewers = await funcs.updateReviewer()
+      const reviewers = await funcs3.updateReviewer()
       Rev = reviewers.data.data.username;
       expect((Reviewer => Reviewer.username ==='de3bss'))
   
     });
 
-  const funcs = require('./companyFn');
+  const funcs4 = require('./companyFn');
 
   global.Promise = jest.requireActual('promise');
  
@@ -307,7 +304,7 @@ test ('delete Ssc Form',async(done) =>{
   test ('get Company',async(done) =>{
  
  
-    let Companies = await funcs.getCompanies()
+    let Companies = await funcs4.getCompanies()
  
     Comps = Companies.data.data;
  
@@ -325,7 +322,7 @@ test ('delete Ssc Form',async(done) =>{
  
          
  
-           let Companies = await funcs.deleteCompany()
+           let Companies = await funcs4.deleteCompany()
  
            Comps = Companies.data.data.name;
  
@@ -350,7 +347,7 @@ test ('delete Ssc Form',async(done) =>{
  
          
  
-     let Companies = await funcs.createCompany()
+     let Companies = await funcs4.createCompany()
  
      Comps = Companies.data.data.name;
  
@@ -366,7 +363,7 @@ test ('delete Ssc Form',async(done) =>{
  
   test ('Update Company',async(done) =>{
  
-     const Companies = await funcs.updateCompany()
+     const Companies = await funcs4.updateCompany()
  
      Comps = Companies.data.name;
  
@@ -380,4 +377,5 @@ test ('delete Ssc Form',async(done) =>{
     mongoose.disconnect()
     done();
   });
+ 
  

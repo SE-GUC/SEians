@@ -37,6 +37,7 @@ const funcs = require('./fnInvestor');
     //console.log(investorss.some(investor => investor.userName === 'saleh'))
     expect(investorss.some(investor => investor.userName === 'saleh')).toBe(false)
     done()
+
   });
 
 global.Promise=jest.requireActual('promise');

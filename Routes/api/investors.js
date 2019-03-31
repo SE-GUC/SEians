@@ -12,7 +12,7 @@ router.post('/', async (req,res) => {
     try {
      const isValidated = validator.createValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-     
+
      const userName = req.body.userName
      var check = await investor.findOne({userName})
      if(check) return res.status(400).send({msg: 'userName is used' })
@@ -33,14 +33,14 @@ router.post('/', async (req,res) => {
      check = await investor.findOne({email})
      if(check) return res.status(400).send({msg: 'email is used' })
 
-     const newInvestor = await investor.create(req.body) 
+     const newInvestor = await investor.create(req.body)
      res.json({msg:'Investor was created successfully', data: newInvestor})
     }
     catch(error) {
         console.log(error)
-    }  
+    }
  })
- 
+
 //showing all investors
 router.get('/', async (req,res) => {
     const investors = await investor.find()
@@ -48,7 +48,7 @@ router.get('/', async (req,res) => {
 })
 
 //showing every investor
-router.get('/:userName', async (req,res) => {    
+router.get('/:userName', async (req,res) => {
     try {
     const userName = req.params.userName
     const investorneeded = await investor.findOne({userName})
@@ -57,7 +57,7 @@ router.get('/:userName', async (req,res) => {
     }
     catch(error) {
         console.log(error)
-    } 
+    }
 })
 
 //deletion
@@ -69,13 +69,13 @@ router.delete('/:userName', async (req,res) => {
      const deleted = await investor.deleteOne(investorneeded)
      res.json({msg:'investor was deleted successfully', data: deleted})
     }
-    
+
     catch(error) {
         console.log(error)
-    }  
+    }
  })
 
-//editing 
+//editing
 router.put('/:userName', async (req,res) => {
     try {
      const userName = req.params.userName
@@ -88,7 +88,15 @@ router.put('/:userName', async (req,res) => {
     }
     catch(error) {
         console.log(error)
-    }  
+    }
+ })
+
+ //track state of requests
+ router.get('/:req', async (req, res) =>{
+   const requests =  Spc.filter(x => x.idNumber === id)
+   const status = requests.reviewerApproval
+   //return requests
+   res.json({data: status} )
  })
 
 module.exports = router;

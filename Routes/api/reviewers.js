@@ -11,7 +11,7 @@ router.post('/', async (req,res) => {
     try {
      const isValidated = validator.createValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-     
+
      const userName = req.body.userName
      var check = await Reviewer.findOne({userName})
      if(check) return res.status(400).send({msg: 'userName is used' })
@@ -32,14 +32,14 @@ router.post('/', async (req,res) => {
      check = await Reviewer.findOne({email})
      if(check) return res.status(400).send({msg: 'email is used' })
 
-     const newReviewer = await Reviewer.create(req.body) 
+     const newReviewer = await Reviewer.create(req.body)
      res.json({msg:'Reviewer was created successfully', data: newReviewer})
     }
     catch(error) {
         console.log(error)
-    }  
+    }
  })
- 
+
 
 router.get('/', async (req,res) => {
     const Reviewer = await Reviewer.find()
@@ -47,7 +47,7 @@ router.get('/', async (req,res) => {
 })
 
 
-router.get('/:userName', async (req,res) => {    
+router.get('/:userName', async (req,res) => {
     try {
     const userName = req.params.userName
     const Reviewerneeded = await Reviewer.findOne({userName})
@@ -56,7 +56,7 @@ router.get('/:userName', async (req,res) => {
     }
     catch(error) {
         console.log(error)
-    } 
+    }
 })
 
 
@@ -68,10 +68,10 @@ router.delete('/:userName', async (req,res) => {
      const deleted = await Reviewer.deleteOne(Reviewerneeded)
      res.json({msg:'Reviewer was deleted successfully', data: deleted})
     }
-    
+
     catch(error) {
         console.log(error)
-    }  
+    }
  })
 
 
@@ -87,7 +87,15 @@ router.put('/:userName', async (req,res) => {
     }
     catch(error) {
         console.log(error)
-    }  
+    }
+ })
+
+ //view unapproved reviws
+ router.get('/reviews', (req, res) =>{
+   const id = req.params.id
+   const reviewer = Spc.findOne({id})
+   //return reviewer.unfinisheds
+   res.json({data: reviewer.unfinished} )
  })
 
 module.exports = router;

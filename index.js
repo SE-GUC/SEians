@@ -11,8 +11,13 @@ const investors = require('./Routes/api/investors')
 const Companies= require('./Routes/api/Companies')
 const Spcs = require('./Routes/api/Spcs')
 
+const bodyParser = require('body-parser');//needs a midleware 
+const passport = require('passport');//needs a midleware 
+
 
 const app = express()
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 
 const {
   PORT = 7000,
@@ -23,10 +28,24 @@ const {
   MONGO_OPTIONS
 } = process.env
 
-  
-    mongoose.connect(`${MONGO_DNS_SRV}${MONGO_AUTH}${MONGO_CLUSTER}${MONGO_DB_NAME}${MONGO_OPTIONS}`, {
-      useNewUrlParser: true
-    })
+
+  const db = require('./config/keys').mongoURI;
+  mongoose
+    .connect(db,{useNewUrlParser: true})
+    .then(()=>console.log('MongoConnected'))
+    .catch(err=> console.log(err));
+
+  //passport midleware
+app.use(passport.initialize());
+
+//passport config jwt autherization strategy 
+
+require('./config/passport')(passport)
+
+
+    // mongoose.connect(`${MONGO_DNS_SRV}${MONGO_AUTH}${MONGO_CLUSTER}${MONGO_DB_NAME}${MONGO_OPTIONS}`, {
+    //   useNewUrlParser: true
+    // })
   
     app.use(express.json())
 
@@ -63,5 +82,5 @@ app.use('/api/reviewer', reviewers)
 
 app.use((req,res) => res.status(404).send(`<h1>Can not find what you're looking for</h1>`))
 
-const port = 3000
+const port = 8000
 app.listen(port, () => console.log(`Server up and running on port ${port}`))

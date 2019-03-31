@@ -10,7 +10,10 @@
     "mongoose": "^5.4.20",
     "nodemon": "^1.18.10",
     "package.json": "^2.0.1",
-    "uuid": "^3.3.2"
+    "passport": "^0.4.0",
+    "uuid": "^3.3.2",
+    "validator": "^10.11.0",
+    "passport-jwt": "^4.0.0"
   },
   "devDependencies": {},
   "scripts": {

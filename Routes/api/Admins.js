@@ -1,5 +1,4 @@
 
-
 const express = require('express');
 const uuid = require('uuid');
 //const bcrypt = require('bcryptjs')
@@ -22,7 +21,7 @@ const validator = require('../../validations/AdminValidations')
 
 //Get Specific Admin
 router.get('/:userName', async (req,res) => {
-  const userName=req.params.userName 
+  const userName=req.params.userName
   const admin = await Admin.findOne({userName})
   if(!admin) return res.status(404).send({error: 'Admin does not exist'})
   res.json({data: admin})
@@ -35,7 +34,7 @@ router.delete('/:userName', async (req,res) => {
     const adminNeeded = await Admin.findOne({userName})
     if(!adminNeeded) return res.status(404).send({error: 'Admin does not exist'})
     const deleted = await Admin.deleteOne(adminNeeded)
-    res.json({msg: 'Admin deleted successfully'})
+    res.json({msg: 'Admin deleted successfully', data: deleted})
    }
    catch(error) {
        console.log(error)
@@ -102,4 +101,3 @@ router.put('/:userName', async (req,res) => {
 
 
 module.exports = router
-

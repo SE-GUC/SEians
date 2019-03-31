@@ -4,18 +4,28 @@
   "description": "summerge app",
   "main": "index.js",
   "dependencies": {
+    "axios": "^0.18.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
+    "jest": "^24.5.0",
     "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.4.20",
     "nodemon": "^1.18.10",
     "package.json": "^2.0.1",
+    "mongoose": "^5.4.20",
+    "nodemon": "^1.18.10",
+    "package.json": "^2.0.1",
+    "promise": "^8.0.3",
     "uuid": "^3.3.2"
   },
   "devDependencies": {},
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",

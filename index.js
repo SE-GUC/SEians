@@ -1,8 +1,11 @@
 
+
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
+const cors =  require('cors')
 
+const cors = require('cors');
 // Require Router Handlers
 const Admins = require('./Routes/api/Admins')
 const reviewers = require('./Routes/api/reviewers')
@@ -16,8 +19,12 @@ const passport = require('passport');//needs a midleware
 
 
 const app = express()
+
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+
+
+app.use(cors())
 
 const {
   PORT = 7000,
@@ -82,5 +89,5 @@ app.use('/api/reviewer', reviewers)
 
 app.use((req,res) => res.status(404).send(`<h1>Can not find what you're looking for</h1>`))
 
-const port = 8000
+const port = 3000
 app.listen(port, () => console.log(`Server up and running on port ${port}`))

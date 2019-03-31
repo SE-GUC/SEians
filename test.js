@@ -1,4 +1,4 @@
-const funcs = require('./fn');
+const funcs = require('./functions');
 
 test('Lawyer requests should come as an array', async () => {
   expect.assertions(1);

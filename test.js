@@ -110,11 +110,6 @@ const {
 
 
 
-  afterAll(async done => {
-    // Closing the DB connection allows Jest to exit successfully.
-    mongoose.disconnect()
-    done();
-  });
 
 global.Promise=jest.requireActual('promise');
 const funcs = require('./spcfn');
@@ -165,4 +160,10 @@ test('DELETE specific Spc', async (done) => {
      expect(Spcss.some(Spc => Spc.companyName === 'mesh hamada')).toBe(false)
     done()
   }); 
+
+  afterAll(async done => {
+    // Closing the DB connection allows Jest to exit successfully.
+    mongoose.disconnect()
+    done();
+  });
   

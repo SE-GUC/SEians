@@ -36,6 +36,7 @@ router.get('/:username', (req, res) => {
 router.post('/', (req, res) => {
   const newLawyer = req.body;
 
+
 	const schema = {
         username: Joi.string().min(3) .required(),
         fullname: Joi.string().min(5) .required(),
@@ -104,6 +105,7 @@ router.get('/:cases', (req, res) =>{
   const forum = await Spc.findOne({idNumber})
   res.json(data: forum.commsents)
 })*/
+
 
 module.exports = router
 

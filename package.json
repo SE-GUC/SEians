@@ -15,11 +15,18 @@
     "mongoose": "^5.4.20",
     "nodemon": "^1.18.10",
     "package.json": "^2.0.1",
+
+    "passport": "^0.4.0",
+    
+    "validator": "^10.11.0",
+    "passport-jwt": "^4.0.0"
+
     "mongoose": "^5.4.20",
     "nodemon": "^1.18.10",
     "package.json": "^2.0.1",
     "promise": "^8.0.3",
     "uuid": "^3.3.2"
+
   },
   "devDependencies": {},
   "scripts": {

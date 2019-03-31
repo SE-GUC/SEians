@@ -2,7 +2,7 @@
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
-
+const cors = require('cors');
 // Require Router Handlers
 const Admins = require('./Routes/api/Admins')
 const reviewers = require('./Routes/api/reviewers')
@@ -13,7 +13,7 @@ const Spcs = require('./Routes/api/Spcs')
 
 
 const app = express()
-
+app.use(cors())
 const {
   PORT = 7000,
   MONGO_DNS_SRV,

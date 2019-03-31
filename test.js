@@ -40,7 +40,6 @@ const funcs = require('./fnInvestor');
 
   });
 
-global.Promise=jest.requireActual('promise');
 const funcs = require('./spcfn');
 
   test(`Created a company with a name of 'hamada'`, async (done) => {
@@ -96,6 +95,7 @@ test('DELETE specific Spc', async (done) => {
     done();
   });
   
+
   const funcs = require('./Reviewerfn');
   global.Promise = jest.requireActual('promise');
   
@@ -139,3 +139,83 @@ test('DELETE specific Spc', async (done) => {
   
     });
     
+=======
+  const funcs = require('./companyFn');
+
+  global.Promise = jest.requireActual('promise');
+ 
+ 
+ 
+  test ('get Company',async(done) =>{
+ 
+ 
+    let Companies = await funcs.getCompanies()
+ 
+    Comps = Companies.data.data;
+ 
+    console.log(Comps.some(Company => Company.name ==='SEiansCo'))
+ 
+   expect(Comps.some(Company => Company.name ==='SEiansCo'))
+ 
+   done()
+ 
+  });
+ 
+  
+ 
+    test ('delete CompanybyName',async(done) =>{
+ 
+         
+ 
+           let Companies = await funcs.deleteCompany()
+ 
+           Comps = Companies.data.data.name;
+ 
+        
+ 
+          expect((Company => Company.name ==='Keksooo'))
+ 
+ 
+          done()
+ 
+         });
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  test ('create Company',async(done) =>{
+ 
+         
+ 
+     let Companies = await funcs.createCompany()
+ 
+     Comps = Companies.data.data.name;
+ 
+  expect((Company => Company.name ==='Keksooo'))
+ 
+ done()
+ 
+   });
+ 
+ 
+ 
+   
+ 
+  test ('Update Company',async(done) =>{
+ 
+     const Companies = await funcs.updateCompany()
+ 
+     Comps = Companies.data.name;
+ 
+     expect((Company => Company.name ==='Keksooo'))
+ 
+ done()
+ 
+   });
+ 
+ 

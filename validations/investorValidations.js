@@ -51,7 +51,7 @@ module.exports = {
             email: Joi.string().email(),
             //.unique(),
             capital: Joi.number(),
-            currency: Joi.string(),
+            // currency: Joi.string(),
             Companies: Joi.array(),
             SSC: Joi.boolean(),
             password: Joi.string().min(7).strict()

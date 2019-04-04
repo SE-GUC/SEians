@@ -31,36 +31,6 @@ module.exports = {
         }
 
         return Joi.validate(request, createSchema)
+
     },
-
-    updateValidation: request => {
-        const updateSchema = {
-            companyName: Joi.string().min(2),
-            companyNameInArabic: Joi.string(),
-            governorate: Joi.string(),
-            city: Joi.string(),
-            district: Joi.string(),
-            telephone: Joi.string().regex(/^\d{4}-\d{3}-\d{4}$/),
-            fax: Joi.number(),
-            currency: Joi.string(),
-            name: Joi.string(),
-            investorId: Joi.number(),
-            gender: Joi.string().valid(['male', 'female']),
-            nationality: Joi.string(),
-            idType: Joi.string(),
-            idNumber: Joi.number().min(14).max(14),
-            birthdate: Joi.date().max('1-1-1998'),
-            address: Joi.string(),
-            email: Joi.string().email(),
-            lawyerApproval: Joi.boolean(),
-            reviewerApproval: Joi.boolean(),
-            requestState: Joi.string().default("LawyerPending"),
-            lawyerId: Joi.number(),
-            reviewerId: Joi.number(),
-            time: Joi.date(),
-            capital: Joi.number()
-        }
-
-        return Joi.validate(request, updateSchema)
-    }, 
 }

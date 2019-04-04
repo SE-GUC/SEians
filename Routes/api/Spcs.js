@@ -12,7 +12,7 @@ router.post('/', async (req,res) => {
     try {
      const isValidated = validator.createValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-     
+
      const companyName = req.body.companyName
      var check = await Spcs.findOne({companyName})
      if(check) return res.status(400).send({msg: 'companyName is used' })
@@ -36,15 +36,14 @@ router.post('/', async (req,res) => {
      const idNumber = req.body.idNumber
      check = await Spcs.findOne({idNumber})
      if(check) return res.status(400).send({msg: 'idNumber is used' })
-
-     const newSpc = await Spcs.create(req.body) 
+     const newSpc = await Spcs.create(req.body)
      res.json({msg:'Spc was created successfully', data: newSpc})
     }
     catch(error) {
         console.log(error)
-    }  
+    }
  })
- 
+
 //showing all Spcs
 router.get('/', async (req,res) => {
     const Spcget = await Spcs.find()
@@ -52,7 +51,7 @@ router.get('/', async (req,res) => {
 })
 
 //showing every Spcs
-router.get('/:investorId', async (req,res) => {    
+router.get('/:investorId', async (req,res) => {
     try {
     const investorId = req.params.investorId
     const Spcsneeded = await Spcs.findOne({investorId})
@@ -61,7 +60,7 @@ router.get('/:investorId', async (req,res) => {
     }
     catch(error) {
         console.log(error)
-    } 
+    }
 })
 
 //deletion
@@ -75,13 +74,13 @@ router.delete('/:investorId', async (req,res) => {
      const Spcget = await Spcs.find()
      res.json({msg:'Spc was deleted successfully', data: Spcget})
     }
-    
+
     catch(error) {
         console.log(error)
-    }  
+    }
  })
 
-//editing 
+//editing
 router.put('/:investorId', async (req,res) => {
     try {
      const investorId = req.params.investorId
@@ -97,7 +96,7 @@ router.put('/:investorId', async (req,res) => {
     }
     catch(error) {
         console.log(error)
-    }  
+    }
  })
 
 module.exports = router;

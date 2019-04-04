@@ -1,3 +1,4 @@
+
 const Joi = require('joi');
 
 module.exports = {
@@ -26,7 +27,7 @@ module.exports = {
             lawyerId: Joi.number(),
             reviewerId: Joi.number(),
             time: Joi.date(),
-            capital: Joi.number().required
+            capital: Joi.number().required()
         }
 
         return Joi.validate(request, createSchema)
@@ -61,5 +62,5 @@ module.exports = {
         }
 
         return Joi.validate(request, updateSchema)
-    },
+    }, 
 }

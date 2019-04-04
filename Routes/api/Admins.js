@@ -9,14 +9,14 @@ const validator = require('../../validations/AdminValidations')
 
 
  router.get('/', (req, res) => res.send(' <h>Welcome to the admin page<br> you can view all current admins by adding /all to the url,<br>you can also view or delete aspecific admin by typing his/her username<br>Have anice day!</h>'));
-
+ 
 //Get all admins
  router.get('/all', async (req,res) => {
   const admins = await Admin.find()
   res.json({data: admins})
 })
 
-
+ 
 
 
 //Get Specific Admin
@@ -38,9 +38,9 @@ router.delete('/:userName', async (req,res) => {
    }
    catch(error) {
        console.log(error)
-   }
+   }  
   })
-
+ 
 
 
 //create Admin
@@ -51,21 +51,21 @@ router.post('/', async (req,res) => {
   const email = req.body.email
    var admin = await Admin.findOne({email})
   if(admin) return res.status(400).json({error: 'Email already exists'})
-
+ 
   const userName = req.body.userName
     admin = await Admin.findOne({userName})
   if(admin) return res.status(400).json({error: 'userName already exists'})
-
+ 
   const ssn = req.body.ssn
     admin = await Admin.findOne({ssn})
   if(admin) return res.status(400).json({error: 'ssn already exists'})
-
+  
    const newAdm = await Admin.create(req.body)
    res.json({msg:'Admin was created successfully', data: newAdm})
   }
   catch(error) {
       console.log(error)
-  }
+  }  
 })
 
 
@@ -87,15 +87,13 @@ router.put('/:userName', async (req,res) => {
   }
   catch(error) {
       console.log(error)
-  }
+  }  
 })
 
 
-//view all cases
-router.get('/:cases', async (req,res) =>{
-  const cases =  Spc.find()
-  res.json({data: cases})
-})
+
+
+
 
 
 

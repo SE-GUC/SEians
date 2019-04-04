@@ -1,13 +1,13 @@
 
-   /* constructor(id,companyName, companyNameInArabic, governorate, city,
-        district, telephone, fax, currency, name, investorId, gender,
+   /* constructor(id,companyName, companyNameInArabic, governorate, city, 
+        district, telephone, fax, currency, name, investorId, gender, 
         nationality, idType, idNumber
         , birthdate, address, email, lawyerApproval,requestState,lawyerId,reviewerId,time)*/
 
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-
+        
 
 const SpcSchema = new Schema({
     companyName: {

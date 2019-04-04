@@ -1,34 +1,41 @@
 
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+// class lawyer {
+//     constructor(id,username,fullname,email, password) {
+//         this.id = id;
+//         this.username = username;
+//         this.fullname = fullname;
+//         this.email = email;
+//         this. password =  password;
+//     };
+// }
 
-const LawyerSchema = new Schema({
-    id: {
-      type: String,
-      required: true
+// module.exports = lawyer
+
+const mongoos = require('mongoose');
+const Schema = mongoos.Schema;
+
+// create the schema 
+
+const lawyerSChema = new Schema ({
+    name :{
+        type:String,
+        required:true 
     },
-    username: {
-      type: String,
-      required: true
+    email :{
+        type:String,
+        required:true 
     },
-    fullname: {
-      type: String,
-      required: true
+    password :{
+        type:String,
+        required:true 
     },
-    email: {
-      type: String,
-      required: true
+    avatar :{
+        type:String
     },
-    password: {
-      type: String,
-      required: true
-    },
-    cases:{
-      type: [String],
-      required: false
+    date :{
+        type:Date,
+        defaulat:Date.now 
     }
-} );
-const Lawyer = mongoose.model('lawyer', LawyerSchema);
+})
 
-module.exports = Lawyer;
-
+module.exports = laywer = mongoos.model('lawyers',lawyerSChema);

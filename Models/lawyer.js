@@ -14,27 +14,38 @@
 const mongoos = require('mongoose');
 const Schema = mongoos.Schema;
 
-// create the schema 
+// create the schema
 
 const lawyerSChema = new Schema ({
     name :{
         type:String,
-        required:true 
     },
     email :{
         type:String,
-        required:true 
+        required:true
     },
     password :{
         type:String,
-        required:true 
+        required:true
     },
     avatar :{
         type:String
     },
     date :{
         type:Date,
-        defaulat:Date.now 
+        defaulat:Date.now
+    },
+    username: {
+      type: String,
+      required: true
+    },
+    fullname: {
+      type: String,
+      required: true
+    },
+    cases:{
+      type: [String],
+      required: false
     }
 })
 

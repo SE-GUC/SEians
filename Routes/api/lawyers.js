@@ -40,7 +40,7 @@ router.put('/cases/:caseDate',(req,res)=>{
 //     const lawyerid = req.params.username
 //     const lawyer = lawyer.findOne(lawyer => lawyer.username === lawyerid)
 //     res.send(lawyer)
-// });   /// to be edited with mongoooo 
+// });   /// to be edited with mongoooo
 
 
 
@@ -126,8 +126,8 @@ router.post('/register',(req,res)=>{
       return res.status(400).json(errors);
   }
 
-  
-  
+
+
   lawyer.findOne({email: req.body.email}).then(lawyerl =>{
 
       if(lawyerl){
@@ -143,21 +143,21 @@ router.post('/register',(req,res)=>{
               email:req.body.email,
               // avatar,
               password:req.body.password
-              
+
       });
       bcrypt.genSalt(10,(err,salt)=> {
           bcrypt.hash(newlawyer.password,salt,(err,hash)=>{
               if(err) throw err ;
               newlawyer.password=hash;
               newlawyer.save()
-              .then(lawyer => res.json(lawyer)).catch(err =>console.log(err)) 
+              .then(lawyer => res.json(lawyer)).catch(err =>console.log(err))
           })
       })
-  
-      }   
-      
+
+      }
+
   })
-  
+
 })
 
 
@@ -174,33 +174,33 @@ router.post('/login',(req,res)=>{
    const email = req.body.email;
    const password = req.body.password;
 
-   //find the user by email 
+   //find the user by email
    lawyer.findOne({email}).then(lawyerl =>{
-       // check if the user existed 
+       // check if the user existed
        if(!lawyerl){
            errors.email='lawyerl not found '
            return res.status(404).json(errors);
        }
-       //check the password 
+       //check the password
        bcrypt.compare(password,lawyerl.password).then(isMatch=>{
            if(isMatch){
-               //user matched 
+               //user matched
 
-               // sign the token 
-               //this token must include the data from the user that i need to send back sothat we need to create a paload for that data 
-               // and it takes also an expiration means this token is expired after a certain ammount of time  
+               // sign the token
+               //this token must include the data from the user that i need to send back sothat we need to create a paload for that data
+               // and it takes also an expiration means this token is expired after a certain ammount of time
                const payload = {id:lawyerl.id,name:lawyerl.name,avatar:lawyerl.avatar}  //create jwt payload
-               //the sign will get the payload and a secret key put in the keys file in config to bring that file in  
-               //and bring that key up there 
+               //the sign will get the payload and a secret key put in the keys file in config to bring that file in
+               //and bring that key up there
                jwt.sign(payload,
                   keys.secretOrKey,
                   {expiresIn:3600/* an houre is enough to be secure*/},
                   (err,token)=>{
                       res.json({
                           sucess:true,
-                          token:'Bearer '+token 
-                      })//this token will do nothing unless we use the passport autherization to  verify that token or even to make any route private so we implement passport in the index.js 
-                       
+                          token:'Bearer '+token
+                      })//this token will do nothing unless we use the passport autherization to  verify that token or even to make any route private so we implement passport in the index.js
+
                   });
            }else{
                errors.password='Password incorrect'
@@ -211,46 +211,129 @@ router.post('/login',(req,res)=>{
 });
 
 //@route  Get api/users/current
-//@desc  return the current user a protecte route  
-//@access private 
-// we will treate it like any route except it is protected 
+//@desc  return the current user a protecte route
+//@access private
+// we will treate it like any route except it is protected
 
 
 
 
-
-
-
-router.put('/:username',(req,res)=>{
-    lawyers.filter((lawyer) => {
-      if (req.params.username == lawyer.username){
-        for(prop in req.body ){
-          lawyer[prop] = req.body[prop];
-        }
-        res.send(lawyer);
-       }
-     }
-     )
+router.get('/', (req, res) => {
+  Lawyer.find({}, (err, lawyers) => {
+    if(!lawyers) lawyers = {};
+    if(err)
+      res.err({err});
+    else
+      res.json({data: lawyers});
   });
-/////////////////////////////////////
+//  res.send('<h>hi</h>')
+});
+
+router.get('/all', async (req,res) => {
+ const lawyers = await Lawyer.find()
+ res.json({data: lawyers})
+})
+
+router.get('/:username', (req, res) => {
+    const lawyerid = req.params.username
+    Lawyer.findOne({username: lawyerid}, (err, lawyer) => {
+      if(err)
+        res.status(400).json({err});
+      else
+        res.json({lawyer});
+    })
+});
+
+router.post('/', (req, res) => {
+  const newLawyer = req.body;
+
+	const schema = {
+        username: Joi.string().min(3) .required(),
+        fullname: Joi.string().min(5) .required(),
+        email   : Joi.string().min(10).required(),
+		    password: Joi.string().min(6) .required()
+      }
+
+	const result = Joi.validate(newLawyer, schema);
+	if (result.error)
+    return res.status(400).json({ error: result.error.details[0].message });
+
+  Lawyer.findOne({username: req.body.username}, (err, lawyer) => {
+    if(lawyer === null){
+      Lawyer.create({
+        id: uuid.v4(),
+        username: newLawyer.username,
+        fullname: newLawyer.fullName,
+        email: newLawyer.email,
+        fullname: newLawyer.fullname,
+        password: newLawyer.password
+      }, (err, lawyer) => {
+        if(err)
+          res.status(400).json({err});
+        else {
+          res.json({lawyer});
+        }
+      });
+    } else
+      res.send("review data")
+  });
+});
 
 
-//////////////////////////////
+
+router.put('/:username', (req,res)=>{
+    Lawyer.findOneAndUpdate({username: req.params.username}, {
+      $set: req.body
+    }, (err, lawyer) => {
+      if(err)
+        res.status(400).json({err});
+      else {
+        res.json({lawyer});
+      }
+    })
+  });
 
 router.delete('/:username', (req, res) => {
-    const username = req.params.username
-    const found = lawyers.some(lawyer => lawyer.username === username)
-    if(found){
-    const lawyer = lawyers.find(lawyer => lawyer.username === username)
-    const index = lawyers.indexOf(lawyer)
-    lawyers.splice(index,1)
-    return res.json({lawyers});
-}
-    else{
-        res.send('Not found');
-
-    }
+    Lawyer.findOneAndDelete({username: req.params.username}, (err, residue) => {
+      if(err)
+        res.status(400).json({err});
+      else {
+        res.json({residue});
+      }
+    })
 });
+
+//LEGACY CODE
+// router.put('/:username',(req,res)=>{
+//     lawyers.filter((lawyer) => {
+//       if (req.params.username == lawyer.username){
+//         for(prop in req.body ){
+//           lawyer[prop] = req.body[prop];
+//         }
+//         res.send(lawyer);
+//        }
+//      }
+//      )
+//   });
+// /////////////////////////////////////
+//
+//
+// //////////////////////////////
+//
+// router.delete('/:username', (req, res) => {
+//     const username = req.params.username
+//     const found = lawyers.some(lawyer => lawyer.username === username)
+//     if(found){
+//     const lawyer = lawyers.find(lawyer => lawyer.username === username)
+//     const index = lawyers.indexOf(lawyer)
+//     lawyers.splice(index,1)
+//     return res.json({lawyers});
+// }
+//     else{
+//         res.send('Not found');
+//
+//     }
+// });
 
 router.get('/current',passport.authenticate('jwt',{session:false}),(req,res)=>{
   res.json({
@@ -265,4 +348,3 @@ router.get('/current',passport.authenticate('jwt',{session:false}),(req,res)=>{
 
 
 module.exports = router
-

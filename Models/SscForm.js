@@ -2,36 +2,34 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const SscSchema = new Schema({
-
     name: {
         type: String,
         required: true
     },
-
     district: {
         type: String,
         required: true
-        
+
     },
     city: {
         type: String,
         required: true
-        
+
     },
     governorate: {
         type: String,
         required: true
-        
+
     },
     companyName: {
         type: String,
         required: true
-        
+
     },
     gender: {
         type: String,
         required: true
-        
+
     },
     companyNameInArabic: {
         type: String,
@@ -48,12 +46,12 @@ const SscSchema = new Schema({
     idNumber: {
         type: Number,
         required: true
-        
+
     },
     birthDate: {
         type: String,
         required: true
-        
+
     },
     address: {
         type: String,
@@ -62,12 +60,12 @@ const SscSchema = new Schema({
     telephone: {
         type: Number,
         required: true
-        
+
     },
     fax: {
         type: Number,
         required: true
-        
+
     },
     email: {
         type: String,
@@ -81,36 +79,34 @@ const SscSchema = new Schema({
         type: String,
         required: true
     },
-     time: {
+    time: {
         type: Date,
         required: false,
         default: Date.now()
-        
+
      },
-      approval: {
-    
+    approval: {
+
       type: Boolean,
-         required: false,
-    
+      required: false,
       default:false
-     }
-     ,
+    },
     managers: [
          {
              m_name: String,
              m_id: String,
              manager_nationality: String,
-           
+
         }
     ],
-    // Managers: 
+    // Managers:
     //     {
     //         type: String,
     //         required: false,
-            
-           
+
+
     //     }
-    
+
     })
 
 var SscForm = mongoose.model('SscForm', SscSchema, 'SscForm');

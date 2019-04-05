@@ -73,18 +73,24 @@ expect(response.data.data.userName).toBe("mariam")
       "email" : "haha@hotmail.com",
       "age" : 27
     }
-    const userName="so3ad";
+    const userName="mariam";
     const Admin = await funcs.updateAdmin(userName,att);
     expect(Admin.data.data.email).toBe("haha@hotmail.com");
     expect(Admin.data.data.age).toBe(27);
   });
 
+  test(`GET an Admin`, async () => {
+    const userName='mariam'
+   expect.assertions(1)
+   const Admin =  await funcs.getAdmin(userName)
 
+    expect(Admin.data.data.firstName).toEqual('mariam')
+  });
 
 
 
   test('DELETE specific Admin', async () => {
-    const userName ="ahmmaaad"
+    const userName ="mariam"
   //  const Admins = await Admin.find();
 
 
@@ -106,7 +112,6 @@ expect(response.data.data.userName).toBe("mariam")
 
      expect(Admin.data.data.firstName).toEqual('khaled')
    });
-
 
 
 
@@ -285,8 +290,7 @@ test ('delete Ssc Form',async(done) =>{
    expect((Reviewer => Reviewer.username ==='de3bss'))
   done()
     });
-
-    jest.setTimeout(1000);
+    jest.setTimeout(5000);
     test ('Update Reviewer',async() =>{
 
       const reviewers = await funcs3.updateReviewer()

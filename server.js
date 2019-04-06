@@ -84,7 +84,7 @@ app.use('/api/Companies', Companies)
 app.use('/api/investors',investors)
 app.use('/api/lawyers', lawyers)
 app.use('/api/SscFormController',SscFormController)
-app.use('/api/reviewer', reviewers)
+app.use('/api/reviewers', reviewers)
 
 app.use((req,res) => res.status(404).send(`<h1>Can not find what you're looking for</h1>`))
 

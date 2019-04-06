@@ -43,9 +43,9 @@ const lawyerSChema = new Schema ({
       type: String,
       required: true
     },
-    cases:{
-      type: [String],
-      required: false
+    date :{
+        type:Date,
+        defaulat:Date.now 
     }
 })
 

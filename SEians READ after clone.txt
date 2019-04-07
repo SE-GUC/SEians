@@ -1,8 +1,8 @@
-1)Delete package-lock.js From client and server
-2) Create a .env file inside client
-3) copy paste inside .env this line: SKIP_PREFLIGHT_CHECK=true 
-4)npm i 
-5)cd client
-6)npm i 
-7)npm run dev
-8)both should start thanks to Karim
+
+1) Create a .env file inside client
+2) copy paste inside .env this line: SKIP_PREFLIGHT_CHECK=true 
+3)npm i 
+4)cd client
+5)npm i 
+6)npm run dev
+7)both should start thanks to Karim

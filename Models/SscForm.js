@@ -103,6 +103,12 @@ const SscSchema = new Schema({
            
         }
     ],
+    lawyerApproval: {
+        type: String, required:false, default:"Lawyer Pending"
+    },
+    comment: {
+        type: String, required:false
+    }
     // Managers: 
     //     {
     //         type: String,

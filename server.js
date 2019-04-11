@@ -48,9 +48,11 @@ app.use(passport.initialize());
 require('./config/passport')(passport)
 
 
-     mongoose.connect(`${MONGO_DNS_SRV}${MONGO_AUTH}${MONGO_CLUSTER}${MONGO_DB_NAME}${MONGO_OPTIONS}`, {
+    if( mongoose.connect(`${MONGO_DNS_SRV}${MONGO_AUTH}${MONGO_CLUSTER}${MONGO_DB_NAME}${MONGO_OPTIONS}`, {
        useNewUrlParser: true
-     })
+     })){
+       console.log("Connected to MONGO_DB")
+     }
 
     app.use(express.json())
 
@@ -69,7 +71,11 @@ app.get('/', (req, res) => {
   })
 
 
-
+  app.use(function(request, response, next) {
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
+next();
+});
 
 
 

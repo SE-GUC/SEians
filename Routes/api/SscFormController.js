@@ -5,6 +5,12 @@ var router = express.Router();
 
 //inserting a record into the database
 
+
+router.get('/', async (req,res) => {
+    const Spcget = await SscForm.find()
+    res.json({data: Spcget})
+})
+
 router.post('/', (req,res)=>{
 
     const sscForm = new SscForm({

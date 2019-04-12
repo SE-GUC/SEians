@@ -13,14 +13,15 @@ render(){
   let links = [
     { label: 'Home', link: '/AdminHome' },
     { label: 'Staff', link: '/Staff' },
+    { label: 'Companies', link: '/Companies' },
     { label: 'Assign Tasks', link: '#portfolio' },
     { label: 'Review Forms', link: '#contact-us' },
   ];
 
 return(
-  
+
     <Router>
-        
+
     <div className="container">
       <div className="container2">
       <Menu links={links} logo={logo} />
@@ -28,9 +29,9 @@ return(
        <Header name = "Admin Portal"/></body> </div>  </div>
         <div className="container center">
        < div>< div>
-          
+
       </div>
-      </div>  
+      </div>
     </div>
     <footer className="Footer">
     <Footer/>

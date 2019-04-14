@@ -7,6 +7,11 @@ import ReviewerHome from './ReviewerPortal/ReviewerHome';
 import AdminHome from './AdminPortal/AdminHome';
 import InvestorHome from './InvestorPortal/InvestorHome';
 import Staff from './AdminPortal/Staff/Staff';
+import Companies from './AdminPortal/Companies/Companies';
+import CreateCompany from './AdminPortal/Companies/CreateCompany';
+import GetCompany from './AdminPortal/Companies/GetCompany';
+import UpdateCompany from './AdminPortal/Companies/UpdateCompany';
+import CreatedSuccessfully from './AdminPortal/Companies/CreatedSuccessfully';
 import SSCApplication from  './InvestorPortal/Forms/SSCApplication'
 import UpdateInvestor from '../routes/InvestorPortal/UpdateInvestor'
 import DeleteInvestor from '../routes/InvestorPortal/DeleteInvestor'
@@ -46,6 +51,21 @@ export default ()=>(
     <Route path ="/Staff" exact component={Staff}/>
     </div>
     <div>
+    <Route path ="/Companies" exact component={Companies}/>
+    </div>
+    <div>
+    <Route path ="/CreateCompany" exact component={CreateCompany}/>
+    </div>
+    <div>
+    <Route path ="/GetCompany" exact component={GetCompany}/>
+    </div>
+    <div>
+    <Route path ="/UpdateCompany" exact component={UpdateCompany}/>
+    </div>
+    <div>
+    <Route path ="/CreatedSuccessfully" exact component={CreatedSuccessfully}/>
+    </div>
+    <div>
     <Route path ="/SSCApplication" exact component={SSCApplication}/>
     </div>
     <div>
@@ -63,7 +83,7 @@ export default ()=>(
     <div>
     <Route path ="/DeleteInvestor" exact component={DeleteInvestor}/>
     </div>
-  <div>
+    <div>
     <Route path ="/SscCase" exact component={SscCase}/>
     <Route path ="/getSingleCase" exact component={getSingleCase}/>
     <Route path ="/SpcCreate" exact component={SpcCreate}/>
@@ -72,5 +92,5 @@ export default ()=>(
     <Route path ="/SpcDelete" exact component={SpcDelete}/>
     </div>
     </BrowserRouter>
-
 )
+

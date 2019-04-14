@@ -30,6 +30,19 @@ return(
         <div className="container center">
        < div>< div>
           
+       <div style= {{marginTop: '100px', marginLeft: '500px'}}>
+<li className="nav-item">
+<a href="/SpcCreate">SpcCreate</a>
+</li>
+<li className="nav-item">
+<a href="/SpcSearch">SpcSearch</a>
+</li>
+<li className="nav-item">
+<a href="/SpcUpdate">SpcUpdate</a>
+</li>
+<li className="nav-item">
+<a href="/SpcDelete">SpcDelete</a>
+</li> </div>
 
       </div>
       </div>  
@@ -39,6 +52,9 @@ return(
     </footer>
 
   </Router>
+
+
+  
 )
 }
 }

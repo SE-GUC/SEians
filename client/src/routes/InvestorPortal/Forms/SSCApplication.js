@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
+import Header from '../../../components/Layout/Header'
 const axios = require('axios')
 
+/** 
+connect((SscApp)=>{
+  return{
+  form:SscApp.form.form,
+  created:SscApp.form.approval
+};
+})
+*/
 
 export class SscApplication extends Component {
   state = {
@@ -18,7 +28,7 @@ export class SscApplication extends Component {
                 idType:'' ,
                 idNumber:'',
                 capital:'',
-                birthDate :'',
+                birthdate :'',
                 address:'',
                 email:'',
                 manager_name:''
@@ -45,7 +55,7 @@ handleIdTypeChange = event => {this.setState({idType: event.target.value})};
 handleIdNumberChange = event => {this.setState( {idNumber: event.target.value})};
 handleCapitalChange = event => {this.setState({capital: event.target.value})};
 handleAddressChange = event => {this.setState( {address: event.target.value})};
-handleBirthDateChange = event => {this.setState({birthDate: event.target.value})};
+handleBirthDateChange = event => {this.setState({birthdate: event.target.value})};
 handleEmailChange = event => {this.setState({email: event.target.value})};
 handleManagersChange = event => {this.setState({managers: event.target.value})};
 handleM_NameChange = event => {this.setState({manager_name: event.target.value})};
@@ -68,7 +78,7 @@ handleSubmit = event => {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       },
-      url: 'http://localhost:5000/api/SscFormController/',
+      url: 'http://localhost:5000/api/Forms/createSsc',
       data: {
         name: this.state.name,
         companyName:this.state.companyName,
@@ -84,13 +94,14 @@ handleSubmit = event => {
         idType:this.state.idType,
         idNumber:this.state.idNumber,
         capital:this.state.capital,
-        birthDate :this.state.birthDate,
+        birthdate :this.state.birthdate,
         address:this.state.address,
         email:this.state.email,
         managers:m
 
       }
     }).then(response => { 
+  //    this.props.dispatch(ApplyForForm())
       console.log(response)
     })
     .catch(error => {
@@ -102,86 +113,87 @@ handleSubmit = event => {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
+        <Header name="SSC Application"/>
           <label>
             Person Name:
             <input type="text" name="name" onChange={this.handleNameChange} />
-          </label>
+          </label><br></br>
           <label>
             companyName:
             <input type="text" companyName="name" onChange={this.handlecompanyNameChange} />
-          </label>
+          </label><br></br>
           <label>
             companyNameInArabic:
             <input type="text" companyNameInArabic="name" onChange={this.handlecompanyNameInArabicChange} />
-          </label>
+          </label><br></br>
           <label>
             governorate:
             <input type="text" governorate="governorate" onChange={this.handleGovChange} />
-          </label>
+          </label><br></br>
           <label>
             city:
             <input type="text" city="city" onChange={this.handleCityChange} />
-          </label>
+          </label><br></br>
           <label>
             district:
             <input type="text" district="district" onChange={this.handleDistrictChange} />
-          </label>
+          </label><br></br>
           <label>
             telephone:
             <input type="text" telephone="telephone" onChange={this.handleTelChange} />
-          </label>
+          </label><br></br>
           <label>
             fax:
             <input type="text" fax="fax" onChange={this.handleFaxChange} />
-          </label>
+          </label><br></br>
           <label>
             currency:
             <input type="text" currency="currency" onChange={this.handleCurChange} />
-          </label>
+          </label><br></br>
           <label>
             gender:
             <input type="text" gender="gender" onChange={this.handleGenderChange} />
-          </label>
+          </label><br></br>
           <label>
             nationality:
             <input type="text" nationality="nationality" onChange={this.handleNationChange} />
-          </label>
+          </label><br></br>
           <label>
             idType:
             <input type="text" idType="idType" onChange={this.handleIdTypeChange} />
-          </label>
+          </label><br></br>
           <label>
             idNumber:
             <input type="text" name="name" onChange={this.handleIdNumberChange} />
-          </label>
+          </label><br></br>
           <label>
             capital:
             <input type="text" capital="capital" onChange={this.handleCapitalChange} />
-          </label>
+          </label><br></br>
           <label>
             birthDate:
-            <input type="date" birthDate="birthDate" onChange={this.handleBirthDateChange} />
-          </label>
+            <input type="date" birthdate="birthDate" onChange={this.handleBirthDateChange} />
+          </label><br></br>
           <label>
             address:
             <input type="text" address="address" onChange={this.handleAddressChange} />
-          </label>
+          </label><br></br>
           <label>
             email:
             <input type="text" email="email" onChange={this.handleEmailChange} />
-          </label>
+          </label><br></br>
           <label>
             manager name:
             <input type="text" name="name" onChange={this.handleM_NameChange} />
-          </label>
+          </label><br></br>
           <label>
             manager id:
             <input type="text" name="name" onChange={this.handleM_IDChange} />
-          </label>
+          </label><br></br>
           <label>
             manager nat:
             <input type="text" name="name" onChange={this.handleM_natsChange} />
-          </label>
+          </label><br></br>
 
           <button type="submit" onClick={this.handleSubmit}>submit </button>
         </form>

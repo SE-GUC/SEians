@@ -8,6 +8,8 @@ import AdminHome from './AdminPortal/AdminHome';
 import InvestorHome from './InvestorPortal/InvestorHome';
 import Staff from './AdminPortal/Staff/Staff';
 import SSCApplication from  './InvestorPortal/Forms/SSCApplication'
+import SscCase from  '../components/SscCase';
+import getSingleCase from  './LawyerPortal/getSingleCase';
 
 export default ()=>(
     <BrowserRouter>
@@ -34,6 +36,12 @@ export default ()=>(
     </div>
     <div>
     <Route path ="/SSCApplication" exact component={SSCApplication}/>
+    </div>
+    <div>
+    <Route path ="/SscCase" exact component={SscCase}/>
+    </div>
+    <div>
+    <Route path ="/getSingleCase" exact component={getSingleCase}/>
     </div>
     </BrowserRouter>
 )

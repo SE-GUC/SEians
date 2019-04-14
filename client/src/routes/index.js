@@ -10,6 +10,7 @@ import Staff from './AdminPortal/Staff/Staff';
 import SSCApplication from  './InvestorPortal/Forms/SSCApplication';
 import CreateReviewer from './AdminPortal/Staff/Reviewer/CreateReviewer';
 import GetReviewer from './AdminPortal/Staff/Reviewer/GetReviewer';
+import UpdateReviewer from './AdminPortal/Staff/Reviewer/UpdateReviewer';
 import CreationSuccess from './AdminPortal/Staff/Reviewer/CreationSuccess';
 import handleReviewer from './AdminPortal/Staff/Reviewer/handleReviewer';
 import UpdateSuccess from './AdminPortal/Staff/Reviewer/UpdateSuccess';
@@ -55,6 +56,9 @@ export default ()=>(
     </div>
     <div>
     <Route path ="/UpdateSuccess" exact component={UpdateSuccess}/>
+    </div>
+    <div>
+    <Route path ="/UpdateReviewer" exact component={UpdateReviewer}/>
     </div>
     <div>
     <Route path ="/DeletionSuccess" exact component={DeletionSuccess}/>

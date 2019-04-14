@@ -106,8 +106,7 @@ handleSubmit = event => {
     </tr>
 
     
-    <button type="button" onClick={this.handleupdateSubmit} >Update</button><br></br>
-    <button type="button" onClick={this.handledeleteSubmit} >Delete</button><br></br>
+    <button type="button" onClick={this.handledeleteSubmit} >Delete Reviewer's data</button><br></br>
   </ul>
   </div>,document.getElementById('root'))
 }

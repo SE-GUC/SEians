@@ -21,8 +21,8 @@ export class handleReviewer extends Component {
             </div> 
             <body>
             <a href="/CreateReviewer">Add Reviewer To the System</a><br></br>
-            <a href="/GetReviewer">View/Modify Reviewer's Data </a><br></br>
-           
+            <a href="/GetReviewer">View/Delete Reviewer's Data </a><br></br>
+            <a href="/UpdateReviewer">Update Reviewer's Data </a>
    </body>
             <footer className="Footer">
             <Footer/>

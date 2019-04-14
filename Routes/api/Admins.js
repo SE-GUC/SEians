@@ -31,10 +31,12 @@ router.get('/:userName', async (req,res) => {
 router.delete('/:userName', async (req,res) => {
   try {
     const userName = req.params.userName
-    const adminNeeded = await Admin.findOne({userName})
+    const adminNeeded = await Admin.findOne({userName:userName})
     if(!adminNeeded) return res.status(404).send({error: 'Admin does not exist'})
-    const deleted = await Admin.deleteOne(adminNeeded)
-    res.json({msg: 'Admin deleted successfully', data: deleted})
+  //  const index = Admin.indexOf(adminNeeded)
+  //  Admin.splice(index,1)
+    const deleted = await Admin.deleteOne({userName:adminNeeded.userName})
+    res.json({msg: 'Admin deleted successfully', data: adminNeeded})
    }
    catch(error) {
        console.log(error)
@@ -81,7 +83,7 @@ router.put('/:userName', async (req,res) => {
    if(!adminNeeded) return res.status(404).send({error: 'Admin does not exist'})
    const isValidated = validator.updateValidation(req.body)
    if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-   const updated = await Admin.updateOne(adminNeeded,req.body)
+   const updated = await Admin.updateOne({userName:adminNeeded,userName},req.body)
    adminNeeded = await Admin.findOne({userName})
    res.json({msg: 'Admin updated successfully', data: adminNeeded})
   }

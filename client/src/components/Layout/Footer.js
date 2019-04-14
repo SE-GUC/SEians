@@ -17,7 +17,8 @@ const footerStyle = {
   textAlign: 'center',
   padding:'10px',
   bottom: '0',
-  width: '100%',
+  width: '100%'
+ 
 }
 
 const linkStyle = {

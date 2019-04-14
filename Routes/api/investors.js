@@ -94,9 +94,7 @@ router.put('/:userName', async (req,res) => {
     catch(error) {
         console.log(error)
     }  
-    
-
-
+   
  })
 
  //register investor
@@ -169,8 +167,7 @@ router.post('/login', async (req, res) => {
                 email: Investor.email
             }
             const token = jwt.sign(payload, tokenKey, { expiresIn: '1h' })
-            //res.json({data: `Bearer ${token}`})
-            return res.json({ data: 'successful login' })
+            return res.json({ data: `Bearer ${token}`, data: 'successful login' })
         }
 		else return res.status(400).send({ password: 'Wrong password' });
     } catch (e) {

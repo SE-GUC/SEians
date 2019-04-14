@@ -27,18 +27,12 @@ export class Searchbar extends Component {
   render() {
    
     let filteredAdminsUN = this.state.admins.filter((Admin)=>{
-      return Admin.userName.indexOf(this.state.search) !== -1;
+      return Admin.userName.indexOf(this.state.search) !== -1 || Admin.email.indexOf(this.state.search) !== -1 ||Admin.firstName.indexOf(this.state.search) !== -1;
+      
+      
     })
-    let filteredAdminsEM = this.state.admins.filter((Admin)=>{
-      return Admin.email.indexOf(this.state.search) !== -1;
-    })
-    let filteredAdminsFN = this.state.admins.filter((Admin)=>{
-      return Admin.firstName.indexOf(this.state.search) !== -1;
-    })
-    
-    /*let filteredAdminsMN = this.state.admins.filter((Admin)=>{
-      return Admin.phoneNumber.indexOf(this.state.search) !== -1;
-    })*/
+ 
+  
     return (
       <div>
        <ul>
@@ -48,26 +42,19 @@ export class Searchbar extends Component {
 
              value={this.state.search}
              onChange={this.updateSearch.bind(this)}
-             style={{ width: "500px" ,height:"50px",fontSize:"20px" ,backgroundColor:"cyan",borderColor: 'gray', borderWidth: 5}}
+             style={{ width: "500px" ,height:"50px",fontSize:"20px" ,backgroundColor:"#fff59d",borderColor: 'red'}}
              />
+            
            }
+           
+           
            {
              filteredAdminsUN.map((admin)=>{
-               return <Admin Admin={admin} key={Admin.userName}/>
+               return <Admin Admin={admin} key={admin.userName}/>
              })
            }
          
-           {
-             filteredAdminsEM.map((admin)=>{
-               return <Admin Admin={admin} key={Admin.userName}/>
-             })
-           }
           
-           {
-             filteredAdminsFN.map((admin)=>{
-               return <Admin Admin={admin} key={Admin.userName}/>
-             })
-           }
          
           
       

@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Footer from '../../../components/Layout/Footer'
 import Header from '../../../components/Layout/Header'
+
 const axios = require('axios')
 
-/** 
-connect((SscApp)=>{
-  return{
-  form:SscApp.form.form,
-  created:SscApp.form.approval
-};
-})
-*/
 
-export class SscApplication extends Component {
+
+export class SpcCreate extends Component {
   state = {
-                name:'',
+                
                 companyName:'' ,
                 companyNameInArabic:'',
                 governorate:'',
@@ -23,6 +18,8 @@ export class SscApplication extends Component {
                 telephone:'',
                 fax:'',
                 currency:'',
+                name:'',
+                investorId: '',
                 gender:'',
                 nationality:'',
                 idType:'' ,
@@ -30,17 +27,14 @@ export class SscApplication extends Component {
                 capital:'',
                 birthdate :'',
                 address:'',
-                email:'',
-                manager_name:''
-                ,
-                manager_id:''
-                ,
-                manager_nat:''
+                email:''
+               
   }
   
   
 
 handleNameChange = event => {this.setState({ name: event.target.value });}
+handleinvestorIdChange = event => {this.setState({ investorId: event.target.value });}
 handlecompanyNameChange = event => {this.setState( {companyName: event.target.value})};
 handlecompanyNameInArabicChange = event => {this.setState({companyNameInArabic: event.target.value})};
 handleGovChange = event => {this.setState( { governorate: event.target.value })};     
@@ -55,19 +49,13 @@ handleIdTypeChange = event => {this.setState({idType: event.target.value})};
 handleIdNumberChange = event => {this.setState( {idNumber: event.target.value})};
 handleCapitalChange = event => {this.setState({capital: event.target.value})};
 handleAddressChange = event => {this.setState( {address: event.target.value})};
-handleBirthDateChange = event => {this.setState({birthdate: event.target.value})};
+handlebirthdateChange = event => {this.setState({birthdate: event.target.value})};
 handleEmailChange = event => {this.setState({email: event.target.value})};
-handleManagersChange = event => {this.setState({managers: event.target.value})};
-handleM_NameChange = event => {this.setState({manager_name: event.target.value})};
-handleM_IDChange = event => {this.setState({manager_id: event.target.value})};
-handleM_natsChange = event => {this.setState({manager_nat: event.target.value})};
+
 
 handleSubmit = event => {
     event.preventDefault();
-    var manager_name =this.state.manager_name
-    var manager_id=this.state.manager_id
-    var manager_nat =this.state.manager_id
-    var m = [[manager_name,manager_id,manager_nat]]
+  
     const ssc = {
      
     };
@@ -78,9 +66,11 @@ handleSubmit = event => {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       },
-      url: 'http://localhost:5000/api/Forms/createSsc',
+      url: 'http://localhost:5000/api/Forms/createSpc',
       data: {
+
         name: this.state.name,
+        investorId: this.state.investorId,
         companyName:this.state.companyName,
         companyNameInArabic:this.state.companyNameInArabic,
         governorate:this.state.governorate,
@@ -96,12 +86,11 @@ handleSubmit = event => {
         capital:this.state.capital,
         birthdate :this.state.birthdate,
         address:this.state.address,
-        email:this.state.email,
-        managers:m
+        email:this.state.email
+       
 
       }
     }).then(response => { 
-  //    this.props.dispatch(ApplyForForm())
       console.log(response)
     })
     .catch(error => {
@@ -111,94 +100,101 @@ handleSubmit = event => {
 
   render() {
     return (
-      <div>
+      <Router>
+        
+        <div className="container">
+            <body>
+           <Header name = "Create SPC Form"/></body>
+              
+          </div>
+        <footer className="Footer">
+        <Footer/>
+        </footer>
+        <div className="container" style={{marginTop: '100px',marginLeft: '100px', width: '1525px'}}>>
         <form onSubmit={this.handleSubmit}>
-        <Header name="SSC Application"/>
           <label>
             Person Name:
             <input type="text" name="name" onChange={this.handleNameChange} />
-          </label><br></br>
+          </label>
+
+          <label>
+            investor id:
+            <input type="text" name="investorId" onChange={this.handleinvestorIdChange} />
+          </label>
+
+
           <label>
             companyName:
-            <input type="text" companyName="name" onChange={this.handlecompanyNameChange} />
-          </label><br></br>
+            <input type="text" name="companyName" onChange={this.handlecompanyNameChange} />
+          </label>
           <label>
             companyNameInArabic:
-            <input type="text" companyNameInArabic="name" onChange={this.handlecompanyNameInArabicChange} />
-          </label><br></br>
+            <input type="text" name="companyNameInArabic" onChange={this.handlecompanyNameInArabicChange} />
+          </label>
           <label>
             governorate:
-            <input type="text" governorate="governorate" onChange={this.handleGovChange} />
-          </label><br></br>
+            <input type="text" name="governorate" onChange={this.handleGovChange} />
+          </label>
           <label>
             city:
-            <input type="text" city="city" onChange={this.handleCityChange} />
-          </label><br></br>
+            <input type="text" name="city" onChange={this.handleCityChange} />
+          </label>
           <label>
             district:
-            <input type="text" district="district" onChange={this.handleDistrictChange} />
-          </label><br></br>
+            <input type="text" name="district" onChange={this.handleDistrictChange} />
+          </label>
           <label>
             telephone:
-            <input type="text" telephone="telephone" onChange={this.handleTelChange} />
-          </label><br></br>
+            <input type="text" name="telephone" onChange={this.handleTelChange} />
+          </label>
           <label>
             fax:
-            <input type="text" fax="fax" onChange={this.handleFaxChange} />
-          </label><br></br>
+            <input type="text" name="fax" onChange={this.handleFaxChange} />
+          </label>
           <label>
             currency:
-            <input type="text" currency="currency" onChange={this.handleCurChange} />
-          </label><br></br>
+            <input type="text" name="currency" onChange={this.handleCurChange} />
+          </label>
           <label>
             gender:
-            <input type="text" gender="gender" onChange={this.handleGenderChange} />
-          </label><br></br>
+            <input type="text" name="gender" onChange={this.handleGenderChange} />
+          </label>
           <label>
             nationality:
-            <input type="text" nationality="nationality" onChange={this.handleNationChange} />
-          </label><br></br>
+            <input type="text" name="nationality" onChange={this.handleNationChange} />
+          </label>
           <label>
             idType:
-            <input type="text" idType="idType" onChange={this.handleIdTypeChange} />
-          </label><br></br>
+            <input type="text" name="idType" onChange={this.handleIdTypeChange} />
+          </label>
           <label>
             idNumber:
-            <input type="text" name="name" onChange={this.handleIdNumberChange} />
-          </label><br></br>
+            <input type="text" name="IdNumber" onChange={this.handleIdNumberChange} />
+          </label>
           <label>
             capital:
-            <input type="text" capital="capital" onChange={this.handleCapitalChange} />
-          </label><br></br>
+            <input type="text" name="capital" onChange={this.handleCapitalChange} />
+          </label>
           <label>
             birthDate:
-            <input type="date" birthdate="birthDate" onChange={this.handleBirthDateChange} />
-          </label><br></br>
+            <input type="date" name="birthdate" onChange={this.handlebirthdateChange} />
+          </label>
           <label>
             address:
-            <input type="text" address="address" onChange={this.handleAddressChange} />
-          </label><br></br>
+            <input type="text" name="address" onChange={this.handleAddressChange} />
+          </label>
           <label>
             email:
-            <input type="text" email="email" onChange={this.handleEmailChange} />
-          </label><br></br>
-          <label>
-            manager name:
-            <input type="text" name="name" onChange={this.handleM_NameChange} />
-          </label><br></br>
-          <label>
-            manager id:
-            <input type="text" name="name" onChange={this.handleM_IDChange} />
-          </label><br></br>
-          <label>
-            manager nat:
-            <input type="text" name="name" onChange={this.handleM_natsChange} />
-          </label><br></br>
+            <input type="text" name="email" onChange={this.handleEmailChange} />
+          </label>
+         
 
           <button type="submit" onClick={this.handleSubmit}>submit </button>
         </form>
       </div>
+      </Router>
+      
     )
   }
 }
-export default SscApplication
+export default SpcCreate

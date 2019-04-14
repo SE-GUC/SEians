@@ -13,6 +13,19 @@ import GetCompany from './AdminPortal/Companies/GetCompany';
 import UpdateCompany from './AdminPortal/Companies/UpdateCompany';
 import CreatedSuccessfully from './AdminPortal/Companies/CreatedSuccessfully';
 import SSCApplication from  './InvestorPortal/Forms/SSCApplication'
+import UpdateInvestor from '../routes/InvestorPortal/UpdateInvestor'
+import DeleteInvestor from '../routes/InvestorPortal/DeleteInvestor'
+import Login from '../routes/InvestorPortal/Login'
+import Register from '../routes/InvestorPortal/Register'
+import SearchInvestor from '../routes/InvestorPortal/SearchInvestor'
+import EditAdmin from './AdminPortal/Staff/Admin/UpdateAdmin';
+import SscCase from  '../components/SscCase';
+import getSingleCase from  './LawyerPortal/getSingleCase';
+import SpcCreate from './InvestorPortal/Forms/SpcCreate';
+import SpcSearch from './InvestorPortal/Forms/SpcSearch';
+import SpcDelete from './InvestorPortal/Forms/SpcDelete';
+import SpcUpdate from './InvestorPortal/Forms/SpcUpdate';
+
 
 export default ()=>(
     <BrowserRouter>
@@ -55,5 +68,29 @@ export default ()=>(
     <div>
     <Route path ="/SSCApplication" exact component={SSCApplication}/>
     </div>
+    <div>
+    <Route path ="/Register" exact component={Register}/>
+    </div>
+    <div>
+    <Route path ="/Login" exact component={Login}/>
+    </div>
+    <div>
+    <Route path ="/SearchInvestor" exact component={SearchInvestor}/>
+    </div>
+    <div>
+    <Route path ="/UpdateInvestor" exact component={UpdateInvestor}/>
+    </div>
+    <div>
+    <Route path ="/DeleteInvestor" exact component={DeleteInvestor}/>
+    </div>
+    <div>
+    <Route path ="/SscCase" exact component={SscCase}/>
+    <Route path ="/getSingleCase" exact component={getSingleCase}/>
+    <Route path ="/SpcCreate" exact component={SpcCreate}/>
+    <Route path ="/SpcSearch" exact component={SpcSearch}/>
+    <Route path ="/SpcUpdate" exact component={SpcUpdate}/>
+    <Route path ="/SpcDelete" exact component={SpcDelete}/>
+    </div>
     </BrowserRouter>
 )
+

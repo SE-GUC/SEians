@@ -21,6 +21,7 @@ class Navbar extends Component {
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/DeleteInvestor">Delete Investor</Link>
+                                    </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/SpcCreate">SpcCreate</Link>
                         </li>

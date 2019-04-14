@@ -5,9 +5,51 @@ import Menu from '../../components/Layout/Menu';
 import Footer from '../../components/Layout/Footer';
 import logo from '../../components/Layout/img/logo.png';
 
-export class AdminHome extends Component {
+let links = [
+  { label: 'Home', link: '/AdminHome' },
+  { label: 'Staff', link: '/Staff' },
+  { label: 'Assign Tasks', link: '#portfolio' },
+  { label: 'Review Forms', link: '#contact-us' },
+];
+
+export default ()=><div>
+ <Router>
+        
+        <div className="container">
+          <div className="container2">
+          <Menu links={links} logo={logo} />
+            <body>
+           <Header name = "Admin Portal"/></body> </div>  </div>
+            <div className="container center">
+           < div>< div>
+              
+          </div>
+          </div>  
+        </div>
+        <footer className="Footer">
+        <Footer/>
+        </footer>
+    
+      </Router>
+      
+      <div style= {{marginTop: '100px', marginLeft: '500px'}}>
+      <li className="nav-item">
+      <a href="/SpcCreate">SpcCreate</a>
+      </li>
+      <li className="nav-item">
+      <a href="/SpcSearch">SpcSearch</a>
+      </li>
+      <li className="nav-item">
+      <a href="/SpcUpdate">SpcUpdate</a>
+      </li>
+      <li className="nav-item">
+      <a href="/SpcDelete">SpcDelete</a>
+      </li>
+    </div>
+</div>;
 
 
+/*export class AdminHome extends Component {
 
 render(){
   let links = [
@@ -32,13 +74,24 @@ return(
       </div>
       </div>  
     </div>
+    <div>
+    <Navbar />
+      <div className="container">
+        <Route exact path="/SpcCreate" component={ SpcCreate } />
+        <Route exact path="/SpcSearch" component={ SpcSearch } />
+        <Route exact path="/SpcDelete" component={ SpcDelete } />
+        <Route exact path="/SpcUpdate" component={ SpcUpdate } />
+
+      </div>
+  </div>
     <footer className="Footer">
     <Footer/>
     </footer>
 
   </Router>
+  
 )
 }
 }
 
-export default AdminHome
+export default AdminHome*/

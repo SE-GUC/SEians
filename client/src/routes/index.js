@@ -8,6 +8,10 @@ import AdminHome from './AdminPortal/AdminHome';
 import InvestorHome from './InvestorPortal/InvestorHome';
 import Staff from './AdminPortal/Staff/Staff';
 import SSCApplication from  './InvestorPortal/Forms/SSCApplication'
+import SpcCreate from './InvestorPortal/Forms/SpcCreate';
+import SpcSearch from './InvestorPortal/Forms/SpcSearch';
+import SpcDelete from './InvestorPortal/Forms/SpcDelete';
+import SpcUpdate from './InvestorPortal/Forms/SpcUpdate';
 
 export default ()=>(
     <BrowserRouter>
@@ -34,6 +38,18 @@ export default ()=>(
     </div>
     <div>
     <Route path ="/SSCApplication" exact component={SSCApplication}/>
+    </div>
+    <div>
+    <Route path ="/SpcCreate" exact component={SpcCreate}/>
+    </div>
+    <div>
+    <Route path ="/SpcSearch" exact component={SpcSearch}/>
+    </div>
+    <div>
+    <Route path ="/SpcUpdate" exact component={SpcUpdate}/>
+    </div>
+    <div>
+    <Route path ="/SpcDelete" exact component={SpcDelete}/>
     </div>
     </BrowserRouter>
 )

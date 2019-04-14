@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 export default ()=><div>
-    <a href="/admin">Admin</a>
-    <a href="/ReviewerHome">ReviewerHome</a>
-    <a href="/LawyerHome">LawyerHome</a>
-    <a href="/AdminHome">AdminHome</a>
-    <a href="/InvestorHome">InvestorHome</a>
-
+    <a href="/AdminHome">AdminHome</a><br/>
+    <a href="/ReviewerHome">ReviewerHome</a><br/>
+    <a href="/LawyerHome">LawyerHome</a><br/>
+    <a href="/InvestorHome">InvestorHome</a><br/>
 </div>;

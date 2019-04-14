@@ -13,6 +13,13 @@ import DeleteInvestor from '../routes/InvestorPortal/DeleteInvestor'
 import Login from '../routes/InvestorPortal/Login'
 import Register from '../routes/InvestorPortal/Register'
 import SearchInvestor from '../routes/InvestorPortal/SearchInvestor'
+import EditAdmin from './AdminPortal/Staff/Admin/UpdateAdmin';
+import SscCase from  '../components/SscCase';
+import getSingleCase from  './LawyerPortal/getSingleCase';
+import SpcCreate from './InvestorPortal/Forms/SpcCreate';
+import SpcSearch from './InvestorPortal/Forms/SpcSearch';
+import SpcDelete from './InvestorPortal/Forms/SpcDelete';
+import SpcUpdate from './InvestorPortal/Forms/SpcUpdate';
 
 
 export default ()=>(
@@ -56,5 +63,14 @@ export default ()=>(
     <div>
     <Route path ="/DeleteInvestor" exact component={DeleteInvestor}/>
     </div>
+  <div>
+    <Route path ="/SscCase" exact component={SscCase}/>
+    <Route path ="/getSingleCase" exact component={getSingleCase}/>
+    <Route path ="/SpcCreate" exact component={SpcCreate}/>
+    <Route path ="/SpcSearch" exact component={SpcSearch}/>
+    <Route path ="/SpcUpdate" exact component={SpcUpdate}/>
+    <Route path ="/SpcDelete" exact component={SpcDelete}/>
+    </div>
     </BrowserRouter>
+
 )

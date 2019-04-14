@@ -40,7 +40,7 @@ const AdminSchema = new Schema({
         required: true
     },
     password: {
-        type: Number,
+        type: String,
         required: true
     }, workLocation: {
         type: String,

@@ -35,7 +35,7 @@ export class Companies extends Component {
               <a style={{ fontSize:"30px"}} href="/GetCompany" class="btn btn-default">Manage Companies</a>
               <br/>
               <br/>
-
+              <a style={{ fontSize:"30px"}} href="/UpdateCompany" class="btn btn-default">Update Company</a>
 
               </center>
             <footer className="Footer">

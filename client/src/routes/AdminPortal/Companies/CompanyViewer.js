@@ -24,7 +24,7 @@ export default class CompanyViewer extends React.Component {
         });
         }
 
-      
+
         handleUpdateSubmit = event => {
       console.log(this.props)
       event.preventDefault();
@@ -79,7 +79,6 @@ export default class CompanyViewer extends React.Component {
 
 
         </table>
-        <button type="button" onClick={this.handleUpdateSubmit} >Update</button><br></br>
         <button type="button" onClick={this.handledeleteSubmit} >Delete</button><br></br>
       </ul>
       </div>,document.getElementById('root'))

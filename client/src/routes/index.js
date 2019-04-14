@@ -10,7 +10,7 @@ import Staff from './AdminPortal/Staff/Staff';
 import Companies from './AdminPortal/Companies/Companies';
 import CreateCompany from './AdminPortal/Companies/CreateCompany';
 import GetCompany from './AdminPortal/Companies/GetCompany';
-
+import UpdateCompany from './AdminPortal/Companies/UpdateCompany';
 import CreatedSuccessfully from './AdminPortal/Companies/CreatedSuccessfully';
 import SSCApplication from  './InvestorPortal/Forms/SSCApplication'
 
@@ -45,6 +45,9 @@ export default ()=>(
     </div>
     <div>
     <Route path ="/GetCompany" exact component={GetCompany}/>
+    </div>
+    <div>
+    <Route path ="/UpdateCompany" exact component={UpdateCompany}/>
     </div>
     <div>
     <Route path ="/CreatedSuccessfully" exact component={CreatedSuccessfully}/>

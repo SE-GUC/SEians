@@ -19,7 +19,7 @@ export class CreateCompany extends Component {
 
 
 
-handleNameChange = event => {this.setState({ name: event.target.value });}
+handleNameChange = event => {this.setState({ name: event.target.value })};
 handleCompanyStatusChange = event => {this.setState( {companyStatus: event.target.value})};
 handleTypeChange = event => {this.setState({type: event.target.value})};
 handleOwnerChange = event => {this.setState( { owner: event.target.value })};

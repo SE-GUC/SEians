@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import axios from 'axios';
 import CompanyViewer from './CompanyViewer';
+import Header from '../../../components/Layout/Header'
+import Footer from '../../../components/Layout/Footer';
+import Menu from '../../../components/Layout/Menu';
+import logo from '../../../components/Layout/img/logo.png';
+
 
 export class GetCompany extends Component {
   state = {
@@ -24,7 +30,26 @@ export class GetCompany extends Component {
       return CompanyViewer.name.indexOf(this.state.search) !== -1;
     })
 
-    return (
+    let links = [
+      { label: 'Home', link: '/AdminHome' },
+      { label: 'Staff', link: '/Staff' },
+      { label: 'Companies', link: '/Companies' },
+      { label: 'Assign Tasks', link: '#portfolio' },
+      { label: 'Review Forms', link: '#contact-us' },
+    ];
+    return(
+        <Router>
+          <div>
+            <Menu links={links} logo={logo}/>
+            </div>
+
+          <Header name="Search for a company" />
+          <Route path="/Companies" />
+
+
+
+
+
       <div>
        <ul>
            {
@@ -44,8 +69,20 @@ export class GetCompany extends Component {
 
 
         </ul>
+        <br/>
 
       </div>
+
+      <footer className="Footer" style={{  position: "fixed",
+  left: "0",
+  bottom: "0",
+  width: "100%",
+
+}}>
+      <Footer/>
+      </footer>
+  </Router>
+
     )
   }
 }

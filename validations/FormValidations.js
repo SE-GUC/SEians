@@ -13,7 +13,7 @@ module.exports = {
             fax: Joi.number(),
             currency: Joi.string().required(),
             name: Joi.string().required(),
-            investorId: Joi.number().required(),
+            investorId: Joi.number(),
             gender: Joi.string().valid(['male', 'female']).required(),
             nationality: Joi.string().required(),
             idType: Joi.string().required(),

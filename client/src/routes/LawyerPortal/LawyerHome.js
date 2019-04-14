@@ -15,7 +15,7 @@ render(){
   let links = [
     { label: 'Home', link: '#home', active: true },
     { label: 'About', link: '#about' },
-    { label: 'Review Forms', link: '#ReviewFrms' },
+    { label: 'Review Forms', link: '/SscCase' },
     { label: 'Log Out', link: '#log-out' },
   ];
 return(

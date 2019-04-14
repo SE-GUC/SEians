@@ -39,7 +39,8 @@ router.post('/createSsc', (req,res)=>{
                error: isValidated.error.details[0].message })
            else
            Form.create(form).then(result=>{  res.json({msg:'SSC Submitted', data: form})}).
-           catch(err=>res.json({msg:'Company Name not Unique'}))   
+           catch(err=>res.json({msg:'Company Name not Unique'}))    
+  
        }
        catch(error) {
            console.log(error)
@@ -78,8 +79,8 @@ router.post('/createSsc', (req,res)=>{
                error: isValidated.error.details[0].message })
            else
            Form.create(form).then(result=>{  res.json({msg:'SPC Submitted', data: form})}).
+
            catch(err=>res.json({msg:'Company Name not Unique'})) 
-          
        
        }
        catch(error) {

@@ -8,6 +8,10 @@ import AdminHome from './AdminPortal/AdminHome';
 import InvestorHome from './InvestorPortal/InvestorHome';
 import Staff from './AdminPortal/Staff/Staff';
 import SSCApplication from  './InvestorPortal/Forms/SSCApplication'
+
+import SscCase from  '../components/SscCase';
+import getSingleCase from  './LawyerPortal/getSingleCase';
+
 import SpcCreate from './InvestorPortal/Forms/SpcCreate';
 import SpcSearch from './InvestorPortal/Forms/SpcSearch';
 import SpcDelete from './InvestorPortal/Forms/SpcDelete';
@@ -40,6 +44,10 @@ export default ()=>(
     <Route path ="/SSCApplication" exact component={SSCApplication}/>
     </div>
     <div>
+    <Route path ="/SscCase" exact component={SscCase}/>
+    </div>
+    <div>
+    <Route path ="/getSingleCase" exact component={getSingleCase}/>
     <Route path ="/SpcCreate" exact component={SpcCreate}/>
     </div>
     <div>

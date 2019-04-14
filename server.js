@@ -1,5 +1,3 @@
-
-
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
@@ -49,7 +47,8 @@ require('./config/passport')(passport)
 
 
     if( mongoose.connect(`${MONGO_DNS_SRV}${MONGO_AUTH}${MONGO_CLUSTER}${MONGO_DB_NAME}${MONGO_OPTIONS}`, {
-       useNewUrlParser: true
+       useNewUrlParser: true,
+       useCreateIndex: true,
      })){
        console.log("Connected to MONGO_DB")
      }
@@ -66,7 +65,7 @@ require('./config/passport')(passport)
 app.get('/', (req, res) => {
 
 
-      res.send(' <a href="/api/Forms">Forms</a> <br><a href="/api/Admins">Admins</a> <br> <a href="/api/reviewers">Reviewers</a> <br> <a href="/api/investors">investors</a> <br><a href="/api/lawyers">lawyers</a><br><a href="/api/Companies">Companies</a> ');
+      res.send(' <a href="/api/Spcs">Spcs</a> <br><a href="/api/Admins">Admins</a> <br> <a href="/api/reviewers">Reviewers</a> <br> <a href="/api/investors">investors</a> <br><a href="/api/lawyers">lawyers</a><br><a href="/api/Companies">Companies</a> ');
 
   })
 
@@ -81,15 +80,13 @@ next();
 
 
 
-
-
-
-
+app.use('/api/Forms',Forms)
 app.use('/api/Admins', Admins)
 app.use('/api/Companies', Companies)
 app.use('/api/investors',investors)
 app.use('/api/lawyers', lawyers)
-app.use('/api/Forms',Forms)
+
+
 app.use('/api/reviewers', reviewers)
 
 app.use((req,res) => res.status(404).send(`<h1>Can not find what you're looking for</h1>`))

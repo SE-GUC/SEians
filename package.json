@@ -20,6 +20,7 @@
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "promise": "^8.0.3",
+    "redux": "^4.0.1",
     "uuid": "^3.3.2",
     "validator": "^10.11.0"
   },

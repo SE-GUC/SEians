@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Header from '../../../components/Layout/Header'
-import Footer from '../../../components/Layout/Footer';
-import './Staff.css'
+import Header from '../../../../components/Layout/Header'
+import Footer from '../../../../components/Layout/Footer';
+import '../Staff.css'
 
 
-export class Staff extends Component {
+export class handleReviewer extends Component {
 
 
     
@@ -15,12 +15,14 @@ export class Staff extends Component {
                 
             <div className="Header">
               <div className="container">
-              <Header name="Staff" />
+              <Header name="Handle Reviewers"/>
                 <Route path="/Staff" />
               </div>  
             </div> 
             <body>
-            <a href="/handleReviewer">Reviewers</a>
+            <a href="/CreateReviewer">Add Reviewer To the System</a><br></br>
+            <a href="/GetReviewer">View/Modify Reviewer's Data </a><br></br>
+           
    </body>
             <footer className="Footer">
             <Footer/>
@@ -30,4 +32,4 @@ export class Staff extends Component {
         
         )
                 }
-}export default Staff
+}export default handleReviewer

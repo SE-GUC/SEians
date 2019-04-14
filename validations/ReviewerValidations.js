@@ -23,13 +23,9 @@ module.exports = {
 
     updateValidation: request => {
         const updateSchema = {
-            firstname: Joi.string(),
-            middlename: Joi.string(),
-            lastname: Joi.string(),
             email: Joi.string(),
             address: Joi.string(),
             phone: Joi.number(),
-            ssn: Joi.number(),
             salary: Joi.number(),
             yearsOfExperience: Joi.number()
         }

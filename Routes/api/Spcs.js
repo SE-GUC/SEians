@@ -92,7 +92,6 @@ router.put('/:investorId', async (req,res) => {
      const updated = await Spcs.updateOne(Spcsneeded,req.body)
      res.json({msg: 'Spc updated successfully', data: updated})
      const Spcsneeded1 = await Spcs.findOne({investorId})
-
      res.json({msg: 'Spc updated successfully', data: Spcsneeded1})
     }
     catch(error) {

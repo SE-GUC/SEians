@@ -26,9 +26,9 @@ export class SearchInvestor extends Component {
     let filteredinvestorsUN = this.state.investors.filter((MyInvestors)=>{
       return MyInvestors.userName.indexOf(this.state.search) !== -1;
     })
-    let filteredinvestorsFN = this.state.investors.filter((MyInvestors)=>{
+   /* let filteredinvestorsFN = this.state.investors.filter((MyInvestors)=>{
       return MyInvestors.name.indexOf(this.state.search) !== -1;
-    })
+    })*/
    
     return (
       <Router>
@@ -58,9 +58,9 @@ export class SearchInvestor extends Component {
            }
          
            {
-             filteredinvestorsFN.map((investorss)=>{
+             /*filteredinvestorsFN.map((investorss)=>{
                return <MyInvestors MyInvestors={investorss} key={MyInvestors.name}/>
-             })
+             })*/
            }
           
         </ul>

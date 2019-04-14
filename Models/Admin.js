@@ -3,21 +3,27 @@ const Schema = mongoose.Schema
 
 
 const AdminSchema = new Schema({
-    id: {
-        type: Number,
-        required: false
-    },
-    userName: {
+    name:{
         type: String,
         required: true
+    },
+    // id: {
+    //     type: Number,
+    //     required: false
+    // },
+    // deleting the  id feild in admin schema it causes a big error as you asked in the cureent user methode to get an id so the passport get confused between id of mongo and id of the schema :) :) 7araaaaam 3leeeeek 
+
+    userName: {
+        type: String,
+        // required: true
     },
     firstName: {
         type: String,
-        required: true
+        // required: true
     },
     lastName: {
         type: String,
-        required: true
+        // required: true
     },
     email: {
         type: String,
@@ -25,83 +31,53 @@ const AdminSchema = new Schema({
     },
     age: {
         type: Number,
-        required: true
+        // required: true
     },
     ssn: {
         type: Number,
-        required: true
+        // required: true
     },
     gender: {
         type: String,
-        required: true
+        // required: true
     },
     isLogged: {
         type: Boolean,
-        required: true
+        // required: true
     },
     password: {
-        type: Number,
-        required: true
-    }, workLocation: {
         type: String,
         required: true
+    },
+    password2: {
+        type: String,
+        // required: true
+    }
+    , workLocation: {
+        type: String,
+        // required: true
     }, address: {
         type: String,
-        required: true
+        // required: true
     },
     salary: {
         type: Number,
-        required: true
+        // required: true
     },
     phoneNumber: {
         type: Number,
-        required: true
+        // required: true
     },
     fax: {
         type: Number,
-        required: true
+        // required: true
     },
     fullAccess: {
         type: Boolean,
-        required: true
+        // required: true
     }
     
 
 })
 
-
-
-
-/*
-
-class Admin {
-    constructor(id,userName, firstName,lastName, email, age,ssn,gender
-               ,isLogged,password,workLocation,address,salary
-               ,phoneNumber,fax,fullAccess,nationality) {
-       // this.id=uuid.v4();;
-        this.id           = id;
-        this.userName     = userName;
-        this.firstName    = firstName;
-        this.lastName     = lastName;
-        this.email        = email;
-        this.age          = age;
-        this.ssn          = ssn;
-        this.gender       = gender;
-        this.isLogged     = isLogged;
-        this.password     = password;
-        this.workLocation = workLocation;
-        this.address      = address;
-        this.salary      = salary;
-        this.phoneNumber  = phoneNumber;
-        this.fax          = fax;
-        this.fullAccess   = fullAccess;
-        // this.nationality = nationality;
-
-    };
-}
-
-
-
-module.exports = Admin;
-*/
 module.exports = Admin = mongoose.model('Admins', AdminSchema)

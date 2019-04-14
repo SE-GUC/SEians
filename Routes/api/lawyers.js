@@ -2,25 +2,49 @@ const express = require('express');
 const Joi = require('joi');
 const uuid = require('uuid');
 const router = express.Router();
-
+const keys = require('../../config/keys');
 const lawyer = require('../../Models/lawyer')
+const Case = require('../../Models/Case')
+const bcrypt = require('bcryptjs');//to encrypt the password 
+const jwt = require('jsonwebtoken');
+const validateRegisterInput = require ('../../validations/register');
+const validateLoginInput = require ('../../validations/login');
+const passport = require('passport');
+const lawyerpassport = require('passport');
 
 // temporary data created as if it was pulled out of the database ...
-const lawyers = [
-    new lawyer( uuid.v4(),'Mahmoud1', 'Mahmoud Hossam Eldin', 'MahmoudHoss@gmail.com','123456'),
-    new lawyer( uuid.v4(),'Mahmoud2', 'Mahmoud Hossam Eldin2', 'MahmoudHoss2@gmail.com','123456'),
-    new lawyer(uuid.v4(), 'Mahmoud3', 'Mahmoud Hossam Eldin3', 'MahmoudHoss3@gmail.com','123456'),
-    new lawyer(uuid.v4(), 'Mahmoud4', 'Mahmoud Hossam Eldin4', 'MahmoudHoss4@gmail.com','123456')
-];
+// const lawyers = [
+//     new lawyer( uuid.v4(),'Mahmoud1', 'Mahmoud Hossam Eldin', 'MahmoudHoss@gmail.com','123456'),
+//     new lawyer( uuid.v4(),'Mahmoud2', 'Mahmoud Hossam Eldin2', 'MahmoudHoss2@gmail.com','123456'),
+//     new lawyer(uuid.v4(), 'Mahmoud3', 'Mahmoud Hossam Eldin3', 'MahmoudHoss3@gmail.com','123456'),
+//     new lawyer(uuid.v4(), 'Mahmoud4', 'Mahmoud Hossam Eldin4', 'MahmoudHoss4@gmail.com','123456')
+// ];
 
 ////////////
+//showing the lawyer cases
+router.put('/cases/:caseDate',(req,res)=>{
+  Case.findOne({caseDate:req.body.caseDate}).then(casedate =>{
+    if(casedate){
+      return res.json(Case)
+    }else{
+      return res.json({err:'no such a case'})
+    }
 
-router.get('/', (req, res) => res.json({ data: lawyers }));
-router.get('/:username', (req, res) => {
-    const lawyerid = req.params.username
-    const lawyer = lawyers.find(lawyer => lawyer.username === lawyerid)
-    res.send(lawyer)
-});
+  })
+})
+
+
+
+////////////////////////////////////////////
+// router.get('/', (req, res) => res.json({ data: lawyers }));
+// router.get('/:username', (req, res) => {
+//     const lawyerid = req.params.username
+//     const lawyer = lawyer.findOne(lawyer => lawyer.username === lawyerid)
+//     res.send(lawyer)
+// });   /// to be edited with mongoooo 
+
+
+
 
 /////////////////////////////////////////
 ////////////////////////////////////////
@@ -94,6 +118,108 @@ function recalculate(law,company,capital){
 
 });
 
+//register
+router.post('/register',(req,res)=>{
+
+  // const {errors,isValid} = validateRegisterInput(req.body);
+
+  // if(!isValid){
+  //     return res.status(400).json(errors);
+  // }
+
+  
+  
+  lawyer.findOne({email: req.body.email}).then(lawyerl =>{
+
+      if(lawyerl){
+          return res.status(400).json({email:'Email is already existed '});
+      }else{
+          // const avatar =gravatar.url(req.body.email,{
+          //     s: '200',//size,
+          //     r:'pg',//rating
+          //     d:'mm'//Default
+          // });
+          const newlawyer = new lawyer ({
+              name:req.body.name,
+              email:req.body.email,
+              // avatar,
+              password:req.body.password
+              
+      });
+      bcrypt.genSalt(10,(err,salt)=> {
+          bcrypt.hash(newlawyer.password,salt,(err,hash)=>{
+              if(err) throw err ;
+              newlawyer.password=hash;
+              newlawyer.save()
+              .then(lawyer => res.json(lawyer)).catch(err =>console.log(err)) 
+          })
+      })
+  
+      }   
+      
+  })
+  
+})
+
+
+//LOGINNNNNNNNNNNNNNNNNNNN
+
+router.post('/login',(req,res)=>{
+
+  // const {errors,isValid} = validateLoginInput(req.body);
+
+  // if(!isValid){
+  //     return res.status(400).json(errors);
+  // }
+
+   const email = req.body.email;
+   const password = req.body.password;
+
+   //find the user by email 
+   lawyer.findOne({email}).then(lawyerl =>{
+       // check if the user existed 
+       if(!lawyerl){
+           errors.email='lawyerl not found '
+           return res.status(404).json(errors);
+       }
+       //check the password 
+       bcrypt.compare(password,lawyerl.password).then(isMatch=>{
+           if(isMatch){
+               //user matched 
+
+               // sign the token 
+               //this token must include the data from the user that i need to send back sothat we need to create a paload for that data 
+               // and it takes also an expiration means this token is expired after a certain ammount of time  
+               const payload = {id:lawyerl.id,name:lawyerl.name,avatar:lawyerl.avatar}  //create jwt payload
+               //the sign will get the payload and a secret key put in the keys file in config to bring that file in  
+               //and bring that key up there 
+               jwt.sign(payload,
+                  keys.secretOrKey,
+                  {expiresIn:3600/* an houre is enough to be secure*/},
+                  (err,token)=>{
+                      res.json({
+                          sucess:true,
+                          token:'Bearer '+token 
+                      })//this token will do nothing unless we use the passport autherization to  verify that token or even to make any route private so we implement passport in the index.js 
+                       
+                  });
+           }else{
+               errors.password='Password incorrect'
+               return res.status(400).json(errors);
+           }
+       })
+   })
+});
+
+//@route  Get api/users/current
+//@desc  return the current user a protecte route  
+//@access private 
+// we will treate it like any route except it is protected 
+
+
+
+
+
 
 
 router.put('/:username',(req,res)=>{
@@ -108,48 +234,7 @@ router.put('/:username',(req,res)=>{
      )
   });
 /////////////////////////////////////
-//////////////////////////////////////////
 
-// router.put('/:id', (req, res) => {
-//     const lawyerid = req.params.id
-//     const email = req.body.email
-//     const password = req.body.password
-//     const lawyer = lawyers.find(lawyer => lawyer.id === lawyerid)
-//     if(email)
-//         lawyer.email=email
-//     if(password)
-//         lawyer.password=password
-//
-//     res.send(lawyers)
-// });
-
-////////////////////////////////////////
-//////////////////////////////////////
-
-
-// router.delete('/:username', (req, res) => {
-    // const lawyerid = req.params.id
-    // const lawyer = lawyers.find(lawyer => lawyer.id === lawyerid)
-    // const index = lawyers.indexOf(lawyer)
-    // lawyers.splice(index,1)
-    // res.send(lawyers)
-
-//     const lawyerUsername = req.params.username
-//     if(isNaN(lawyerUsername)){
-//         const found= lawyers.some(law=>law.username==lawyerUsername);
-//
-//         if(found){
-//             const law = lawyers.find(law => law.username == lawyerUsername)
-//             const index = lawyers.indexOf(law)
-//             lawyers.splice(index,1)
-//             res.send(lawyers)
-//         }else{
-//             res.status(404).json({err :'id not found'});
-//         }
-//
-//
-//     }
-// });
 
 //////////////////////////////
 
@@ -166,6 +251,15 @@ router.delete('/:username', (req, res) => {
         res.send('Not found');
 
     }
+});
+
+// getting the current user it is an important move actually 
+router.get('/current',passport.authenticate('jwt',{session:false}),(req,res)=>{
+  res.json({
+    id:req.user.id,
+    name:req.user.name,
+    email:req.user.email
+  })
 });
 
 

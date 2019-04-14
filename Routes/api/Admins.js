@@ -1,13 +1,15 @@
-
-
 const express = require('express');
 const uuid = require('uuid');
 //const bcrypt = require('bcryptjs')
 const router = express.Router();
-
 const Admin = require('../../Models/Admin')
 const validator = require('../../validations/AdminValidations')
-
+const bcrypt = require('bcryptjs');//to encrypt the password 
+const jwt = require('jsonwebtoken');
+const validateRegisterInput = require ('../../validations/register');
+const validateLoginInput = require ('../../validations/login');
+const passport = require('passport');
+const keys = require('../../config/keys');
 
  router.get('/', (req, res) => res.send(' <h>Welcome to the admin page<br> you can view all current admins by adding /all to the url,<br>you can also view or delete aspecific admin by typing his/her username<br>Have anice day!</h>'));
  
@@ -20,15 +22,15 @@ const validator = require('../../validations/AdminValidations')
  
 
 
-//Get Specific Admin
-router.get('/:userName', async (req,res) => {
+// Get Specific Admin added the route user  name as post man always gets in with any input as it is on the local route 
+router.get('/Specific/:userName', async (req,res) => {
   const userName=req.params.userName
   const admin = await Admin.findOne({userName})
   if(!admin) return res.status(404).send({error: 'Admin does not exist'})
   res.json({data: admin})
 })
 
-//delete Admin
+// //delete Admin
 router.delete('/:userName', async (req,res) => {
   try {
     const userName = req.params.userName
@@ -90,6 +92,117 @@ router.put('/:userName', async (req,res) => {
       console.log(error)
   }  
 })
+
+//LOGINNNNNNNNNNNNNNNNNNNN
+
+router.post('/login',(req,res)=>{
+
+  const {errors,isValid} = validateLoginInput(req.body);
+
+  if(!isValid){
+      return res.status(400).json(errors);
+  }
+
+   const email = req.body.email;
+   const password = req.body.password;
+
+   //find the user by email 
+   Admin.findOne({email}).then(Adminl =>{
+       // check if the user existed 
+       if(!Adminl){
+           errors.email='Adminl not found '
+           return res.status(404).json(errors);
+       }
+       //check the password 
+       bcrypt.compare(password,Adminl.password).then(isMatch=>{
+           if(isMatch){
+               //user matched 
+
+               // sign the token 
+               //this token must include the data from the user that i need to send back sothat we need to create a paload for that data 
+               // and it takes also an expiration means this token is expired after a certain ammount of time  
+               const payload = {id:Adminl.id,name:Adminl.name,avatar:Adminl.avatar}  //create jwt payload
+               //the sign will get the payload and a secret key put in the keys file in config to bring that file in  
+               //and bring that key up there 
+               jwt.sign(payload,
+                  keys.secretOrKey,
+                  {expiresIn:3600/* an houre is enough to be secure*/},
+                  (err,token)=>{
+                      res.json({
+                          sucess:true,
+                          token:'Bearer '+token 
+                      })//this token will do nothing unless we use the passport autherization to  verify that token or even to make any route private so we implement passport in the index.js 
+                       
+                  });
+           }else{
+               errors.password='Password incorrect'
+               return res.status(400).json(errors);
+           }
+       })
+   })
+});
+
+//register
+router.post('/register',(req,res)=>{
+
+  const {errors,isValid} = validateRegisterInput(req.body);
+
+  if(!isValid){
+      return res.status(400).json(errors);
+  }
+
+  
+  
+  Admin.findOne({email: req.body.email}).then(Adminl =>{
+
+      if(Adminl){
+          return res.status(400).json({email:'Email is already existed '});
+      }else{
+          // const avatar =gravatar.url(req.body.email,{
+          //     s: '200',//size,
+          //     r:'pg',//rating
+          //     d:'mm'//Default
+          // });
+          const newAdmin = new Admin ({
+              name:req.body.name,
+              email:req.body.email,
+              // avatar,
+              password:req.body.password,
+              // password2:req.body.password2
+              
+      });
+      bcrypt.genSalt(10,(err,salt)=> {
+          bcrypt.hash(newAdmin.password,salt,(err,hash)=>{
+              if(err) throw err ;
+              newAdmin.password=hash;
+              newAdmin.save()
+              .then(Admin => res.json(Admin)).catch(err =>console.log(err)) 
+          })
+      })
+  
+      }   
+      
+  })
+  
+});
+
+// getting the current user it is an important move actually 
+router.get('/current',passport.authenticate('jwt',{session:false}),(req,res)=>{
+  // res.json(req.user)
+      // id:req.Admin.id,
+      // name:req.Admin.name,
+      // email:req.Admin.email
+      res.json({
+        id:req.user.id,
+        name:req.user.name,
+        email:req.user.email
+      })
+      
+ 
+  
+});
+
+
 
 
 

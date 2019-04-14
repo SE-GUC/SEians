@@ -1,3 +1,4 @@
+
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
@@ -68,13 +69,6 @@ app.get('/', (req, res) => {
       res.send(' <a href="/api/Spcs">Spcs</a> <br><a href="/api/Admins">Admins</a> <br> <a href="/api/reviewers">Reviewers</a> <br> <a href="/api/investors">investors</a> <br><a href="/api/lawyers">lawyers</a><br><a href="/api/Companies">Companies</a> ');
 
   })
-
-
-  app.use(function(request, response, next) {
-    response.header("Access-Control-Allow-Origin", "*");
-    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
-next();
-});
 
 
 

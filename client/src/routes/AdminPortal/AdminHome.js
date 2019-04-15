@@ -13,14 +13,15 @@ render(){
   let links = [
     { label: 'Home', link: '/AdminHome' },
     { label: 'Staff', link: '/Staff' },
+    { label: 'Companies', link: '/Companies' },
     { label: 'Assign Tasks', link: '#portfolio' },
     { label: 'Review Forms', link: '#contact-us' },
   ];
 
 return(
-  
+
     <Router>
-        
+
     <div className="container">
       <div className="container2">
       <Menu links={links} logo={logo} />
@@ -29,6 +30,20 @@ return(
         <div className="container center">
        < div>< div>
           
+       <div style= {{marginTop: '100px', marginLeft: '500px'}}>
+<li className="nav-item">
+<a href="/SpcCreate">SpcCreate</a>
+</li>
+<li className="nav-item">
+<a href="/SpcSearch">SpcSearch</a>
+</li>
+<li className="nav-item">
+<a href="/SpcUpdate">SpcUpdate</a>
+</li>
+<li className="nav-item">
+<a href="/SpcDelete">SpcDelete</a>
+</li> </div>
+
       </div>
       </div>  
     </div>
@@ -42,3 +57,4 @@ return(
 }
 
 export default AdminHome
+

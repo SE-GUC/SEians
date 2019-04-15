@@ -75,6 +75,9 @@ export default ()=>(
     <Route path ="/CreatedSuccessfully" exact component={CreatedSuccessfully}/>
     </div>
     <div>
+    <Route path ="/CreateReviewer" exact component={CreateReviewer}/>
+    </div>
+    <div>
     <Route path ="/SSCApplication" exact component={SSCApplication}/>
     </div>
     <div>
@@ -99,6 +102,7 @@ export default ()=>(
     <Route path ="/SpcSearch" exact component={SpcSearch}/>
     <Route path ="/SpcUpdate" exact component={SpcUpdate}/>
     <Route path ="/SpcDelete" exact component={SpcDelete}/>
+    <Route path ="/AdminHome/EditAdmin" exact component={EditAdmin}/>
     </div>
   <div>
     <Route path ="/handleReviewer" exact component={handleReviewer}/>

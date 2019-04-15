@@ -72,9 +72,10 @@ router.put('/:username', async (req,res) => {
      console.log(username)
      const Reviewerneeded = await Reviewer.findOne({username})
      if(!Reviewerneeded) return res.status(404).send({error: 'Reviewer does not exist'})
+     console.log(Reviewerneeded.salary)
      const isValidated = validator.updateValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-     const updated = await Reviewer.updateOne(Reviewerneeded,req.body)
+     const updated = await Reviewer.findOneAndUpdate({username:username},req.body)
      res.json({msg: 'Reviewer updated successfully', data: updated})
     }
     catch(error) {

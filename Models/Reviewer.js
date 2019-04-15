@@ -39,10 +39,6 @@ const ReviewerSchema = new Schema({
         type: String, 
         required: true
     },
-    email: {
-        type: String, 
-        required: true
-    },
     yearsOfExperience: {
         type: Number, 
         required: true

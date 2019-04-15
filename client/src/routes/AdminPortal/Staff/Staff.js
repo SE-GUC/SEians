@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from '../../../components/Layout/Header'
 import Footer from '../../../components/Layout/Footer';
+
+import './Staff.css'
+
 import Menu from '../../../components/Layout/Menu';
 import logo from '../../../components/Layout/img/logo.png';
-
 
 
 export class Staff extends Component {
@@ -28,7 +30,13 @@ export class Staff extends Component {
            <Header name="Staff" />
                 <Route path="/Staff" />
               </div>  
-            </div>
+
+            </div> 
+            <body>
+            <a href="/handleReviewer">Reviewers</a>
+   </body> 
+
+           
             <div>
 
             <label style={{width:"50px" ,height:"50px",backgroundColor:"red"}}>
@@ -37,6 +45,7 @@ export class Staff extends Component {
               </label>
 
             </div>
+
             <footer className="Footer">
             <Footer/>
             </footer>

@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { BrowserRouter , Route, Link } from "react-router-dom";
 import home from './home';
@@ -7,6 +8,13 @@ import ReviewerHome from './ReviewerPortal/ReviewerHome';
 import AdminHome from './AdminPortal/AdminHome';
 import InvestorHome from './InvestorPortal/InvestorHome';
 import Staff from './AdminPortal/Staff/Staff';
+import CreateReviewer from './AdminPortal/Staff/Reviewer/CreateReviewer';
+import GetReviewer from './AdminPortal/Staff/Reviewer/GetReviewer';
+import UpdateReviewer from './AdminPortal/Staff/Reviewer/UpdateReviewer';
+import CreationSuccess from './AdminPortal/Staff/Reviewer/CreationSuccess';
+import handleReviewer from './AdminPortal/Staff/Reviewer/handleReviewer';
+import UpdateSuccess from './AdminPortal/Staff/Reviewer/UpdateSuccess';
+import DeletionSuccess from './AdminPortal/Staff/Reviewer/DeletionSuccess';
 import Companies from './AdminPortal/Companies/Companies';
 import CreateCompany from './AdminPortal/Companies/CreateCompany';
 import GetCompany from './AdminPortal/Companies/GetCompany';
@@ -25,6 +33,7 @@ import SpcCreate from './InvestorPortal/Forms/SpcCreate';
 import SpcSearch from './InvestorPortal/Forms/SpcSearch';
 import SpcDelete from './InvestorPortal/Forms/SpcDelete';
 import SpcUpdate from './InvestorPortal/Forms/SpcUpdate';
+
 
 
 export default ()=>(
@@ -91,6 +100,26 @@ export default ()=>(
     <Route path ="/SpcUpdate" exact component={SpcUpdate}/>
     <Route path ="/SpcDelete" exact component={SpcDelete}/>
     </div>
+  <div>
+    <Route path ="/handleReviewer" exact component={handleReviewer}/>
+    </div>
+    <div>
+    <Route path ="/GetReviewer" exact component={GetReviewer}/>
+    </div>
+    <div>
+    <Route path ="/SSCApplication" exact component={SSCApplication}/>
+    </div>
+    <div>
+    <Route path ="/CreationSuccess" exact component={CreationSuccess}/>
+    </div>
+    <div>
+    <Route path ="/UpdateSuccess" exact component={UpdateSuccess}/>
+    </div>
+    <div>
+    <Route path ="/UpdateReviewer" exact component={UpdateReviewer}/>
+    </div>
+    <div>
+    <Route path ="/DeletionSuccess" exact component={DeletionSuccess}/>
+    </div>
     </BrowserRouter>
 )
-

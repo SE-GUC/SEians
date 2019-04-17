@@ -33,7 +33,8 @@ export class Staff extends Component {
 
             </div> 
             <body>
-            <a href="/handleReviewer">Reviewers</a>
+            <a href="/handleReviewer">Reviewers</a><br></br>
+            <a href="/handleLawyer">Lawyers</a>
    </body> 
 
            

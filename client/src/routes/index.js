@@ -15,6 +15,7 @@ import CreationSuccess from './AdminPortal/Staff/Reviewer/CreationSuccess';
 import handleReviewer from './AdminPortal/Staff/Reviewer/handleReviewer';
 import UpdateSuccess from './AdminPortal/Staff/Reviewer/UpdateSuccess';
 import DeletionSuccess from './AdminPortal/Staff/Reviewer/DeletionSuccess';
+import ReviewerLogin from './AdminPortal/Staff/Reviewer/ReviewerLogin';
 import Companies from './AdminPortal/Companies/Companies';
 import CreateCompany from './AdminPortal/Companies/CreateCompany';
 import GetCompany from './AdminPortal/Companies/GetCompany';
@@ -33,6 +34,14 @@ import SpcCreate from './InvestorPortal/Forms/SpcCreate';
 import SpcSearch from './InvestorPortal/Forms/SpcSearch';
 import SpcDelete from './InvestorPortal/Forms/SpcDelete';
 import SpcUpdate from './InvestorPortal/Forms/SpcUpdate';
+import CreateLawyer from './AdminPortal/Staff/Lawyer/CreateLawyer';
+import GetLawyer from './AdminPortal/Staff/Lawyer/GetLawyer';
+import UpdateLawyer from './AdminPortal/Staff/Lawyer/UpdateLawyer';
+import CreationSuccess1 from './AdminPortal/Staff/Lawyer/CreationSuccess1';
+import handleLawyer from './AdminPortal/Staff/Lawyer/handleLawyer';
+import UpdateSuccess1 from './AdminPortal/Staff/Lawyer/UpdateSuccess1';
+import DeletionSuccess1 from './AdminPortal/Staff/Lawyer/DeletionSuccess1';
+import LawyerLogin from './AdminPortal/Staff/Lawyer/LawyerLogin';
 
 
 
@@ -104,6 +113,9 @@ export default ()=>(
     <Route path ="/SpcDelete" exact component={SpcDelete}/>
     <Route path ="/AdminHome/EditAdmin" exact component={EditAdmin}/>
     </div>
+    <div>
+    <Route path ="/CreateLawyer" exact component={CreateLawyer}/>
+    </div>
   <div>
     <Route path ="/handleReviewer" exact component={handleReviewer}/>
     </div>
@@ -124,6 +136,30 @@ export default ()=>(
     </div>
     <div>
     <Route path ="/DeletionSuccess" exact component={DeletionSuccess}/>
+    </div>
+    <div>
+    <Route path ="/ReviewerLogin" exact component={ReviewerLogin}/>
+    </div>
+    <div>
+    <Route path ="/handleLawyer" exact component={handleLawyer}/>
+    </div>
+    <div>
+    <Route path ="/GetLawyer" exact component={GetLawyer}/>
+    </div>
+    <div>
+    <Route path ="/CreationSuccess1" exact component={CreationSuccess1}/>
+    </div>
+    <div>
+    <Route path ="/UpdateSuccess1" exact component={UpdateSuccess1}/>
+    </div>
+    <div>
+    <Route path ="/UpdateLawyer" exact component={UpdateLawyer}/>
+    </div>
+    <div>
+    <Route path ="/DeletionSuccess1" exact component={DeletionSuccess1}/>
+    </div>
+    <div>
+    <Route path ="/LawyerLogin" exact component={LawyerLogin}/>
     </div>
     </BrowserRouter>
 )

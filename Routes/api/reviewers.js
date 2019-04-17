@@ -81,6 +81,27 @@ router.put('/:username', async (req,res) => {
     catch(error) {
         console.log(error)
     }  
- })
+ });
+ router.post('/login', async (req, res) => {
+	try {
+        const { username,password } = req.body;
+        Reviewer = await reviewer.findOne({ username });
+        if (!Reviewer) return res.status(404).json({ username: 'username does not exist' });
+        
+		const match = bcrypt.compareSync(password, Reviewer.password);
+		if (match) {
+            const payload = {
+                id: Reviewer.id,
+                username: Reviewer.userName,
+                name: Reviewer.name,
+            }
+            const token = jwt.sign(payload, tokenKey, { expiresIn: '1h' })
+            return res.json({ data: `Bearer ${token}`, data: 'successful login' })
+        }
+		else return res.status(400).send({ password: 'Wrong password' });
+    } catch (e) {
+        res.status(422).send({ error: 'Login failed' });
+    }
+});
 
 module.exports = router;

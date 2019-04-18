@@ -25,12 +25,12 @@ const ReviewerSchema = new Schema({
     },
     password: {
         type: String, 
-        required: true
+        required: false
     },
     birthDate: {
         type: Date, 
-        required: true
-    },
+        required: false
+},
     gender: {
         type: String, 
         required: true
@@ -39,30 +39,23 @@ const ReviewerSchema = new Schema({
         type: String, 
         required: true
     },
-    email: {
-        type: String, 
-        required: true
-    },
     yearsOfExperience: {
         type: Number, 
         required: true
     },
-    hiringDate: {
-        type: Date, 
-        required: true
-    },
+  //  hiringDate: {
+    //    type: Date.now(), 
+     //   required: false
+    //},
     salary: {
         type: Number, 
         required: true
     },
-    unfinished: {
+    /*unfinished: {
         type: Boolean, 
-        required: true
-    },
-    finsihed: {
-        type: Boolean, 
-        required: true
-    },
+        required: false
+    },*/
+   
     ssn: {
         type: Number, 
         required: true
@@ -73,4 +66,4 @@ const ReviewerSchema = new Schema({
     }, 
 })
 
-module.exports = Reviewer = mongoose.model('reviewers', ReviewerSchema)
+module.exports = Reviewer = mongoose.model('Reviewer', ReviewerSchema, 'Reviewer')

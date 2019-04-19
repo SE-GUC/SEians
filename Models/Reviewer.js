@@ -21,12 +21,11 @@ const ReviewerSchema = new Schema({
     },
     username: {
         type: String, 
-        required: true,
-        unique:true
+        required: true
     },
     password: {
         type: String, 
-        required: true,
+        required: false
     },
     birthDate: {
         type: Date, 
@@ -44,10 +43,19 @@ const ReviewerSchema = new Schema({
         type: Number, 
         required: true
     },
+  //  hiringDate: {
+    //    type: Date.now(), 
+     //   required: false
+    //},
     salary: {
         type: Number, 
         required: true
     },
+    /*unfinished: {
+        type: Boolean, 
+        required: false
+    },*/
+   
     ssn: {
         type: Number, 
         required: true

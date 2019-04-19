@@ -20,7 +20,6 @@ export class handleReviewer extends Component {
               </div>  
             </div> 
             <body>
-              <a href ="/ReviewerLogin">Login as A Reviewer</a> <br></br>
             <a href="/CreateReviewer">Add Reviewer To the System</a><br></br>
             <a href="/GetReviewer">View/Delete Reviewer's Data </a><br></br>
             <a href="/UpdateReviewer">Update Reviewer's Data </a>

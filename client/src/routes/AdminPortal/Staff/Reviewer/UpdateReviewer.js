@@ -10,13 +10,13 @@ export class UpdateReviewer extends Component {
             username : '',
         }
 
-    handleInputChange1= event => {this.setState({username:event.target.value});}
-    handleInputChange2= event => {this.setState({email:event.target.value});}
-    handleInputChange3= event => {this.setState({address:event.target.value});}
-    handleInputChange4= event => {this.setState({phone:event.target.value});}
-    handleInputChange5= event => {this.setState({salary:event.target.value});}
-    handleInputChange6= event => {this.setState({yearsOfExperience:event.target.value});}
-    handleInputChange7= event => {this.setState({password:event.target.value});}
+        handleInputChange11= event => {this.setState({username:event.target.value});}
+    handleInputChange12= event => {this.setState({email:event.target.value});}
+    handleInputChange13= event => {this.setState({address:event.target.value});}
+    handleInputChange14= event => {this.setState({phone:event.target.value});}
+    handleInputChange15= event => {this.setState({salary:event.target.value});}
+    handleInputChange16= event => {this.setState({yearsOfExperience:event.target.value});}
+
 
     //handleSubmit(e){
         handleSubmit= event =>{
@@ -31,7 +31,7 @@ export class UpdateReviewer extends Component {
             },
             url: 'http://localhost:5000/api/reviewers/'+this.state.username,
             data: {
-            email :this.state.email,
+                email :this.state.email,
             address :this.state.address,
             phone :this.state.phone ,
             salary :this.state.salary,
@@ -65,7 +65,7 @@ export class UpdateReviewer extends Component {
             placeholder="username"
             className="form-control"
             name="username"
-            onChange={ this.handleInputChange1}
+            onChange={ this.handleInputChange11}
             />
             </div>
             <div className="form-group">
@@ -74,7 +74,7 @@ export class UpdateReviewer extends Component {
             placeholder="email"
             className="form-control"
             name="email"
-            onChange={ this.handleInputChange2}
+            onChange={ this.handleInputChange12}
             />
             </div>
 
@@ -84,7 +84,7 @@ export class UpdateReviewer extends Component {
             placeholder="address"
             className="form-control"
             name="address"
-            onChange={ this.handleInputChange3}
+            onChange={ this.handleInputChange13}
             />
             </div>
 
@@ -94,7 +94,7 @@ export class UpdateReviewer extends Component {
             placeholder="phone"
             className="form-control"
             name="phone"
-            onChange={ this.handleInputChange4}
+            onChange={ this.handleInputChange14}
             />
             </div>
 
@@ -105,7 +105,7 @@ export class UpdateReviewer extends Component {
             placeholder="salary"
             className="form-control"
             name="salary"
-            onChange={ this.handleInputChange5}
+            onChange={ this.handleInputChange15}
             />
             </div>
 
@@ -115,16 +115,7 @@ export class UpdateReviewer extends Component {
             placeholder="yearsOfExperience"
             className="form-control"
             name="yearsOfExperience"
-            onChange={ this.handleInputChange6}
-            />
-            </div>
-            <div className="form-group">
-            <input
-            type="text"
-            placeholder="password"
-            className="form-control"
-            name="password"
-            onChange={ this.handleInputChange7}
+            onChange={ this.handleInputChange16}
             />
             </div>
 

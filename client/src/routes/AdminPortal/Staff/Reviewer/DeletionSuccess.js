@@ -6,7 +6,7 @@ import Footer from '../../../../components/Layout/Footer'
 const axios = require('axios')
 
 
-export class DeletionSuccess extends Component {
+export class UpdateSuccess extends Component {
 
     render(){
         return(
@@ -31,4 +31,4 @@ export class DeletionSuccess extends Component {
     }
 
 }
-export default DeletionSuccess
+export default UpdateSuccess

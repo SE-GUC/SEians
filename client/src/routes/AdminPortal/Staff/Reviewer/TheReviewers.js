@@ -76,7 +76,7 @@ handleSubmit = event => {
     <td>{this.props.Reviewer.birthDate}</td>  
     </tr>
     <tr>
-    <td>Username:</td>
+    <td>UserName:</td>
     <td>{this.props.Reviewer.username}</td>  
     </tr>
     <tr>

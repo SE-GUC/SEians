@@ -14,6 +14,7 @@ export class CreateReviewer extends Component {
                 lastname:'',
                 email:'',
                 username:'',
+                password:'',
                 birthDate:'',
                 gender:'',
                 address:'',
@@ -31,6 +32,7 @@ handlemiddlenameChange = event => {this.setState( {middlename: event.target.valu
 handlelastnameChange = event => {this.setState({lastname: event.target.value})};
 handleEmailChange = event => {this.setState( { email: event.target.value })};
 handleusernameChange = event => {this.setState( { username: event.target.value })};
+handlepasswordChange = event =>{this.setState({password:event.target.value})};
 handlebirthDateChange = event => {this.setState({ birthDate: event.target.value })};
 handlegenderChange = event => {this.setState( {gender: event.target.value})};
 handleaddressChange = event => {this.setState({address: event.target.value})};
@@ -56,6 +58,7 @@ handleSubmit = event => {
         email:this.state.email,
         birthDate:this.state.birthDate,
         username:this.state.username,
+        password:this.state.password,
         gender:this.state.gender,
         address:this.state.address,
         phone:this.state.phone,
@@ -131,6 +134,11 @@ handleSubmit = event => {
           <label>
             username:
             <input type="text" username="username" onChange={this.handleusernameChange} />
+          </label>
+          <br></br>
+          <label>
+            password:
+            <input type="text" phone="password" onChange={this.handlepasswordChange} />
           </label>
           <br></br>
           <label>

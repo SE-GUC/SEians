@@ -15,7 +15,8 @@ module.exports = {
             ssn: Joi.number().required(),
             salary: Joi.number().required(),
             //hiringDate: Joi.date().required(),
-            yearsOfExperience: Joi.number().required()
+            yearsOfExperience: Joi.number().required(),
+            password: Joi.string().min(7).required().strict()
         }
 
         return Joi.validate(request, createSchema)
@@ -27,7 +28,8 @@ module.exports = {
             address: Joi.string(),
             phone: Joi.number(),
             salary: Joi.number(),
-            yearsOfExperience: Joi.number()
+            yearsOfExperience: Joi.number(),
+            password: Joi.string().min(7)
         }
 
         return Joi.validate(request, updateSchema)

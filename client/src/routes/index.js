@@ -2,7 +2,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter , Route, Link } from "react-router-dom";
 import home from './home';
+
 import admin from './AdminPortal/Staff/Admin/admin';
+import CreateAdmin from './AdminPortal/Staff/Admin/CreateAdmin'
+
 import LawyerHome from './LawyerPortal/LawyerHome';
 import ReviewerHome from './ReviewerPortal/ReviewerHome';
 import AdminHome from './AdminPortal/AdminHome';
@@ -48,95 +51,56 @@ import LawyerLogin from './AdminPortal/Staff/Lawyer/LawyerLogin';
 export default ()=>(
     <BrowserRouter>
     <div>
+    
     <Route path ="/" exact component={home}/>
-    <Route path ="/admin" exact component={admin}/>
-    </div>
-    <div>
-    <Route path ="/" exact component={home}/>
-    <Route path ="/ReviewerHome" exact component={ReviewerHome}/>
-    </div>
-    <div>
-    <Route path ="/" exact component={home}/>
-    <Route path ="/LawyerHome" exact component={LawyerHome}/>
-    </div>
-    <div>
+    <Route path ="/AdminHome/CreateAdmin" exact component={CreateAdmin}/>
+    <Route path ="/AdminHome/EditAdmin" exact component={EditAdmin}/>
+    <Route path ="/AdminHome/Admins" exact component={admin}/>
     <Route path ="/AdminHome" exact component={AdminHome}/>
-    </div>
-    <div>
+    <Route path ="/ReviewerHome" exact component={ReviewerHome}/>
+    <Route path ="/LawyerHome" exact component={LawyerHome}/>
     <Route path ="/InvestorHome" exact component={InvestorHome}/>
-    </div>
-    <div>
     <Route path ="/Staff" exact component={Staff}/>
-    </div>
-    <div>
-    <Route path ="/Companies" exact component={Companies}/>
-    </div>
-    <div>
-    <Route path ="/CreateCompany" exact component={CreateCompany}/>
-    </div>
-    <div>
-    <Route path ="/GetCompany" exact component={GetCompany}/>
-    </div>
-    <div>
-    <Route path ="/UpdateCompany" exact component={UpdateCompany}/>
-    </div>
-    <div>
-    <Route path ="/CreatedSuccessfully" exact component={CreatedSuccessfully}/>
-    </div>
-    <div>
-    <Route path ="/CreateReviewer" exact component={CreateReviewer}/>
-    </div>
-    <div>
     <Route path ="/SSCApplication" exact component={SSCApplication}/>
-    </div>
-    <div>
+    <Route path ="/Companies" exact component={Companies}/>
+    <Route path ="/CreateCompany" exact component={CreateCompany}/>
+    <Route path ="/GetCompany" exact component={GetCompany}/>
+    <Route path ="/UpdateCompany" exact component={UpdateCompany}/>
+    <Route path ="/CreatedSuccessfully" exact component={CreatedSuccessfully}/>
+    <Route path ="/CreateReviewer" exact component={CreateReviewer}/>
+    <Route path ="/SSCApplication" exact component={SSCApplication}/>
     <Route path ="/Register" exact component={Register}/>
-    </div>
-    <div>
     <Route path ="/Login" exact component={Login}/>
-    </div>
-    <div>
     <Route path ="/SearchInvestor" exact component={SearchInvestor}/>
-    </div>
-    <div>
     <Route path ="/UpdateInvestor" exact component={UpdateInvestor}/>
-    </div>
-    <div>
     <Route path ="/DeleteInvestor" exact component={DeleteInvestor}/>
-    </div>
-    <div>
     <Route path ="/SscCase" exact component={SscCase}/>
     <Route path ="/getSingleCase" exact component={getSingleCase}/>
     <Route path ="/SpcCreate" exact component={SpcCreate}/>
     <Route path ="/SpcSearch" exact component={SpcSearch}/>
     <Route path ="/SpcUpdate" exact component={SpcUpdate}/>
     <Route path ="/SpcDelete" exact component={SpcDelete}/>
+
     <Route path ="/AdminHome/EditAdmin" exact component={EditAdmin}/>
     </div>
     <div>
     <Route path ="/CreateLawyer" exact component={CreateLawyer}/>
     </div>
   <div>
+
     <Route path ="/handleReviewer" exact component={handleReviewer}/>
-    </div>
-    <div>
     <Route path ="/GetReviewer" exact component={GetReviewer}/>
-    </div>
-    <div>
     <Route path ="/SSCApplication" exact component={SSCApplication}/>
-    </div>
-    <div>
     <Route path ="/CreationSuccess" exact component={CreationSuccess}/>
-    </div>
-    <div>
     <Route path ="/UpdateSuccess" exact component={UpdateSuccess}/>
-    </div>
-    <div>
     <Route path ="/UpdateReviewer" exact component={UpdateReviewer}/>
-    </div>
-    <div>
     <Route path ="/DeletionSuccess" exact component={DeletionSuccess}/>
+
+  
+  
+  
     </div>
+
     <div>
     <Route path ="/ReviewerLogin" exact component={ReviewerLogin}/>
     </div>
@@ -161,5 +125,10 @@ export default ()=>(
     <div>
     <Route path ="/LawyerLogin" exact component={LawyerLogin}/>
     </div>
+
+    
+  
+  
+
     </BrowserRouter>
 )

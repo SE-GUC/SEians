@@ -84,11 +84,12 @@ return user
     return (
       <div>
 
+         <br/><h3>UserName</h3>
+            <button type="text" defaultValue={this.state.admin.userName}  style={{textAlign:'center', borderColor:'red', height:'50px',width:"500px",fontSize:'20px'}}>{this.state.admin.userName}</button><br/>
+    
        <form onSubmit={this.updateAdmin.bind(this)}>
 
-       <br/><h3>UserName</h3>
-            <button type="text" defaultValue={this.state.admin.userName}  style={{textAlign:'center', borderColor:'red', height:'50px',width:"500px",fontSize:'20px'}}>{this.state.admin.userName}</button><br/>
-        <br/><h3>firstName</h3>
+          <br/><h3>firstName</h3>
             <input type="text" defaultValue={this.state.admin.firstName} ref="firstName" placeholder="firstName" style={{textAlign:'center', borderColor:'red', height:'50px',width:"500px",fontSize:'20px'}}/><br/>
         <br/><h3>lastName</h3>
             <input type="text" defaultValue={this.state.admin.lastName} ref="lastName" placeholder="lastName" style={{textAlign:'center', borderColor:'red', height:'50px',width:"500px",fontSize:'20px'}}/><br/>

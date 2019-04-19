@@ -8,7 +8,7 @@ const cors = require('cors');
 // Require Router Handlers
 const Admins = require('./Routes/api/Admins')
 const reviewers = require('./Routes/api/reviewers')
-const lawyers = require('./Routes/api/lawyers')
+
 const investors = require('./Routes/api/investors')
 const Companies= require('./Routes/api/Companies')
 const Forms = require('./Routes/api/Forms')
@@ -78,7 +78,7 @@ app.use('/api/Forms',Forms)
 app.use('/api/Admins', Admins)
 app.use('/api/Companies', Companies)
 app.use('/api/investors',investors)
-app.use('/api/lawyers', lawyers)
+
 
 
 app.use('/api/reviewers', reviewers)

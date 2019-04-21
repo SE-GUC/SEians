@@ -23,7 +23,7 @@ module.exports = function validateRegisterInput (data){
         errors.password = 'password feild is required';
     }
     if(!validator.isLength(data.password,{min:7,max:30})){
-        errors.password = 'Name must be between 7 and 30 chars';
+        errors.password = 'password must be between 7 and 30 chars';
     }
     if(validator.isEmpty(data.password2)){
         errors.password2 = 'password2 feild is required';

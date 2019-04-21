@@ -35,7 +35,7 @@ const headerStyle = {
         <header style={headerStyle}>
           <h1>{this.props.name}</h1>
            
-          <img src={image} alt="logo" style={headerimg}/>
+          {/* <img src={image} alt="logo" style={headerimg}/> */}
        
         </header>
       )

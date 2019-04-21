@@ -3,11 +3,12 @@ import image from './img/sumerge.png'
 
 function Footer() {
   return (
-    <footer style={footerStyle}>
-      <i>This Website is powered by SEians</i>
-      <img src={image} alt="logo" style={footerimg}/>
-     <h2></h2>
-    </footer>
+    <div></div>
+    // <footer style={footerStyle}>
+    //   <i>This Website is powered by SEians</i>
+    //   <img src={image} alt="logo" style={footerimg}/>
+    //  <h2></h2>
+    // </footer>
   )
 }
 

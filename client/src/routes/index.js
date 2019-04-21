@@ -36,14 +36,34 @@ import SpcCreate from './InvestorPortal/Forms/SpcCreate';
 import SpcSearch from './InvestorPortal/Forms/SpcSearch';
 import SpcDelete from './InvestorPortal/Forms/SpcDelete';
 import SpcUpdate from './InvestorPortal/Forms/SpcUpdate';
+import login2 from '../components/Au/Login'
+import register2 from '../components/Au/Register'
+import {Provider} from 'react-redux';
+import store from '../store';
+import Footer2 from '../components/Layout/Footer2'
+import Navbar from '../components/Layout/Navbar'
+import {BrowserRouter as Router} from  
+'react-router-dom';
+import Landing from '../components/Layout/Landing';
+
 
 
 
 export default ()=>(
-    <BrowserRouter>
-    <div>
+    <Provider store={ store }>
+    <Router>
     
-    <Route path ="/" exact component={home}/>
+    <Navbar/>
+    <BrowserRouter>
+    
+    <div className ="App" id="particles-js" >
+
+    <Route path ="/" exact component={Landing}/>
+    
+    <Route path ="/data" exact component={home}/>
+    <Route path ="/login2" exact component={login2}/>
+    <Route path ="/register2" exact component={register2}/>
+    
     <Route path ="/AdminHome/CreateAdmin" exact component={CreateAdmin}/>
     <Route path ="/AdminHome/EditAdmin" exact component={EditAdmin}/>
     <Route path ="/AdminHome/Admins" exact component={admin}/>
@@ -79,12 +99,22 @@ export default ()=>(
     <Route path ="/UpdateReviewer" exact component={UpdateReviewer}/>
     <Route path ="/DeletionSuccess" exact component={DeletionSuccess}/>
 
+
+
+
+    <script type="text/javascript" src="particles.js"></script>
+          <script type="text/javascript" src="app.js"></script>
+
   
   
-  
+    
     </div>
     
   
   
     </BrowserRouter>
+    <Footer2/>
+    
+    </Router>
+    </Provider>
 )

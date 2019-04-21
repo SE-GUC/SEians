@@ -52,10 +52,8 @@ require('./config/passport')(passport)
        useCreateIndex: true,
      })){
        console.log("Connected to MONGO_DB")
-     }
-
-    app.use(express.json())
-
+     }const db = require('./config/keys').mongoURI;
+ 
 
     app.use(express.urlencoded({extended: false}))
 

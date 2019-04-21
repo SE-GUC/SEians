@@ -3,21 +3,21 @@ const Schema = mongoose.Schema
 
 
 const AdminSchema = new Schema({
-    id: {
-        type: Number,
-        required: false
+    name:{
+        type: String,
+        required: true
     },
     userName: {
         type: String,
-        required: true
+        // required: true
     },
     firstName: {
         type: String,
-        required: true
+        // required: true
     },
     lastName: {
         type: String,
-        required: true
+        // required: true
     },
     email: {
         type: String,
@@ -25,45 +25,50 @@ const AdminSchema = new Schema({
     },
     age: {
         type: Number,
-        required: true
+        // required: true
     },
     ssn: {
         type: Number,
-        required: true
+        // required: true
     },
     gender: {
         type: String,
-        required: true
+        // required: true
     },
     isLogged: {
         type: Boolean,
-        required: true
+        // required: true
     },
     password: {
         type: String,
         required: true
-    }, workLocation: {
+    },
+    password2: {
         type: String,
-        required: true
+        // required: true
+    },
+     workLocation: {
+        type: String,
+        // required: true
     }, address: {
         type: String,
-        required: true
+        // required: true
     },
     salary: {
         type: Number,
-        required: true
+        // required: true
     },
     phoneNumber: {
         type: Number,
-        required: true
+        // required: true
     },
     fax: {
         type: Number,
-        required: true
+        // required: true
     },
     fullAccess: {
         type: Boolean,
-        required: true
+        // required: true
     }
     
 

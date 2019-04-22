@@ -21,9 +21,8 @@ class Login extends Component {
         handleSubmit= event =>{
             event.preventDefault();
             console.log("successful")
-            this.context.router.transitionTo('/InvestorHome');
+            window.location = '/InvestorHome'
 
-           
         axios({
             method: 'post',
             headers: {
@@ -35,7 +34,7 @@ class Login extends Component {
             userName :this.state.userName,
             email :this.state.email,
             password :this.state.password }
-        }).then(response => { 
+        }).then(response => {
             console.log(response)
           })
           .catch(error => {
@@ -51,7 +50,7 @@ class Login extends Component {
 <div className="NavigationBar">
       <div className="container">
       <Header name="Login as investor" />
-      </div>  
+      </div>
     </div>
     <footer className="Footer">
     <Footer/>
@@ -97,7 +96,7 @@ class Login extends Component {
         </div>
       </Router>
 
-        
+
         )
     }
 }

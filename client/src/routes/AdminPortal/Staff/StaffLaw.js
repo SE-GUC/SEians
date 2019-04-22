@@ -23,6 +23,7 @@ render(){
   let links = [
     { label: 'Home', link: '/AdminHome' },
     { label: 'Staff', link: '/Staff' },
+    { label: 'HandleLawyers', link: '/handleLawyer' },
     { label: 'logout', link: '/AdmLoggedout' }
 
   ];

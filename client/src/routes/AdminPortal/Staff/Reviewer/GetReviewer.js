@@ -145,6 +145,15 @@ handleSubmit = event => {
         </ul>
 
       </div>
+      
+      <footer className="Footer" style={{  position: "fixed",
+  left: "0",
+  bottom: "0",
+  width: "100%",
+
+}}>
+      <Footer/>
+      </footer>
       </Router>
     )
   }

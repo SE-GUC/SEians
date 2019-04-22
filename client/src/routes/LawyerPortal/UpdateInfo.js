@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Header from '../../../../components/Layout/Header';
-import Footer from '../../../../components/Layout/Footer';
+import Header from '../../components/Layout/Header';
+import Footer from '../../components/Layout/Footer';
 import axios from 'axios';
 
 
@@ -11,8 +11,10 @@ export class UpdateLawyer extends Component {
         }
 
     handleInputChange1= event => {this.setState({username:event.target.value});}
-    handleInputChange2= event => {this.setState({salary:event.target.value});}
-    handleInputChange3= event => {this.setState({yearsOfExperience:event.target.value});}
+    handleInputChange2= event => {this.setState({email:event.target.value});}
+    handleInputChange3= event => {this.setState({address:event.target.value});}
+    handleInputChange4= event => {this.setState({phone:event.target.value});}
+    handleInputChange5= event => {this.setState({password:event.target.value});}
 
     //handleSubmit(e){
         handleSubmit= event =>{
@@ -27,8 +29,10 @@ export class UpdateLawyer extends Component {
             },
             url: 'http://localhost:5000/api/lawyers/'+this.state.username,
             data: {
-            salary :this.state.salary,
-            yearsOfExperience  : this.state.yearsOfExperience,
+            email :this.state.email,
+            address :this.state.address,
+            phone :this.state.phone ,
+            password:this.state.password,
            }
         }).then(response => { 
             console.log(response)
@@ -63,23 +67,44 @@ export class UpdateLawyer extends Component {
             </div>
             <div className="form-group">
             <input
-            type="number"
-            placeholder="salary"
+            type="text"
+            placeholder="email"
             className="form-control"
-            name="salary"
-            onChange={ this.handleInputChange5}
+            name="email"
+            onChange={ this.handleInputChange2}
             />
             </div>
 
             <div className="form-group">
             <input
             type="text"
-            placeholder="yearsOfExperience"
+            placeholder="address"
             className="form-control"
-            name="yearsOfExperience"
-            onChange={ this.handleInputChange6}
+            name="address"
+            onChange={ this.handleInputChange3}
             />
             </div>
+
+            <div className="form-group">
+            <input
+            type="number"
+            placeholder="phone"
+            className="form-control"
+            name="phone"
+            onChange={ this.handleInputChange4}
+            />
+            </div>
+
+            <div className="form-group">
+            <input
+            type="text"
+            placeholder="password"
+            className="form-control"
+            name="password"
+            onChange={ this.handleInputChange5}
+            />
+            </div>
+
             <div className="form-group">
             <button type="submit" className= "btn btn-primary" style={{color: '#1fc1a9'}}>
             Update Lawyer

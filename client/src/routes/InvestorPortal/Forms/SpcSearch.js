@@ -20,7 +20,11 @@ export class SpcSearch extends Component {
   }
   updateSearch(event){
     this.setState({search:event.target.value.substr(0,30)});
+    
   }
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log(this.state.MySpcs.Spcs.companyName)}
   render() {
    
     let filteredUN = this.state.Spcs.filter((MySpcs)=>{
@@ -37,15 +41,12 @@ export class SpcSearch extends Component {
             <body>
            <Header name = "Search for Spc"/></body> 
           </div>
-        <footer className="Footer">
-        <Footer/>
-        </footer>
         <div className="container" >
 >
        <ul>
            {
              <input type="text"
-             placeholder="Filter by userName / Name"
+             placeholder="Filter by companyName"
 
              value={this.state.search}
              onChange={this.updateSearch.bind(this)}
@@ -67,6 +68,15 @@ export class SpcSearch extends Component {
         </ul>
      
       </div>
+      
+      <footer className="Footer" style={{  position: "fixed",
+  left: "0",
+  bottom: "0",
+  width: "100%",
+
+}}>
+      <Footer/>
+      </footer>
       </Router>
       
     )

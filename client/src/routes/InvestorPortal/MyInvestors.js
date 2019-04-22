@@ -16,7 +16,6 @@ export default class MyInvestors extends React.Component {
        <h3>age: </h3>{this.props.MyInvestors.age}<br></br> 
        <h3>egID: </h3>{this.props.MyInvestors.egID}<br></br> 
        <h3>address: </h3>{this.props.MyInvestors.address}<br></br> 
-       <h3>egID: </h3>{this.props.MyInvestors.egID}<br></br> 
        <h3>mobilePhone: </h3>{this.props.MyInvestors.mobilePhone}<br></br> 
        <h3>fax: </h3>{this.props.MyInvestors.fax}<br></br> 
        <h3>email: </h3>{this.props.MyInvestors.email}<br></br> 

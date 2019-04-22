@@ -37,9 +37,6 @@ export class SearchInvestor extends Component {
       <Header name="Search for investors" />
       </div>  
     </div>
-    <footer className="Footer">
-    <Footer/>
-    </footer>
     <div>
        <ul>
            {

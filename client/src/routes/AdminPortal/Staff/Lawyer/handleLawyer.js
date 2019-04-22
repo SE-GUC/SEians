@@ -20,7 +20,7 @@ export class handleLawyer extends Component {
               </div>  
             </div> 
             <body>
-              <a href ="/LawyerLogin">Login as A Lawyer</a> <br></br>
+              
             <a href="/CreateLawyer">Add Lawyer To the System</a><br></br>
             <a href="/GetLawyer">View/Delete Lawyer's Data </a><br></br>
             <a href="/UpdateLawyer">Update Lawyer's Data </a>

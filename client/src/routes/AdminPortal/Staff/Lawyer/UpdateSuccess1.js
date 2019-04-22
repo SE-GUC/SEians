@@ -14,7 +14,7 @@ export class UpdateSuccess1 extends Component {
                 
           <div className="Header">
             <div className="container">
-            <Header name="Lawyer Updated Successfully!" />
+            <Header name="Data Updated Successfully!" />
               <Route path="/Staff" />
             </div>  
           </div>

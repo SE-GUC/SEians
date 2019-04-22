@@ -15,8 +15,10 @@ render(){
   let links = [
     { label: 'Home', link: '#home', active: true },
     { label: 'About', link: '#about' },
-    { label: 'Review Forms', link: '/SscCase' },
+    { label: 'View SSC Tasks', link: '/SscCase' },
+    { label: 'View SPC Tasks', link: '/SpcSearch' },
     { label: 'Log Out', link: '#log-out' },
+    { label: 'Update Info', link: '/UpdateInfo' },
   ];
 return(
     <Router>
@@ -31,7 +33,8 @@ return(
            <li><a href="default.asp">Home</a></li>
            <li><a href="news.asp">News</a></li>
            <li><a href="contact.asp">Contact</a></li>
-           <li><a href="about.asp">About</a></li>
+           <li><a href="about.asp">About</a></li><br></br>
+           
           </React.Fragment>
         )} />
         <Route path="/about" />

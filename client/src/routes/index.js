@@ -45,7 +45,7 @@ import handleLawyer from './AdminPortal/Staff/Lawyer/handleLawyer';
 import UpdateSuccess1 from './AdminPortal/Staff/Lawyer/UpdateSuccess1';
 import DeletionSuccess1 from './AdminPortal/Staff/Lawyer/DeletionSuccess1';
 import LawyerLogin from './AdminPortal/Staff/Lawyer/LawyerLogin';
-
+import UpdateInfo from './LawyerPortal/UpdateInfo'
 
 
 export default ()=>(
@@ -125,7 +125,9 @@ export default ()=>(
     <div>
     <Route path ="/LawyerLogin" exact component={LawyerLogin}/>
     </div>
-
+    <div>
+    <Route path ="/UpdateInfo" exact component={UpdateInfo}/>
+    </div>
     
   
   

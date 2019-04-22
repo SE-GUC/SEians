@@ -25,7 +25,7 @@ export class CaseViewer extends React.Component {
       url: 'http://localhost:5000/api/Forms/'+ this.props.CaseViewer.companyName,
       data: {
         lawyerApproval:true,
-        requestState:'Awating Review by Reviewer'
+        requestState:'Accepted by Lawyer & Awating Review by Reviewer'
       }
     }).then(response => { 
   //    this.props.dispatch(ApplyForForm())
@@ -176,6 +176,7 @@ handleSubmit = event => {
          <h3>Id Type: </h3>{this.props.CaseViewer.idType}<br></br> 
          <h3>Id Number: </h3>{this.props.CaseViewer.idNumber}<br></br>
          <h3>Capital: </h3>{this.props.CaseViewer.capital}<br></br>
+         <h3>requestState: </h3>{this.props.CaseViewer.requestState}<br></br>
          <h3>Birthdate: </h3>{this.props.CaseViewer.birthdate}<br></br>
          <h3>Address: </h3>{this.props.CaseViewer.address}<br></br>
          <h3>Email: </h3>{this.props.CaseViewer.email}<br></br>

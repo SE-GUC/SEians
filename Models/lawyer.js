@@ -57,6 +57,12 @@ const LawyerSchema = new Schema({
         type: Number, 
         required: true
     }, 
+    tasks: [
+        {
+            companyName: String,
+            required:false, 
+       }
+   ],
 })
 
 module.exports = Lawyer = mongoose.model('lawyers', LawyerSchema, 'Lawyer')

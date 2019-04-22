@@ -28,7 +28,8 @@ return(
     <footer className="Footer">
     <Footer/>
     </footer>
-
+    <a href="/SpcUpdate"> update forms </a><br/>
+    <a href="/SpcDelete"> delete forms </a><br/>
   </Router>
 )
 }

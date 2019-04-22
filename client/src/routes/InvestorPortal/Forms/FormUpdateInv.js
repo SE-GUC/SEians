@@ -34,7 +34,6 @@ export class getMyForm extends Component {
         handleEmailChange = event => {this.setState({email: event.target.value})};
 
            componentDidMount(){
-               const foorm = {};
             const token = localStorage.getItem('token');
             const user = JSON.parse(localStorage.getItem('user'));
             if(!user){
@@ -45,34 +44,8 @@ export class getMyForm extends Component {
                console.log('no token');
                return;
             }
-
-        //    axios.get(`http://localhost:5000/api/Forms/get/`+egID)
+            
             axios({
-                method: 'get',
-                headers: {
-                  'Accept': 'application/json, text/plain, /',
-                  'Content-Type': 'application/json',
-                  'x-access-token': token
-    
-                },
-                url: 'http://localhost:5000/api/Forms/get/'+egID
-            }).then(response => {
-               // const Forms = response.data.data;
-                this.setState({ Forms:response.data.data }); 
-                console.log("res "+response)
-                console.log("aaaa"+response.data.data.requestState)
-              })
-              .catch(error => {
-                  console.log(error.response)
-              });
-              console.log("form") 
-              
-///////
-              if(this.state.Forms.requestState == 'LawyerPending' || this.state.Forms.requestState =='ReviewerPending'){
-                console.log("Pending forms cant be updated")
-              }
-         /*     else{
-                axios({
                     method: 'put',
                     headers: {
                       'Accept': 'application/json, text/plain, /',
@@ -80,7 +53,7 @@ export class getMyForm extends Component {
                       'x-access-token': token
 
                     },
-                    url: 'http://localhost:5000/api/Forms/invEdit/'+egID,
+                    url: 'http://localhost:5000/api/Forms/edit/'+egID,
                     data: {
                         name: this.state.name,
                         investorId: this.state.investorId,
@@ -102,17 +75,17 @@ export class getMyForm extends Component {
                         email:this.state.email}
                 }).then(response => { 
                     console.log(response)
-                    alert('successful update')
+                    alert(response.data.msg)
+                    if(response.data.msg == "Pending forms cant be updated"){
+                      window.location = "/InvestorHome"
+                    }
+
                   })
                   .catch(error => {
                       console.log(error.response)
                   });
               } 
-              
-              */
-
-
-          }
+            
 
     
 

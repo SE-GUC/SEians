@@ -42,6 +42,7 @@ import LogoutInv from './InvestorPortal/LogoutInv';
 import Profile from './InvestorPortal/Profile'
 import getMyForms from './InvestorPortal/Forms/getMyForms'
 import FormUpdateInv from './InvestorPortal/Forms/FormUpdateInv'
+import Formdeleteinv from './InvestorPortal/Forms/Formdeleteinv'
 
 
 export default ()=>(
@@ -89,6 +90,7 @@ export default ()=>(
     <Route path ="/getMyForms" exact component={withAuth(getMyForms)}/>
     <Route path ="/Investor/SpcCreate" exact component={withAuth(SpcCreate)}/>
     <Route path ="/FormUpdateInv" exact component={withAuth(FormUpdateInv)}/>
+    <Route path ="/Formdeleteinv" exact component={withAuth(Formdeleteinv)}/>
 
   
   

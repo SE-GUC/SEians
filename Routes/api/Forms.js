@@ -27,6 +27,7 @@ router.post('/createSsc', (req,res)=>{
         telephone :req.body.telephone ,
         fax :req.body.fax ,
         email:req.body.email,
+        requestState:req.body.requestState,
         capital:req.body.capital,
         currency:req.body.currency,
         managers:req.body.managers,
@@ -68,6 +69,7 @@ router.post('/createSsc', (req,res)=>{
         telephone :req.body.telephone ,
         fax :req.body.fax ,
         email:req.body.email,
+        requestState:req.body.requestState,
         capital:req.body.capital,
         currency:req.body.currency,
         type:'Spc'
@@ -171,14 +173,37 @@ router.put('/:companyName', async (req,res) => {
     }  
  })
 
- router.put('/invEdit/:idNumber', async (req,res) => {
+ router.put('/edit/:idNumber', async (req,res) => {
     try {
      const idNumber = req.params.idNumber
+     const check = await Form.findOne({idNumber})
+     if(check.requestState == 'LawyerPending' || check.requestState == 'ReviewerPending'){
+        res.json({msg: 'Pending forms cant be updated'});
+     }
+     else{
      const form = await Form.findOneAndUpdate({idNumber},req.body)
      const form1 = await Form.findOne({idNumber})
 
      res.json({msg: 'Form updated successfully', data: form1})
-    }
+    }}
+    catch(error) {
+        console.log(error)
+    }  
+ })
+
+ router.delete('/delete/:idNumber', async (req,res) => {
+    try {
+     const idNumber = req.params.idNumber
+     const check = await Form.findOne({idNumber})
+     if(check.requestState == 'LawyerPending' || check.requestState == 'ReviewerPending'){
+        res.json({msg: 'Pending forms cant be deleted'});
+     }
+     else{
+     const form = await Form.findOneAndRemove({idNumber})
+     if(!form) return res.status(404).send({error: 'Form does not exist'})
+     const form1 = await Form.findOne({idNumber})
+     res.json({msg:'Form was deleted successfully', data: form1})
+    }}
     catch(error) {
         console.log(error)
     }  

@@ -36,7 +36,6 @@ import SpcCreate from './InvestorPortal/Forms/SpcCreate';
 import SpcSearch from './InvestorPortal/Forms/SpcSearch';
 import SpcDelete from './InvestorPortal/Forms/SpcDelete';
 import SpcUpdate from './InvestorPortal/Forms/SpcUpdate';
-
 import AdminLogin from '../components/Admin Components/AdminLogin'
 import UpdateME from '../components/Admin Components/UpdateME';
 import AdminLogout from '../components/Admin Components/Logout';
@@ -44,7 +43,10 @@ import { StaffAdm } from './AdminPortal/Staff/StaffAdm';
 import StaffRev from './AdminPortal/Staff/StaffRev';
 import StaffForms from './AdminPortal/Staff/StaffForms';
 import StaffLaw from './AdminPortal/Staff/StaffLaw';
-
+import AllLogins from '../components/AllLogins'
+import withAuth from './InvestorPortal/withAuth';
+import LogoutInv from './InvestorPortal/LogoutInv';
+import Profile from './InvestorPortal/Profile'
 
 
 export default ()=>(
@@ -58,7 +60,7 @@ export default ()=>(
     <Route path ="/AdminHome" exact component={AdminHome}/>
     <Route path ="/ReviewerHome" exact component={ReviewerHome}/>
     <Route path ="/LawyerHome" exact component={LawyerHome}/>
-    <Route path ="/InvestorHome" exact component={InvestorHome}/>
+    <Route path ="/InvestorHome" exact component={withAuth(InvestorHome)}/>
     <Route path ="/Staff" exact component={Staff}/>
     <Route path ="/SSCApplication" exact component={SSCApplication}/>
     <Route path ="/Companies" exact component={Companies}/>
@@ -70,9 +72,9 @@ export default ()=>(
     <Route path ="/SSCApplication" exact component={SSCApplication}/>
     <Route path ="/Register" exact component={Register}/>
     <Route path ="/Login" exact component={Login}/>
-    <Route path ="/SearchInvestor" exact component={SearchInvestor}/>
-    <Route path ="/UpdateInvestor" exact component={UpdateInvestor}/>
-    <Route path ="/DeleteInvestor" exact component={DeleteInvestor}/>
+    <Route path ="/SearchInvestor" exact component={withAuth(SearchInvestor)}/>
+    <Route path ="/UpdateInvestor" exact component={withAuth(UpdateInvestor)}/>
+    <Route path ="/DeleteInvestor" exact component={withAuth(DeleteInvestor)}/>
     <Route path ="/SscCase" exact component={SscCase}/>
     <Route path ="/getSingleCase" exact component={getSingleCase}/>
     <Route path ="/SpcCreate" exact component={SpcCreate}/>
@@ -86,6 +88,9 @@ export default ()=>(
     <Route path ="/UpdateSuccess" exact component={UpdateSuccess}/>
     <Route path ="/UpdateReviewer" exact component={UpdateReviewer}/>
     <Route path ="/DeletionSuccess" exact component={DeletionSuccess}/>
+    <Route path ="/AllLogins" exact component={AllLogins}/>
+    <Route path ="/LogoutInv" exact component={withAuth(LogoutInv)}/>
+    <Route path ="/Profile" exact component={withAuth(Profile)}/>
 
   
     <Route path ="/AdminLogin" exact component={AdminLogin}/>

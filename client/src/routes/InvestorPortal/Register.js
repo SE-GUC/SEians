@@ -47,7 +47,6 @@ export class Register extends Component {
     //handleSubmit(e){
         handleSubmit= event =>{
         event.preventDefault();
-        console.log("successful")
        
         axios({
             method: 'post',
@@ -75,6 +74,7 @@ export class Register extends Component {
             password :this.state.password }
         }).then(response => { 
             console.log(response)
+            this.props.history.push('/Login');
           })
           .catch(error => {
               console.log(error.response)

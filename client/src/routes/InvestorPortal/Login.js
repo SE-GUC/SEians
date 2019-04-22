@@ -4,25 +4,19 @@ import Header from '../../components/Layout/Header';
 import Footer from '../../components/Layout/Footer';
 import axios from 'axios';
 
+
 class Login extends Component {
 
     state = {
-        userName : '',
         email : '',
         password : '',
     }
 
-
-
-        handleInputChange1= event => {this.setState({userName:event.target.value});}
         handleInputChange2= event => {this.setState({email:event.target.value});}
         handleInputChange3= event => {this.setState({password:event.target.value});}
 
         handleSubmit= event =>{
             event.preventDefault();
-            console.log("successful")
-            this.context.router.transitionTo('/InvestorHome');
-
            
         axios({
             method: 'post',
@@ -32,11 +26,13 @@ class Login extends Component {
             },
             url: 'http://localhost:5000/api/investors/login/',
             data: {
-            userName :this.state.userName,
             email :this.state.email,
             password :this.state.password }
-        }).then(response => { 
+        }).then(response => {
             console.log(response)
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('user', JSON.stringify(response.data.user)); 
+            this.props.history.push('/InvestorHome');
           })
           .catch(error => {
               console.log(error.response)
@@ -56,18 +52,8 @@ class Login extends Component {
     <footer className="Footer">
     <Footer/>
     </footer>
-    <div className="container" style={{ marginTop: '100px',marginLeft: '100px', width: '1525px'}}>
+    <div className="container" style={{ marginTop: '100px', width: '1500px'}}>
             <form onSubmit={ this.handleSubmit }>
-                <div className="form-group">
-                    <input
-                    type="text"
-                    placeholder="userName"
-                    className="form-control"
-                    name="userName"
-                    onChange={ this.handleInputChange1 }
-                    value={ this.state.userName }
-                    />
-                </div>
                 <div className="form-group">
                     <input
                     type="email"

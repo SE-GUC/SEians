@@ -18,7 +18,8 @@ class InvestorHome extends Component {
       { label: 'edit' , link: '/UpdateInvestor', active: true },
       { label: 'delete' , link: '/deleteInvestor', active: true },
       { label: 'show Companies' , link: '/CompanyViewer', active: true },
-      { label: 'Logout', link: '/LogoutInv', active: true }
+      { label: 'Logout', link: '/LogoutInv', active: true },
+      { label: 'Get My Forms', link: '/getMyForms', active: true }
     ];
     return (
       <div>
@@ -53,6 +54,8 @@ class InvestorHome extends Component {
           <footer className="Footer">
             <Footer />
           </footer>
+          <a href="/Investor/SpcCreate">Create Form</a><br/>
+          <a href="/FormUpdateInv">Update Form</a><br/>
         </Router>
       </div>
     );

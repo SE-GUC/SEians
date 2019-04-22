@@ -40,6 +40,8 @@ import AllLogins from '../components/AllLogins'
 import withAuth from './InvestorPortal/withAuth';
 import LogoutInv from './InvestorPortal/LogoutInv';
 import Profile from './InvestorPortal/Profile'
+import getMyForms from './InvestorPortal/Forms/getMyForms'
+import FormUpdateInv from './InvestorPortal/Forms/FormUpdateInv'
 
 
 export default ()=>(
@@ -84,8 +86,10 @@ export default ()=>(
     <Route path ="/AllLogins" exact component={AllLogins}/>
     <Route path ="/LogoutInv" exact component={withAuth(LogoutInv)}/>
     <Route path ="/Profile" exact component={withAuth(Profile)}/>
+    <Route path ="/getMyForms" exact component={withAuth(getMyForms)}/>
+    <Route path ="/Investor/SpcCreate" exact component={withAuth(SpcCreate)}/>
+    <Route path ="/FormUpdateInv" exact component={withAuth(FormUpdateInv)}/>
 
-  
   
   
     </div>

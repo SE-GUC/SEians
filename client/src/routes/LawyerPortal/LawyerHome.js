@@ -40,7 +40,8 @@ return(
     <footer className="Footer">
     <Footer/>
     </footer>
-
+    <a href="/SpcCreate">Create Form</a><br/>
+    <a href="/SpcSearch"> search in forms </a><br/>
   </Router>
 )
 }

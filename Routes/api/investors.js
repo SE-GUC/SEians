@@ -165,7 +165,8 @@ router.post('/login',async (req, res) => {
                 id: Investor.id,
                 userName: Investor.userName,
                 name: Investor.name,
-                email: Investor.email
+                email: Investor.email,
+                egID: Investor.egID
             }
             const token = jwt.sign(payload, tokenKey, { expiresIn: '1h' })
             return res.json({ token: token, user: payload});

@@ -129,6 +129,20 @@ router.get('/:companyName', async (req,res) => {
     } 
 })
 
+
+//showing Forms by investor ID
+router.get('/get/:idNumber', async (req,res) => {    
+    try {
+    const idNumber = req.params.idNumber
+    const formNeeded = await Form.findOne({idNumber})
+    if(!formNeeded) return res.status(404).send({error: 'Form does not exist'})
+    res.json({data: formNeeded})
+    }
+    catch(error) {
+        console.log(error)
+    } 
+})
+
 //deletion
 router.delete('/:companyName', async (req,res) => {
     try {
@@ -156,5 +170,21 @@ router.put('/:companyName', async (req,res) => {
         console.log(error)
     }  
  })
+
+ router.put('/invEdit/:idNumber', async (req,res) => {
+    try {
+     const idNumber = req.params.idNumber
+     const form = await Form.findOneAndUpdate({idNumber},req.body)
+     const form1 = await Form.findOne({idNumber})
+
+     res.json({msg: 'Form updated successfully', data: form1})
+    }
+    catch(error) {
+        console.log(error)
+    }  
+ })
+
+
+
 
 module.exports = router;

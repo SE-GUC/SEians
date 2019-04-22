@@ -5,7 +5,7 @@ const funcs = {
 
     getCompanies: async () => {
 
-        const Companies = await axios.get('http://localhost:3000/api/Companies/')
+        const Companies = await axios.get('http://localhost:5000/api/Companies/')
 
         return Companies 
 
@@ -14,7 +14,7 @@ const funcs = {
 
     deleteCompany: async()=>{
 
-        const Companies = await axios.delete('http://localhost:3000/api/Companies/Keksooo')
+        const Companies = await axios.delete('http://localhost:5000/api/Companies/Keksooo')
 
         return Companies
 
@@ -30,7 +30,7 @@ const funcs = {
 
         const Companies = await   axios({
 
-            url: 'http://localhost:3000/api/Companies/',
+            url: 'http://localhost:5000/api/Companies/',
 
             method: 'post',
 
@@ -59,7 +59,7 @@ const funcs = {
 
     updateCompany: async(done)=>{
 
-        const Companies = await axios({url:'http://localhost:3000/api/Companies/Keksooo',
+        const Companies = await axios({url:'http://localhost:5000/api/Companies/Keksooo',
 
         method:'put',
         params:{

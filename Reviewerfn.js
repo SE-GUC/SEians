@@ -6,7 +6,7 @@ const funcs = {
 
 
     getReviewers: async () => {
-        const reviewers = await axios.get('http://localhost:3000/api/reviewers/')
+        const reviewers = await axios.get('http://localhost:5000/api/reviewers/')
         return reviewers 
         },
     /*getReviewersbyUsername: async(username)=>{
@@ -14,7 +14,7 @@ const funcs = {
         return reviewers
     },*/
     deleteReviewer: async()=>{
-        const reviewers = await axios.delete('http://localhost:3000/api/reviewers/de3bs69')
+        const reviewers = await axios.delete('http://localhost:5000/api/reviewers/de3bs69')
         return reviewers
     },
 
@@ -22,7 +22,7 @@ const funcs = {
         
 
         const reviewers = await   axios({
-            url: 'http://localhost:3000/api/reviewers/',
+            url: 'http://localhost:5000/api/reviewers/',
             method: 'post',
             data:{
                 email: "test55@test.com",
@@ -43,7 +43,7 @@ const funcs = {
     },
 
     updateReviewer: async(params)=>{
-        const reviewers = await axios({url:'http://localhost:3000/api/reviewers/de3bss',
+        const reviewers = await axios({url:'http://localhost:5000/api/reviewers/de3bss',
         method:'put',
         params:{
             username:"de3bss"}

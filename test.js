@@ -153,12 +153,9 @@ expect(response.data.data.userName).toBe("mariam")
 
   });
 
-const funcs2 = require('./spcfn');
+const funcs2 = require('./FnFormSPC');
 
   test(`Created a company with a name of 'hamada'`, async (done) => {
-    //expect.assertions(0)
-    // await new Promise(resolve => setTimeout(resolve, 1000));
-
     let Spcs = await funcs2.createSpc()
     Spcss = Spcs.data.data;
      expect(Spcss.companyName).toBe('hamada2');
@@ -176,29 +173,28 @@ const funcs2 = require('./spcfn');
     done()
   } );
 
-  test('UPDATE specific Spc', async (done) => {
-    const Spcs = await funcs2.updateSpc();
-    Spcss = Spcs.data.data;
-    expect(Spcss.companyName).toBe('mesh hamada');
-    done()
-  });
-
-
   test('GET specific Spc', async (done) => {
     const Spcs = await funcs2.getSpc();
     Spcss = Spcs.data.data;
-    expect(Spcss.companyName).toBe('mesh hamada');
+    expect(Spcss.companyName).toBe('hamada2');
     done()
   });
 
- 
+
+  test('UPDATE specific Spc', async (done) => {
+    const Spcs = await funcs2.updateSpc();
+    Spcss = Spcs.data.data;
+    expect(Spcss.district).toBe('el rehab');
+    done()
+  });
+
+
 
 
 test('DELETE specific Spc', async (done) => {
     let Spcs = await funcs2.deleteSpc()
-    Spcss = Spcs.data.data;
-    //console.log(Spcss.some(Spc => Spc.companyName === 'hamada'))
-     expect(Spcss.some(Spc => Spc.companyName === 'mesh hamada')).toBe(false)
+    console.log(Spcs.data.msg)
+    expect(Spcs.data.msg).toEqual('Form was deleted successfully')
     done()
   }); 
 

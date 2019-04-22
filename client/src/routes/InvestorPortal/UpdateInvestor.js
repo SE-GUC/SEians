@@ -10,6 +10,14 @@ export class UpdateInvestor extends Component {
             userName : '',
         }
 
+        componentDidMount(){
+            const user = JSON.parse(localStorage.getItem('user'));
+            if(!user){
+              return  this.props.history.push('/Login');
+            }
+            this.setState({userName: user.userName})
+          }
+
     handleInputChange= event => {this.setState({name:event.target.value});}
     handleInputChange2= event => {this.setState({userName:event.target.value});}
     handleInputChange3= event => {this.setState({gender:event.target.value});}
@@ -31,13 +39,18 @@ export class UpdateInvestor extends Component {
     //handleSubmit(e){
         handleSubmit= event =>{
         event.preventDefault();
-        console.log("successful")
-       
+        const token = localStorage.getItem('token');
+        if(!token){
+           console.log('no token');
+           return;
+        }
         axios({
             method: 'put',
             headers: {
               'Accept': 'application/json, text/plain, /',
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'x-access-token': token
+
             },
             url: 'http://localhost:5000/api/investors/'+this.state.userName,
             data: {
@@ -60,6 +73,9 @@ export class UpdateInvestor extends Component {
         }).then(response => { 
             console.log(response)
             alert('successful update')
+            localStorage.removeItem('token')
+            localStorage.removeItem('user'); 
+            this.props.history.push('/Login');
           })
           .catch(error => {
               console.log(error.response)

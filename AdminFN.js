@@ -1,12 +1,12 @@
 const axios = require('axios');
 const functions = {
         getAllAdmins: async () => {
-          const Admins = await axios.get('http://localhost:3000/api/Admins/all/')
+          const Admins = await axios.get('http://localhost:5000/api/Admins/all/')
           return Admins
         },
         createAdmin: async (attributes) => {
          try{
-            const Admin = await axios.post('http://localhost:3000/api/Admins',attributes ) ;
+            const Admin = await axios.post('http://localhost:5000/api/Admins',attributes ) ;
         
           return Admin;
 
@@ -16,7 +16,7 @@ const functions = {
         },
         getAdmin: async (userName) => {
          try{
-            const Admin = await axios.get('http://localhost:3000/api/Admins/'+userName);
+            const Admin = await axios.get('http://localhost:5000/api/Admins/'+userName);
           return Admin;
          }catch(err){
              console.log("admin not found")
@@ -25,7 +25,7 @@ const functions = {
         },
         deleteAdmin: async (userName) => {
           try{
-            const Admin = await axios.delete('http://localhost:3000/api/Admins/'+userName);
+            const Admin = await axios.delete('http://localhost:5000/api/Admins/'+userName);
           
           return Admin;
           }
@@ -35,7 +35,7 @@ const functions = {
         },
         updateAdmin: async (userName,att) => {
          try{
-            const Admin = await axios.put('http://localhost:3000/api/Admins/'+userName, att);
+            const Admin = await axios.put('http://localhost:5000/api/Admins/'+userName, att);
           return Admin;
          }catch(err){
              return "userName not found"

@@ -49,7 +49,7 @@ router.post('/createSsc', (req,res)=>{
        
    })
    
-   router.post('/createSpc', (req,res)=>{
+   router.post('/createSpc', async (req,res) => {
 
     const form = new Form({
         name : req.body.name,
@@ -85,9 +85,26 @@ router.post('/createSsc', (req,res)=>{
        }
        catch(error) {
            console.log(error)
-       }  
+       } 
    
-       
+       /*try {
+        const isValidated = validator.createSpcValidation(req.body)
+        if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+   
+        const companyName = req.body.companyName
+        check = await Form.findOne({companyName})
+        if(check) return res.status(400).send({msg: 'companyName is used' })
+
+        const companyNameInArabic = req.body.companyNameInArabic
+        check = await Form.findOne({companyNameInArabic})
+        if(check) return res.status(400).send({msg: 'companyNameInArabic is used' })
+   
+        const newSPC = await Form.create(req.body) 
+        res.json({msg:'Spc was created successfully', data: newSPC})
+       }
+       catch(error) {
+           console.log(error)
+       }  */
    })
    
 
@@ -118,7 +135,8 @@ router.delete('/:companyName', async (req,res) => {
      const companyName = req.params.companyName
      const form = await Form.findOneAndRemove({companyName})
      if(!form) return res.status(404).send({error: 'Form does not exist'})
-     res.json({msg:'Form was deleted successfully', data: form})
+     const form1 = await Form.findOne({companyName})
+     res.json({msg:'Form was deleted successfully', data: form1})
     }
     catch(error) {
         console.log(error)
@@ -130,7 +148,9 @@ router.put('/:companyName', async (req,res) => {
     try {
      const companyName = req.params.companyName
      const form = await Form.findOneAndUpdate({companyName},req.body)
-     res.json({msg: 'Form updated successfully', data: form})
+     const form1 = await Form.findOne({companyName})
+
+     res.json({msg: 'Form updated successfully', data: form1})
     }
     catch(error) {
         console.log(error)

@@ -26,6 +26,7 @@ import CreatedSuccessfully from './AdminPortal/Companies/CreatedSuccessfully';
 import SSCApplication from  './InvestorPortal/Forms/SSCApplication'
 import UpdateInvestor from '../routes/InvestorPortal/UpdateInvestor'
 import DeleteInvestor from '../routes/InvestorPortal/DeleteInvestor'
+import MySpcs from '../routes/InvestorPortal/Forms/MySpcs'
 import Login from '../routes/InvestorPortal/Login'
 import Register from '../routes/InvestorPortal/Register'
 import SearchInvestor from '../routes/InvestorPortal/SearchInvestor'
@@ -68,6 +69,7 @@ export default ()=>(
     <Route path ="/SearchInvestor" exact component={withAuth(SearchInvestor)}/>
     <Route path ="/UpdateInvestor" exact component={withAuth(UpdateInvestor)}/>
     <Route path ="/DeleteInvestor" exact component={withAuth(DeleteInvestor)}/>
+    <Route path ="/MySpcs" exact component={withAuth(MySpcs)}/>
     <Route path ="/SscCase" exact component={SscCase}/>
     <Route path ="/getSingleCase" exact component={getSingleCase}/>
     <Route path ="/SpcCreate" exact component={SpcCreate}/>

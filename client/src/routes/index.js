@@ -21,6 +21,7 @@ import DeletionSuccess from './AdminPortal/Staff/Reviewer/DeletionSuccess';
 import Companies from './AdminPortal/Companies/Companies';
 import CreateCompany from './AdminPortal/Companies/CreateCompany';
 import GetCompany from './AdminPortal/Companies/GetCompany';
+import GetCompany1 from './AdminPortal/Companies/GetCompany1';
 import UpdateCompany from './AdminPortal/Companies/UpdateCompany';
 import CreatedSuccessfully from './AdminPortal/Companies/CreatedSuccessfully';
 import SSCApplication from  './InvestorPortal/Forms/SSCApplication'
@@ -52,7 +53,7 @@ import Profile from './InvestorPortal/Profile'
 export default ()=>(
     <BrowserRouter>
     <div>
-    
+
     <Route path ="/" exact component={home}/>
     <Route path ="/AdminHome/CreateAdmin" exact component={CreateAdmin}/>
     <Route path ="/AdminHome/EditAdmin" exact component={EditAdmin}/>
@@ -66,6 +67,7 @@ export default ()=>(
     <Route path ="/Companies" exact component={Companies}/>
     <Route path ="/CreateCompany" exact component={CreateCompany}/>
     <Route path ="/GetCompany" exact component={GetCompany}/>
+    <Route path ="/GetCompany1" exact component={GetCompany1}/>
     <Route path ="/UpdateCompany" exact component={UpdateCompany}/>
     <Route path ="/CreatedSuccessfully" exact component={CreatedSuccessfully}/>
     <Route path ="/CreateReviewer" exact component={CreateReviewer}/>
@@ -92,7 +94,7 @@ export default ()=>(
     <Route path ="/LogoutInv" exact component={withAuth(LogoutInv)}/>
     <Route path ="/Profile" exact component={withAuth(Profile)}/>
 
-  
+
     <Route path ="/AdminLogin" exact component={AdminLogin}/>
     <Route path ="/EditProfile" exact component={UpdateME}/>
     <Route path ="/AdmLoggedout" exact component={AdminLogout}/>
@@ -107,10 +109,10 @@ export default ()=>(
 
 
 
-  
+
     </div>
-    
-  
-  
+
+
+
     </BrowserRouter>
 )

@@ -11,7 +11,7 @@ render(){
   let links = [
     { label: 'Home', link: '#home', active: true },
     { label: 'About', link: '#about' },
-    { label: 'View Company', link: '/GetCompany' },
+    { label: 'View Company', link: '/GetCompany1' },
     { label: 'Log Out', link: '#log-out' }
 
   ];

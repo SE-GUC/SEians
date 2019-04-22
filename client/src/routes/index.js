@@ -82,8 +82,8 @@ export default ()=>(
     <Route path ="/UpdateReviewer" exact component={UpdateReviewer}/>
     <Route path ="/DeletionSuccess" exact component={DeletionSuccess}/>
     <Route path ="/AllLogins" exact component={AllLogins}/>
-    <Route path ="/LogoutInv" exact component={LogoutInv}/>
-    <Route path ="/Profile" exact component={Profile}/>
+    <Route path ="/LogoutInv" exact component={withAuth(LogoutInv)}/>
+    <Route path ="/Profile" exact component={withAuth(Profile)}/>
 
   
   

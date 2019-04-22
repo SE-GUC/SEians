@@ -46,7 +46,15 @@ import StaffLaw from './AdminPortal/Staff/StaffLaw';
 import AllLogins from '../components/AllLogins'
 import withAuth from './InvestorPortal/withAuth';
 import LogoutInv from './InvestorPortal/LogoutInv';
-import Profile from './InvestorPortal/Profile'
+import Profile from './InvestorPortal/Profile';
+import CreateLawyer from './AdminPortal/Staff/Lawyer/CreateLawyer';
+import GetLawyer from './AdminPortal/Staff/Lawyer/GetLawyer';
+import UpdateLawyer from './AdminPortal/Staff/Lawyer/UpdateLawyer';
+import CreationSuccess1 from './AdminPortal/Staff/Lawyer/CreationSuccess1';
+import handleLawyer from './AdminPortal/Staff/Lawyer/handleLawyer';
+import UpdateSuccess1 from './AdminPortal/Staff/Lawyer/UpdateSuccess1';
+import DeletionSuccess1 from './AdminPortal/Staff/Lawyer/DeletionSuccess1';
+import UpdateInfo from './LawyerPortal/UpdateInfo'
 
 
 export default ()=>(
@@ -103,7 +111,30 @@ export default ()=>(
     <Route path ="/Staff/Lawyers" exact component={StaffLaw}/>
 
 
-
+    <div>
+    <Route path ="/handleLawyer" exact component={handleLawyer}/>
+    </div>
+    <div>
+    <Route path ="/CreateLawyer" exact component={CreateLawyer}/>
+    </div>
+    <div>
+    <Route path ="/GetLawyer" exact component={GetLawyer}/>
+    </div>
+    <div>
+    <Route path ="/CreationSuccess1" exact component={CreationSuccess1}/>
+    </div>
+    <div>
+    <Route path ="/UpdateSuccess1" exact component={UpdateSuccess1}/>
+    </div>
+    <div>
+    <Route path ="/UpdateLawyer" exact component={UpdateLawyer}/>
+    </div>
+    <div>
+    <Route path ="/DeletionSuccess1" exact component={DeletionSuccess1}/>
+    </div>
+    <div>
+    <Route path ="/UpdateInfo" exact component={UpdateInfo}/>
+    </div>
 
 
 

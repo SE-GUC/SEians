@@ -1,15 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 import EditAdmin from './EditAdmin'
 
 
 export default class Admin extends React.Component {
+  componentDidMount() {
+    var token = JSON.parse(localStorage.getItem('admintoken'))
+if(!token){
+alert("ACCESS DENIED!!!");
+window.location.href = "http://localhost:3000/AdminLogin";
+
+
+}
+  }
  
   
   deleteAdmin(event){
     event.preventDefault();
+    var token = JSON.parse(localStorage.getItem('admintoken'))
+    let decoded = jwt_decode(token);
+   
+    if(decoded.fullAccess===false){
+      alert("ACCESS DENIED!!! Restricted Area, You need to have full access ");
+   //   window.location.href = "http://localhost:3000/AdminHome/Admins";
+    }else{
     let userName=this.props.Admin.userName;
     axios.delete('http://localhost:5000/api/Admins/'+userName)
     .then(res=>{
@@ -23,12 +39,19 @@ export default class Admin extends React.Component {
   ).catch(error => {
    alert("Error!!")
          })
-
+        }
   }
   editAdmin(event){
     event.preventDefault();
+    var token = JSON.parse(localStorage.getItem('admintoken'))
+    let decoded = jwt_decode(token);
+   
+    if(decoded.fullAccess===false){
+      alert("ACCESS DENIED!!! Restricted Area, You need to have full access ");
+   //   window.location.href = "http://localhost:3000/AdminHome/Admins";
+    }else{
     window.location.href = "http://localhost:3000/AdminHome/EditAdmin?username="+this.props.Admin.userName;
-
+    }
 
 
 

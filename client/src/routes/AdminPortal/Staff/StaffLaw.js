@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Header from '../../components/Layout/Header';
-import Menu from '../../components/Layout/Menu';
-import Footer from '../../components/Layout/Footer';
-import logo from '../../components/Layout/img/logo.png';
+import Header from '../../../components/Layout/Header';
+import Menu from '../../../components/Layout/Menu';
+import Footer from '../../../components/Layout/Footer';
+import logo from '../../../components/Layout/img/logo.png';
 
-export class AdminHome extends Component {
+export class StaffLaw extends Component {
 
   componentDidMount() {
     var token = JSON.parse(localStorage.getItem('admintoken'))
@@ -23,8 +23,6 @@ render(){
   let links = [
     { label: 'Home', link: '/AdminHome' },
     { label: 'Staff', link: '/Staff' },
-    { label: 'Edit My Profile', link: '/EditProfile' },
- 
     { label: 'logout', link: '/AdmLoggedout' }
 
   ];
@@ -37,11 +35,12 @@ return(
       <div className="container2">
       <Menu links={links} logo={logo} />
         <body>
-       <Header name = "Admin Portal"/></body> </div>  </div>
+       <Header name = "Lawyers"/></body> </div>  </div>
         <div className="container center">
        < div>< div>
           
        <div style= {{marginTop: '100px', marginLeft: '500px'}}>
+
  </div>
 
       </div>
@@ -56,5 +55,5 @@ return(
 }
 }
 
-export default AdminHome
+export default StaffLaw
 

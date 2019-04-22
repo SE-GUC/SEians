@@ -9,6 +9,15 @@ const axios = require('axios')
 
 export class Companies extends Component {
 
+  componentDidMount() {
+    var token = JSON.parse(localStorage.getItem('admintoken'))
+if(!token){
+alert("ACCESS DENIED!!!");
+window.location.href = "http://localhost:3000/AdminLogin";
+
+
+}
+  }
 
     render(){
 

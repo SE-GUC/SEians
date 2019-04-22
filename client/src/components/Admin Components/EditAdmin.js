@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Footer from '../../components/Layout/Footer';
+import jwt_decode from 'jwt-decode';
 
 export default class EditAdmin extends Component {
   constructor(props){
@@ -10,7 +11,23 @@ export default class EditAdmin extends Component {
       username:{}
     }
   }
+
   componentDidMount() {
+    var token = JSON.parse(localStorage.getItem('admintoken'))
+    if(!token){
+    alert("ACCESS DENIED!!!");
+    window.location.href = "http://localhost:3000/AdminLogin";
+    
+    
+    }else{
+      let decoded = jwt_decode(token);
+      console.log('helllooooo')
+      console.log(decoded)
+      console.log(decoded.fullAccess)
+      if(decoded.fullAccess===false){
+        alert("ACCESS DENIED!!! Restricted Area, You need to have full access ");
+        window.location.href = "http://localhost:3000/AdminHome/Admins";
+      }else{
     const username=this.getUSERNAME();
     axios.get(`http://localhost:5000/api/Admins/`+username)
       .then(res => {
@@ -21,7 +38,8 @@ export default class EditAdmin extends Component {
 
       })
   }
-  
+}
+}
   updateAdmin(event){
 event.preventDefault();
 const userName=this.state.admin.userName;

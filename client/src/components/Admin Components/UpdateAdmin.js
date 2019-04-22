@@ -71,13 +71,29 @@ export default class UpdateAdmin extends Component {
     
       }
       componentDidMount() {
+          var token = JSON.parse(localStorage.getItem('admintoken'))
+          if(!token){
+          alert("ACCESS DENIED!!!");
+          window.location.href = "http://localhost:3000/AdminLogin";
+          
+          
+          }else{
+            let decoded = jwt_decode(token);
+            console.log('helllooooo')
+            console.log(decoded)
+            console.log(decoded.fullAccess)
+            if(decoded.fullAccess===false){
+              alert("ACCESS DENIED!!! Restricted Area, You need to have full access ");
+              window.location.href = "http://localhost:3000/AdminLogin/Admins";
+            }else{
         axios.get(`http://localhost:5000/api/Admins/all/`)
           .then(res => {
             const admins = res.data.data;
             this.setState({ admins });
           })
         }
-     
+      }
+    }
         render() {
             let selectedAdmin = this.state.admins.filter((Admin)=>{
                 return Admin.userName.indexOf(this.state.search) !== -1;

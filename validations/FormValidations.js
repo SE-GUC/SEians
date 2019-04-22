@@ -109,7 +109,7 @@ module.exports = {
       time: Joi.date(),
       capital: Joi.number(),
       managers: Joi.array().required(),
-      comment: Joi.string()
+      comments: Joi.string()
     };
 
     return Joi.validate(request, updateSchema);

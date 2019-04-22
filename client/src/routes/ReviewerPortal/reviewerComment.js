@@ -2,13 +2,11 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from "../../components/Layout/Header";
 import Footer from "../../components/Layout/Footer";
-import Menu from "../../components/Layout/Menu";
-import logo from "../../components/Layout/img/logo.png";
 import axios from "axios";
 
-import "./LawyerHome.css";
+import "../LawyerPortal/LawyerHome.css";
 
-export class editForm extends Component {
+export class reviewerComment extends Component {
   state = {
     name: ""
   };
@@ -28,7 +26,7 @@ export class editForm extends Component {
         Accept: "application/json, text/plain, /",
         "Content-Type": "application/json"
       },
-      url: "http://localhost:5000/Routes/Forms/" + this.state.companyName,
+      url: "http://localhost:5000/api/Forms/" + this.state.companyName,
       data: {
         comments: this.state.comments
       }
@@ -90,4 +88,4 @@ export class editForm extends Component {
   }
 }
 
-export default editForm;
+export default reviewerComment;

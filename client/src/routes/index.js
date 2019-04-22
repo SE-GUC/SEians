@@ -37,6 +37,7 @@ import SpcDelete from "./InvestorPortal/Forms/SpcDelete";
 import SpcUpdate from "./InvestorPortal/Forms/SpcUpdate";
 import editForm from "./LawyerPortal/editForm";
 import generateContract from "./LawyerPortal/generateContract";
+import reviewerComment from "./ReviewerPortal/reviewerComment";
 
 export default () => (
   <BrowserRouter>
@@ -82,6 +83,7 @@ export default () => (
       <Route path="/DeletionSuccess" exact component={DeletionSuccess} />
       <Route path="/editForm" exact component={editForm} />
       <Route path="/generateContract" exact component={generateContract} />
+      <Route path="/reviewerComment" exact component={reviewerComment} />
     </div>
   </BrowserRouter>
 );

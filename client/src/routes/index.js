@@ -36,6 +36,13 @@ import SpcCreate from './InvestorPortal/Forms/SpcCreate';
 import SpcSearch from './InvestorPortal/Forms/SpcSearch';
 import SpcDelete from './InvestorPortal/Forms/SpcDelete';
 import SpcUpdate from './InvestorPortal/Forms/SpcUpdate';
+import AdminLogin from '../components/Admin Components/AdminLogin'
+import UpdateME from '../components/Admin Components/UpdateME';
+import AdminLogout from '../components/Admin Components/Logout';
+import { StaffAdm } from './AdminPortal/Staff/StaffAdm';
+import StaffRev from './AdminPortal/Staff/StaffRev';
+import StaffForms from './AdminPortal/Staff/StaffForms';
+import StaffLaw from './AdminPortal/Staff/StaffLaw';
 import AllLogins from '../components/AllLogins'
 import withAuth from './InvestorPortal/withAuth';
 import LogoutInv from './InvestorPortal/LogoutInv';
@@ -43,6 +50,14 @@ import Profile from './InvestorPortal/Profile'
 import getMyForms from './InvestorPortal/Forms/getMyForms'
 import FormUpdateInv from './InvestorPortal/Forms/FormUpdateInv'
 import Formdeleteinv from './InvestorPortal/Forms/Formdeleteinv'
+import CreateLawyer from './AdminPortal/Staff/Lawyer/CreateLawyer';
+import GetLawyer from './AdminPortal/Staff/Lawyer/GetLawyer';
+import UpdateLawyer from './AdminPortal/Staff/Lawyer/UpdateLawyer';
+import CreationSuccess1 from './AdminPortal/Staff/Lawyer/CreationSuccess1';
+import handleLawyer from './AdminPortal/Staff/Lawyer/handleLawyer';
+import UpdateSuccess1 from './AdminPortal/Staff/Lawyer/UpdateSuccess1';
+import DeletionSuccess1 from './AdminPortal/Staff/Lawyer/DeletionSuccess1';
+import UpdateInfo from './LawyerPortal/UpdateInfo'
 
 
 export default ()=>(
@@ -91,9 +106,40 @@ export default ()=>(
     <Route path ="/Investor/SpcCreate" exact component={withAuth(SpcCreate)}/>
     <Route path ="/FormUpdateInv" exact component={withAuth(FormUpdateInv)}/>
     <Route path ="/Formdeleteinv" exact component={withAuth(Formdeleteinv)}/>
+    <Route path ="/AdminLogin" exact component={AdminLogin}/>
+    <Route path ="/EditProfile" exact component={UpdateME}/>
+    <Route path ="/AdmLoggedout" exact component={AdminLogout}/>
 
-  
-  
+    <Route path ="/Staff/Admins" exact component={StaffAdm}/>
+    <Route path ="/Staff/Reviewers" exact component={StaffRev}/>
+    <Route path ="/Staff/Forms" exact component={StaffForms}/>
+    <Route path ="/Staff/Lawyers" exact component={StaffLaw}/>
+
+
+    <div>
+    <Route path ="/handleLawyer" exact component={handleLawyer}/>
+    </div>
+    <div>
+    <Route path ="/CreateLawyer" exact component={CreateLawyer}/>
+    </div>
+    <div>
+    <Route path ="/GetLawyer" exact component={GetLawyer}/>
+    </div>
+    <div>
+    <Route path ="/CreationSuccess1" exact component={CreationSuccess1}/>
+    </div>
+    <div>
+    <Route path ="/UpdateSuccess1" exact component={UpdateSuccess1}/>
+    </div>
+    <div>
+    <Route path ="/UpdateLawyer" exact component={UpdateLawyer}/>
+    </div>
+    <div>
+    <Route path ="/DeletionSuccess1" exact component={DeletionSuccess1}/>
+    </div>
+    <div>
+    <Route path ="/UpdateInfo" exact component={UpdateInfo}/>
+    </div>
     </div>
     
   

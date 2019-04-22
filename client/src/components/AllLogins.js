@@ -18,6 +18,7 @@ export class AllLogins extends Component {
               
           </div>
         </div>
+        <a href="/AdminLogin">Admin Login</a><br/>
         <a href="/Login">Login as Investor</a><br/>
         <footer className="Footer">
         <Footer/>

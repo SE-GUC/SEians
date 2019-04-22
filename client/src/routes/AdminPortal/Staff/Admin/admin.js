@@ -19,8 +19,9 @@ class admin extends Component {
       { label: 'Staff', link: '/Staff' },
       { label: 'Register new Admin', link: '/AdminHome/CreateAdmin' },
       { label: 'View Admins', link: '/AdminHome/Admins' },
-      { label: 'Assign Tasks', link: '#portfolio' },
-      { label: 'Review Forms', link: '#contact-us' },
+    
+      { label: 'logout', link: '/AdmLoggedout' }
+
     ];
       return(
           <Router>

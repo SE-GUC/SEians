@@ -15,7 +15,6 @@ let links = [
 
 export default ()=><div>
     <Router>
-        
         <div className="NavigationBar">
           <div className="container">
           <Menu links={links} logo={logo} />
@@ -27,7 +26,6 @@ export default ()=><div>
         </footer>
     
       </Router>
-    <a href="/AdminHome">AdminHome</a><br/>
     <a href="/ReviewerHome">ReviewerHome</a><br/>
     <a href="/LawyerHome">LawyerHome</a><br/>
 </div>;

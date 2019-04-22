@@ -37,6 +37,14 @@ import SpcSearch from './InvestorPortal/Forms/SpcSearch';
 import SpcDelete from './InvestorPortal/Forms/SpcDelete';
 import SpcUpdate from './InvestorPortal/Forms/SpcUpdate';
 
+import AdminLogin from '../components/Admin Components/AdminLogin'
+import UpdateME from '../components/Admin Components/UpdateME';
+import AdminLogout from '../components/Admin Components/Logout';
+import { StaffAdm } from './AdminPortal/Staff/StaffAdm';
+import StaffRev from './AdminPortal/Staff/StaffRev';
+import StaffForms from './AdminPortal/Staff/StaffForms';
+import StaffLaw from './AdminPortal/Staff/StaffLaw';
+
 
 
 export default ()=>(
@@ -80,7 +88,20 @@ export default ()=>(
     <Route path ="/DeletionSuccess" exact component={DeletionSuccess}/>
 
   
-  
+    <Route path ="/AdminLogin" exact component={AdminLogin}/>
+    <Route path ="/EditProfile" exact component={UpdateME}/>
+    <Route path ="/AdmLoggedout" exact component={AdminLogout}/>
+
+    <Route path ="/Staff/Admins" exact component={StaffAdm}/>
+    <Route path ="/Staff/Reviewers" exact component={StaffRev}/>
+    <Route path ="/Staff/Forms" exact component={StaffForms}/>
+    <Route path ="/Staff/Lawyers" exact component={StaffLaw}/>
+
+
+
+
+
+
   
     </div>
     

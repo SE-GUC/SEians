@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Header from '../../components/Layout/Header';
-import Menu from '../../components/Layout/Menu';
-import Footer from '../../components/Layout/Footer';
-import logo from '../../components/Layout/img/logo.png';
+import Header from '../../../components/Layout/Header';
+import Menu from '../../../components/Layout/Menu';
+import Footer from '../../../components/Layout/Footer';
+import logo from '../../../components/Layout/img/logo.png';
 
-export class AdminHome extends Component {
+export class StaffAdm extends Component {
 
   componentDidMount() {
     var token = JSON.parse(localStorage.getItem('admintoken'))
@@ -23,8 +23,8 @@ render(){
   let links = [
     { label: 'Home', link: '/AdminHome' },
     { label: 'Staff', link: '/Staff' },
-    { label: 'Edit My Profile', link: '/EditProfile' },
- 
+    { label: 'Register new Admin', link: '/AdminHome/CreateAdmin' },
+    { label: 'View Admins', link: '/AdminHome/Admins' },
     { label: 'logout', link: '/AdmLoggedout' }
 
   ];
@@ -56,5 +56,5 @@ return(
 }
 }
 
-export default AdminHome
+export default StaffAdm
 

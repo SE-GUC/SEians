@@ -15,7 +15,6 @@ render(){
     { label: 'About', link: '#about' },
     { label: 'View SSC Tasks', link: '/SscCase' },
     { label: 'View SPC Tasks', link: '/SpcSearch' },
-    { label: 'ViewCompany', link: '/GetCompany' },
     { label: 'Log Out', link: '#log-out' }
 
   ];

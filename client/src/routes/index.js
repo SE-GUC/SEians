@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
 import { BrowserRouter , Route, Link } from "react-router-dom";
+import {Provider} from 'react-redux';
+import store from '../store';
 import home from './home';
 
 import admin from './AdminPortal/Staff/Admin/admin';
@@ -61,8 +63,32 @@ import DeletionSuccess1 from './AdminPortal/Staff/Lawyer/DeletionSuccess1';
 import UpdateInfo from './LawyerPortal/UpdateInfo'
 
 
+///////
+import login2 from '../components/Au/Login'
+import register2 from '../components/Au/Register'
+
+import Footer2 from '../components/Layout/Footer2'
+import Navbar from '../components/Layout/Navbar'
+
+import Landing from '../components/Layout/Landing';
+
+
+
 export default ()=>(
+
+    <Provider store={ store }>
+    <Router>
+    
+    <Navbar/>
+
     <BrowserRouter>
+
+
+
+    <div className ="App" id="particles-js" >
+
+
+    
     <div>
 
     <Route path ="/" exact component={home}/>
@@ -116,6 +142,11 @@ export default ()=>(
     <Route path ="/Staff/Reviewers" exact component={StaffRev}/>
     <Route path ="/Staff/Forms" exact component={StaffForms}/>
     <Route path ="/Staff/Lawyers" exact component={StaffLaw}/>
+    <Route exact path ="/" exact component={Landing}/>
+
+    <Route path ="/data" exact component={home}/>
+    <Route path ="/login2" exact component={login2}/>
+    <Route path ="/register2" exact component={register2}/>
 
 
     <div>
@@ -144,7 +175,12 @@ export default ()=>(
     </div>
     </div>
 
-
+    <script type="text/javascript" src="particles.js"></script>
+          <script type="text/javascript" src="app.js"></script>
 
     </BrowserRouter>
+    <Footer2/>
+    
+    </Router>
+    </Provider>
 )

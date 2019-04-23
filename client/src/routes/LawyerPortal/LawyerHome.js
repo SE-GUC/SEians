@@ -36,7 +36,7 @@ return(
            <li><a href="about.asp">About</a></li>
           </React.Fragment>
         )} />
-        <Route path="/about" />
+        <Route exact path="/about" />
       </div>  
     </div>
     <footer className="Footer">

@@ -19,7 +19,8 @@ class InvestorHome extends Component {
       { label: 'delete' , link: '/deleteInvestor', active: true },
       { label: 'show Companies' , link: '/CompanyViewer', active: true },
       { label: 'Logout', link: '/LogoutInv', active: true },
-      { label: 'Get My Forms', link: '/getMyForms', active: true }
+      { label: 'Get My Forms', link: '/getMyForms', active: true },
+      { label: 'View Company', link: '/GetCompany' },
     ];
     return (
       <div>

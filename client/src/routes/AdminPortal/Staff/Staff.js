@@ -22,20 +22,20 @@ window.location.href = "http://localhost:3000/AdminLogin";
   }
 
 
-    
+
     render(){
       let links = [
         { label: 'Home', link: '/AdminHome' },
         { label: 'Admins', link: '/Staff/Admins' },
         { label: 'Lawyers', link: '/Staff/Lawyers' },
-        { label: 'Reviewers', link: '/Staff/Reviewers' },
+        { label: 'Reviewers', link: 'handleReviewer' },
         { label: 'Forms', link: '/Staff/Forms' },
         { label: 'Companies', link: '/Companies' },
 
-     
+
         { label: 'logout', link: '/AdmLoggedout' },
 
-   
+
       ];
       const labelstyle1={
         position:'absolute',
@@ -87,25 +87,25 @@ window.location.href = "http://localhost:3000/AdminLogin";
       }
         return(
             <Router>
-                
+
             <div className="Header">
               <div className="container">
               <Menu links={links} logo={logo} />
            <Header name="Staff" />
                 <Route path="/Staff" />
-              </div>  
+              </div>
 
-            </div> 
+            </div>
             <body>
-  
 
-   </body> 
 
-           
+   </body>
+
+
             <div>
 
             <label style={{width:"50px" ,height:"50px",backgroundColor:"red"}}>
-           
+
 
               </label>
 
@@ -114,9 +114,9 @@ window.location.href = "http://localhost:3000/AdminLogin";
             <footer className="Footer">
             <Footer/>
             </footer>
-        
+
           </Router>
-        
+
         )
                 }
 }export default Staff

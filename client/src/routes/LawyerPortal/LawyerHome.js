@@ -1,14 +1,12 @@
-import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Header from '../../components/Layout/Header';
-import Footer from '../../components/Layout/Footer';
-import Menu from '../../components/Layout/Menu';
-import logo from '../../components/Layout/img/logo.png';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Header from "../../components/Layout/Header";
+import Footer from "../../components/Layout/Footer";
+import Menu from "../../components/Layout/Menu";
+import logo from "../../components/Layout/img/logo.png";
 
-import './LawyerHome.css'
+import "./LawyerHome.css";
 export class LawyerHome extends Component {
-
-
 
 render(){
   
@@ -49,6 +47,7 @@ return(
   </Router>
 )
 }
+
 }
 
-export default LawyerHome
+export default LawyerHome;

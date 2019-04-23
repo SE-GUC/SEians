@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { BrowserRouter , Route, Link } from "react-router-dom";
 import home from './home';
@@ -58,7 +57,10 @@ import CreationSuccess1 from './AdminPortal/Staff/Lawyer/CreationSuccess1';
 import handleLawyer from './AdminPortal/Staff/Lawyer/handleLawyer';
 import UpdateSuccess1 from './AdminPortal/Staff/Lawyer/UpdateSuccess1';
 import DeletionSuccess1 from './AdminPortal/Staff/Lawyer/DeletionSuccess1';
-import UpdateInfo from './LawyerPortal/UpdateInfo'
+import UpdateInfo from './LawyerPortal/UpdateInfo';
+import editForm from "./LawyerPortal/editForm";
+import generateContract from "./LawyerPortal/generateContract";
+import reviewerComment from "./ReviewerPortal/reviewerComment";
 
 
 export default ()=>(
@@ -116,6 +118,9 @@ export default ()=>(
     <Route path ="/Staff/Reviewers" exact component={StaffRev}/>
     <Route path ="/Staff/Forms" exact component={StaffForms}/>
     <Route path ="/Staff/Lawyers" exact component={StaffLaw}/>
+    <Route path="/editForm" exact component={editForm} />
+    <Route path="/generateContract" exact component={generateContract} />
+    <Route path="/reviewerComment" exact component={reviewerComment} />
 
 
     <div>
@@ -148,3 +153,6 @@ export default ()=>(
 
     </BrowserRouter>
 )
+
+
+    

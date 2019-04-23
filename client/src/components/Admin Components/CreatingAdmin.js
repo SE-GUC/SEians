@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 
  class CreateADM extends Component {
@@ -12,6 +13,23 @@ import axios from 'axios';
     }
   }
  
+  componentDidMount() {
+    var token = JSON.parse(localStorage.getItem('admintoken'))
+if(!token){
+alert("ACCESS DENIED!!!");
+window.location.href = "http://localhost:3000/AdminLogin";
+
+
+}else{
+  let decoded = jwt_decode(token);
+   
+  if(decoded.fullAccess===false){
+    alert("ACCESS DENIED!!! Restricted Area, You need to have full access ");
+    window.location.href = "http://localhost:3000/AdminHome";
+  }
+}
+  }
+
   handleFullAccessChange(event){
 
     this.setState({ fullAccesss: !this.state.fullAccesss});
@@ -85,7 +103,7 @@ console.log(att)
 
         
             <h3>Username</h3>
-            <input type="text" ref="userName" placeholder="UserName" style={{textAlign:'center', borderColor:'red', height:'50px',width:"500px",fontSize:'20px'}}/>
+            <input type="text" ref="userName" placeholder="userName" name="userName" style={{textAlign:'center', borderColor:'red', height:'50px',width:"500px",fontSize:'20px'}}/>
             <br/><h3>firstName</h3>
             <input type="text" ref="firstName" placeholder="firstName" style={{textAlign:'center', borderColor:'red', height:'50px',width:"500px",fontSize:'20px'}}/>
             <br/><h3>lastName</h3>

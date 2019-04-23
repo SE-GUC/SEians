@@ -14,13 +14,23 @@ export class Searchbar extends Component {
     search: ''
   }
 
+  
+
   componentDidMount() {
+    var token = JSON.parse(localStorage.getItem('admintoken'))
+    if(!token){
+    alert("ACCESS DENIED!!!");
+    window.location.href = "http://localhost:3000/AdminLogin";
+    
+    
+    }else{
     axios.get(`http://localhost:5000/api/Admins/all/`)
       .then(res => {
         const admins = res.data.data;
         this.setState({ admins });
       })
   }
+}
   updateSearch(event){
     this.setState({search:event.target.value.substr(0,30)});
   }

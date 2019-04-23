@@ -6,24 +6,26 @@ import axios from 'axios';
 
 
 export class DeleteInvestor extends Component {
-        state = {
-            userName : '',
+
+    componentDidMount(){
+      const user = JSON.parse(localStorage.getItem('user'));
+      if(!user){
+        return  this.props.history.push('/Login');
+      }
+      const name = user.userName
+        const token = localStorage.getItem('token');
+        if(!token){
+           console.log('no token');
+           return;
         }
-
-    handleInputChange2= event => {this.setState({userName:event.target.value});}
-
-
-    //handleSubmit(e){
-        handleSubmit= event =>{
-        event.preventDefault();
-       
         axios({
             method: 'delete',
             headers: {
               'Accept': 'application/json, text/plain, /',
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'x-access-token': token
             },
-            url: 'http://localhost:5000/api/investors/'+this.state.userName,
+            url: 'http://localhost:5000/api/investors/'+name,
         }).then(response => { 
             console.log(response)
             alert('successful deletion')
@@ -32,6 +34,9 @@ export class DeleteInvestor extends Component {
               console.log(error.response)
               alert('investor not found')
           });
+          localStorage.removeItem('token')
+            localStorage.removeItem('user'); 
+            this.props.history.push('/');
           }
 
 
@@ -44,28 +49,6 @@ export class DeleteInvestor extends Component {
       <Header name="Delete Investor" />
       </div>  
     </div>
-
-          <div className="container" style={{marginTop: '200px',marginLeft: '100px', width: '1525px'}}>
-            <form onSubmit= {this.handleSubmit}>
-           
-            <div className="form-group">
-            <input
-            type="text"
-            placeholder="userName"
-            className="form-control"
-            name="userName"
-            onChange={ this.handleInputChange2}
-            //value= {this.state.userName}
-            />
-            </div>
-
-            <div className="form-group">
-            <button type="submit" className= "btn btn-primary" style={{color: '#1fc1a9'}}>
-            delete investor
-            </button>
-            </div>
-            </form>
-            </div>
           <footer className="Footer">
     <Footer/>
     </footer>
@@ -75,4 +58,3 @@ export class DeleteInvestor extends Component {
     }
 }
 export default DeleteInvestor;
-//            <h2 style={{marginTop: '40px',color: '#1fc1a9'}}>delete investor</h2>

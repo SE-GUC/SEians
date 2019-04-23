@@ -10,6 +10,9 @@ const router = express.Router();
 
 const investor = require('../../Models/investor');
 const validator = require('../../validations/investorValidations')
+const withAuth = require('../../middleware');
+
+
 
 //creation
 router.post('/', async (req,res) => {
@@ -52,7 +55,7 @@ router.get('/', async (req,res) => {
 })
 
 //showing every investor
-router.get('/:userName', async (req,res) => {    
+router.get('/:userName', /*withAuth,*/async (req,res) => {    
     try {
     const userName = req.params.userName
     const investorneeded = await investor.findOne({userName})
@@ -65,7 +68,7 @@ router.get('/:userName', async (req,res) => {
 })
 
 //deletion
-router.delete('/:userName', async (req,res) => {
+router.delete('/:userName', /*withAuth,*/async (req,res) => {
     try {
      const userName = req.params.userName
      const investorneeded = await investor.findOne({userName})
@@ -80,7 +83,7 @@ router.delete('/:userName', async (req,res) => {
  })
 
 //editing 
-router.put('/:userName', async (req,res) => {
+router.put('/:userName',/* withAuth,*/async (req,res) => {
     try {
      const userName = req.params.userName
      const investorneeded = await investor.findOne({userName})
@@ -149,14 +152,12 @@ router.put('/:userName', async (req,res) => {
 });
 
 // login investor 
-router.post('/login', async (req, res) => {
+router.post('/login',async (req, res) => {
 	try {
-        const { userName, email, password } = req.body;
+        const {email, password } = req.body;
         //finding investor
 		var Investor = await investor.findOne({ email });
         if (!Investor) return res.status(404).json({ email: 'Email does not exist' });
-        Investor = await investor.findOne({ userName });
-        if (!Investor) return res.status(404).json({ userName: 'userName does not exist' });
         
 		const match = bcrypt.compareSync(password, Investor.password);
 		if (match) {
@@ -164,14 +165,19 @@ router.post('/login', async (req, res) => {
                 id: Investor.id,
                 userName: Investor.userName,
                 name: Investor.name,
-                email: Investor.email
+                email: Investor.email,
+                egID: Investor.egID
             }
             const token = jwt.sign(payload, tokenKey, { expiresIn: '1h' })
-            return res.json({ data: `Bearer ${token}`, data: 'successful login' })
+            return res.json({ token: token, user: payload});
         }
 		else return res.status(400).send({ password: 'Wrong password' });
     } catch (e) {
         res.status(422).send({ error: 'Login failed' });
     }
 });
+
+router.get('/checkToken', withAuth, function(req, res) {
+    res.sendStatus(200);
+  });
 module.exports = router;

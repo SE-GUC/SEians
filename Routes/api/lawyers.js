@@ -12,15 +12,6 @@ const validateLoginInput = require ('../../validations/login');
 const passport = require('passport');
 const lawyerpassport = require('passport');
 
-// temporary data created as if it was pulled out of the database ...
-// const lawyers = [
-//     new lawyer( uuid.v4(),'Mahmoud1', 'Mahmoud Hossam Eldin', 'MahmoudHoss@gmail.com','123456'),
-//     new lawyer( uuid.v4(),'Mahmoud2', 'Mahmoud Hossam Eldin2', 'MahmoudHoss2@gmail.com','123456'),
-//     new lawyer(uuid.v4(), 'Mahmoud3', 'Mahmoud Hossam Eldin3', 'MahmoudHoss3@gmail.com','123456'),
-//     new lawyer(uuid.v4(), 'Mahmoud4', 'Mahmoud Hossam Eldin4', 'MahmoudHoss4@gmail.com','123456')
-// ];
-
-////////////
 //showing the lawyer cases
 router.put('/cases/:caseDate',(req,res)=>{
   Case.findOne({caseDate:req.body.caseDate}).then(casedate =>{

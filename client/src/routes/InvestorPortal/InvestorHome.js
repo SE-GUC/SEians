@@ -18,7 +18,9 @@ class InvestorHome extends Component {
       { label: 'edit' , link: '/UpdateInvestor', active: true },
       { label: 'delete' , link: '/deleteInvestor', active: true },
       { label: 'show Companies' , link: '/CompanyViewer', active: true },
-      { label: 'Logout', link: '/LogoutInv', active: true }
+      { label: 'Logout', link: '/LogoutInv', active: true },
+      { label: 'Get My Forms', link: '/getMyForms', active: true },
+      { label: 'View Company', link: '/GetCompany' },
     ];
     return (
       <div>

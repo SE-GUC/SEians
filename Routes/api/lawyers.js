@@ -1,15 +1,16 @@
-
 const express = require('express');
 const Joi = require('joi');
 const uuid = require('uuid');
 const router = express.Router();
-
+const keys = require('../../config/keys');
 const lawyer = require('../../Models/lawyer')
-// const Case = require('../../Models/Case')
 
+const bcrypt = require('bcryptjs');//to encrypt the password 
+const jwt = require('jsonwebtoken');
 const validateRegisterInput = require ('../../validations/register');
 const validateLoginInput = require ('../../validations/login');
 const passport = require('passport');
+const lawyerpassport = require('passport');
 
 // temporary data created as if it was pulled out of the database ...
 // const lawyers = [
@@ -30,6 +31,30 @@ router.put('/cases/:caseDate',(req,res)=>{
     }
 
   })
+})
+
+
+
+////get all lawyers 
+router.get('/', async (req,res) => {
+  const lawyer = await Lawyer.find()
+  res.json({data:lawyer})
+})
+
+
+//search lawyer by user name
+
+// Searching for lawyer by Username
+router.get('/:username', async (req,res) => {    
+  try {
+  const username = req.params.username
+  const Lawyerneeded = await Lawyer.findOne({username})
+  if(!Lawyerneeded) return res.status(404).send({error: 'Lawyer does not exist'})
+  res.json({data: Lawyerneeded})
+  }
+  catch(error) {
+      console.log(error)
+  } 
 })
 
 
@@ -83,6 +108,8 @@ router.post('/joi', (req, res) => {
        lawyers.push(newlawyer)
        return res.json({ data: lawyers });
   }
+
+/////// to be continued 
 
 function calculate(law,company,capital){
   var cal;
@@ -139,10 +166,32 @@ router.post('/register',(req,res)=>{
           //     d:'mm'//Default
           // });
           const newlawyer = new lawyer ({
-              name:req.body.name,
+            firstname:req.body.firstname,
+
+            middlename:req.body.middlename,
+
+            lastname:req.body.lastname,
+
+            username:req.body.username,
+
+            birthDate:req.body.birthDate,
+
+            gender:req.body.gender,
+
+            address:req.body.address,
+
+            yearsOfExperience:req.body.yearsOfExperience,
+
+            salary:req.body.salary,
+
+            ssn:req.body.ssn,
+
+            phone:req.body.phone,
+
               email:req.body.email,
               // avatar,
-              password:req.body.password
+              password:req.body.password,
+              password2:req.body.password2
               
       });
       bcrypt.genSalt(10,(err,salt)=> {
@@ -261,8 +310,70 @@ router.get('/current',passport.authenticate('jwt',{session:false}),(req,res)=>{
 });
 
 
+// Deleteing Lawyer by Username
+router.delete('/:username', async (req,res) => {
+  try {
+   const username = req.params.username
+   const Lawyerneeded = await Lawyer.findOne({username})
+   if(!Lawyerneeded) return res.status(404).send({error: 'Lawyer does not exist'})
+   const deleted = await Lawyer.deleteOne(Lawyerneeded)
+   res.json({msg:'Lawyer was deleted successfully', data: deleted})
+  }
+  
+  catch(error) {
+      console.log(error)
+  }  
+})
+
+
+//Updating data by username
+
+router.put('/:username', async (req,res) => {
+  try {
+   const username = req.params.username
+   console.log(username)
+   const Lawyerneeded = await Lawyer.findOne({username})
+   if(!Lawyerneeded) return res.status(404).send({error: 'Lawyer does not exist'})
+   console.log(Lawyerneeded.salary)
+   const isValidated = validator.updateValidation(req.body)
+   if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+   const updated = await Lawyer.findOneAndUpdate({username:username},req.body)
+   res.json({msg: 'Lawyer updated successfully', data: updated})
+  }
+  catch(error) {
+      console.log(error)
+  }  
+});
 
 
 
 module.exports = router
+
+
+
+
+
+///////////staaaaaaaaaaaaart agaaaaaaaaaaaaaaaain
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

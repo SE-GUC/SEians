@@ -47,9 +47,36 @@ import StaffLaw from './AdminPortal/Staff/StaffLaw';
 
 
 
+///////
+import login2 from '../components/Au/Login'
+import register2 from '../components/Au/Register'
+import {Provider} from 'react-redux';
+import store from '../store';
+import Footer2 from '../components/Layout/Footer2'
+import Navbar from '../components/Layout/Navbar'
+import {BrowserRouter as Router} from  
+'react-router-dom';
+import Landing from '../components/Layout/Landing';
+
+
+
 export default ()=>(
+
+    <Provider store={ store }>
+    <Router>
+    
+    <Navbar/>
+
     <BrowserRouter>
-    <div>
+
+
+    <div className ="App" id="particles-js" >
+
+    <Route exact path ="/" exact component={Landing}/>
+
+    <Route path ="/data" exact component={home}/>
+    <Route path ="/login2" exact component={login2}/>
+    <Route path ="/register2" exact component={register2}/>
     
     <Route path ="/" exact component={home}/>
     <Route path ="/AdminHome/CreateAdmin" exact component={CreateAdmin}/>
@@ -99,7 +126,8 @@ export default ()=>(
 
 
 
-
+    <script type="text/javascript" src="particles.js"></script>
+          <script type="text/javascript" src="app.js"></script>
 
 
   
@@ -108,4 +136,8 @@ export default ()=>(
   
   
     </BrowserRouter>
+    <Footer2/>
+    
+    </Router>
+    </Provider>
 )

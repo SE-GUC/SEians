@@ -39,10 +39,12 @@ return(
       )} />
       <Route path="/about" />
     </div>
+    <footer className="Footer">
+    <Footer/>
+    </footer>
+    <a href="/SpcUpdate"> update forms </a><br/>
+    <a href="/SpcDelete"> delete forms </a><br/>
   </div>
-  <footer className="Footer">
-  <Footer/>
-  </footer>
 
 </Router>
 )

@@ -55,6 +55,9 @@ class InvestorHome extends Component {
           <footer className="Footer">
             <Footer />
           </footer>
+          <a href="/Investor/SpcCreate">Create Form</a><br/>
+          <a href="/FormUpdateInv">Update Form</a><br/>
+          <a href="/Formdeleteinv">delete Form</a><br/>
         </Router>
       </div>
     );

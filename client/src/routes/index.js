@@ -47,7 +47,10 @@ import StaffLaw from './AdminPortal/Staff/StaffLaw';
 import AllLogins from '../components/AllLogins'
 import withAuth from './InvestorPortal/withAuth';
 import LogoutInv from './InvestorPortal/LogoutInv';
-import Profile from './InvestorPortal/Profile';
+import Profile from './InvestorPortal/Profile'
+import getMyForms from './InvestorPortal/Forms/getMyForms'
+import FormUpdateInv from './InvestorPortal/Forms/FormUpdateInv'
+import Formdeleteinv from './InvestorPortal/Forms/Formdeleteinv'
 import CreateLawyer from './AdminPortal/Staff/Lawyer/CreateLawyer';
 import GetLawyer from './AdminPortal/Staff/Lawyer/GetLawyer';
 import UpdateLawyer from './AdminPortal/Staff/Lawyer/UpdateLawyer';
@@ -101,8 +104,10 @@ export default ()=>(
     <Route path ="/AllLogins" exact component={AllLogins}/>
     <Route path ="/LogoutInv" exact component={withAuth(LogoutInv)}/>
     <Route path ="/Profile" exact component={withAuth(Profile)}/>
-
-
+    <Route path ="/getMyForms" exact component={withAuth(getMyForms)}/>
+    <Route path ="/Investor/SpcCreate" exact component={withAuth(SpcCreate)}/>
+    <Route path ="/FormUpdateInv" exact component={withAuth(FormUpdateInv)}/>
+    <Route path ="/Formdeleteinv" exact component={withAuth(Formdeleteinv)}/>
     <Route path ="/AdminLogin" exact component={AdminLogin}/>
     <Route path ="/EditProfile" exact component={UpdateME}/>
     <Route path ="/AdmLoggedout" exact component={AdminLogout}/>
@@ -137,10 +142,6 @@ export default ()=>(
     <div>
     <Route path ="/UpdateInfo" exact component={UpdateInfo}/>
     </div>
-
-
-
-
     </div>
 
 
